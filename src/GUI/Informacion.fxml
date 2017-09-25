@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.ColorAdjust?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="451.0" prefWidth="623.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.InformacionController">
+   <children>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#eb9a4a" height="60.0" stroke="BLACK" strokeType="INSIDE" width="623.0" />
+      <Label fx:id="informacion" layoutX="221.0" layoutY="8.0" text="%labelInformacion">
+         <font>
+            <Font name="Malayalam Sangam MN Bold" size="30.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="233.0" layoutY="68.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../resources/Logo-UV.jpg" />
+         </image>
+         <effect>
+            <ColorAdjust brightness="0.07" contrast="0.05" hue="0.02" />
+         </effect>
+      </ImageView>
+      <Label fx:id="materia" layoutX="198.0" layoutY="247.0" text="%materia">
+         <font>
+            <Font name="Malayalam Sangam MN" size="15.0" />
+         </font>
+      </Label>
+      <Label fx:id="nombreMateria" layoutX="264.0" layoutY="247.0" text="%nombreMateria">
+         <font>
+            <Font name="Malayalam Sangam MN" size="15.0" />
+         </font>
+      </Label>
+      <Label fx:id="alumnas" layoutX="276.0" layoutY="282.0" text="%alumnas">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <Label fx:id="alumna1" layoutX="229.0" layoutY="316.0" text="%alumna1">
+         <font>
+            <Font name="Malayalam Sangam MN" size="15.0" />
+         </font>
+      </Label>
+      <Label fx:id="alumna2" layoutX="229.0" layoutY="348.0" text="%alumna2">
+         <font>
+            <Font name="Malayalam Sangam MN" size="15.0" />
+         </font>
+      </Label>
+      <Label fx:id="version" layoutX="276.0" layoutY="387.0" text="%version">
+         <font>
+            <Font name="Malayalam Sangam MN" size="14.0" />
+         </font>
+      </Label>
+      <Button fx:id="Bregresar" layoutX="522.0" layoutY="409.0" mnemonicParsing="false" text="%regresar" />
+      <Button fx:id="espanol" layoutX="463.0" layoutY="68.0" mnemonicParsing="false" onAction="#cambiarIdiomaMX" text="%espanol" />
+      <Button fx:id="ingles" layoutX="542.0" layoutY="68.0" mnemonicParsing="false" onAction="#cambiarIdiomaUS" text="%ingles" />
+   </children>
+   <effect>
+      <ColorAdjust />
+   </effect>
+</AnchorPane>
