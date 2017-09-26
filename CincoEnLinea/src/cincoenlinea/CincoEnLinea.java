@@ -20,7 +20,7 @@ public class CincoEnLinea extends Application {
     public void start(Stage stage){  
     try{
         ResourceBundle bundle = ResourceBundle.getBundle("resources.idioma");
-        FXMLLoader inicio = new FXMLLoader(getClass().getResource("/GUI/Informacion.fxml"),bundle);
+        FXMLLoader inicio = new FXMLLoader(getClass().getResource("/GUI/Tablero.fxml"),bundle);
         Parent page = inicio.load();
         Scene scene = new Scene(page);
         stage.setScene(scene);
