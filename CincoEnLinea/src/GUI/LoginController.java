@@ -66,8 +66,9 @@ public class LoginController implements Initializable {
         registrar.setText(resources.getString("registrar"));
         ingles.setText(resources.getString("ingles"));
         espanol.setText(resources.getString("espanol"));
-        fieldUsuario.setText(resources.getString("usuario"));
-        fieldContraseña.setText(resources.getString("passwd"));
+        fieldContraseña.setText("");
+        fieldUsuario.setText("");
+
     }
     
     

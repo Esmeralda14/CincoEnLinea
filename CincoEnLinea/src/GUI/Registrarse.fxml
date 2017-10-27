@@ -30,7 +30,7 @@
       <TextField layoutX="57.0" layoutY="171.0" prefHeight="27.0" prefWidth="255.0" />
       <Button fx:id="Bregistrarse" layoutX="137.0" layoutY="347.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="97.0" text="%Bregistrarse" />
       <Button fx:id="regresar" layoutX="274.0" layoutY="432.0" mnemonicParsing="false" text="%regresar" />
-      <Button fx:id="espanol" layoutX="215.0" layoutY="72.0" mnemonicParsing="false" onAction="#cambiarIdiomaMX" prefHeight="27.0" prefWidth="84.0" text="%espanol" />
-      <Button fx:id="ingles" layoutX="299.0" layoutY="72.0" mnemonicParsing="false" onAction="#cambiarIdiomaUS" text="%ingles" />
+      <Button fx:id="espanol" layoutX="219.0" layoutY="71.0" mnemonicParsing="false" onAction="#cambiarIdiomaMX" prefHeight="25.0" prefWidth="70.0" text="%espanol" />
+      <Button fx:id="ingles" layoutX="299.0" layoutY="72.0" mnemonicParsing="false" onAction="#cambiarIdiomaUS" prefHeight="25.0" prefWidth="70.0" text="%ingles" />
    </children>
 </AnchorPane>

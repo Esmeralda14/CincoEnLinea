@@ -46,6 +46,7 @@ public class ReglasController implements Initializable {
     private Button Bregresar;
     
     ResourceBundle resources = ResourceBundle.getBundle("resources.idioma");
+    private MenuPrincipalController origen;
     
     
     @Override
@@ -63,7 +64,6 @@ public class ReglasController implements Initializable {
         regla4.setText(resources.getString("regla4"));
         regla5.setText(resources.getString("regla5"));
         regla6.setText(resources.getString("regla6"));
-        Bregresar.setText(resources.getString("regresar"));
         
     }
     
@@ -77,5 +77,9 @@ public class ReglasController implements Initializable {
     public void cambiarIdiomaMX(){
         resources = ResourceBundle.getBundle("resources.idioma_es_MX");
         configurarIdioma();
+    }
+    
+     public void setOrigen(MenuPrincipalController origen){
+    this.origen = origen; 
     }
 }

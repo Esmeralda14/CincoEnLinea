@@ -8,6 +8,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 /**
@@ -20,8 +21,7 @@ public class CincoEnLinea extends Application {
     public void start(Stage stage){  
     try{
         ResourceBundle bundle = ResourceBundle.getBundle("resources.idioma");
-        FXMLLoader inicio = new FXMLLoader(getClass().getResource("/GUI/Tablero.fxml"),bundle);
-        Parent page = inicio.load();
+        AnchorPane page  = FXMLLoader.load(getClass().getResource("/GUI/MenuPrincipal.fxml"),bundle);
         Scene scene = new Scene(page);
         stage.setScene(scene);
         stage.show();

@@ -24,7 +24,7 @@
             <Font name="Myanmar Sangam MN" size="19.0" />
          </font>
       </Label>
-      <TextField fx:id="fieldUsuario" layoutX="98.0" layoutY="287.0" prefHeight="27.0" prefWidth="250.0" text="%usuario">
+      <TextField fx:id="fieldUsuario" layoutX="98.0" layoutY="287.0" prefHeight="27.0" prefWidth="250.0">
          <effect>
             <ColorAdjust contrast="-0.29" />
          </effect></TextField>
@@ -43,18 +43,10 @@
             <Font name="Malayalam Sangam MN" size="16.0" />
          </font>
       </Button>
-      <PasswordField fx:id="fieldContraseña" layoutX="102.0" layoutY="367.0" prefHeight="27.0" prefWidth="250.0" text="%passwd">
+      <PasswordField fx:id="fieldContraseña" layoutX="102.0" layoutY="367.0" prefHeight="27.0" prefWidth="250.0">
          <effect>
             <ColorAdjust contrast="-0.2" />
          </effect></PasswordField>
-      <Button fx:id="espanol" layoutX="268.0" layoutY="58.0" mnemonicParsing="false" onAction="#cambiarIdiomaEs" text="%espanol">
-         <effect>
-            <ColorAdjust contrast="1.0" />
-         </effect></Button>
-      <Button fx:id="ingles" layoutX="351.0" layoutY="58.0" mnemonicParsing="false" onAction="#cambiarIdiomaIngles" prefHeight="27.0" prefWidth="79.0" text="%ingles">
-         <effect>
-            <ColorAdjust contrast="1.0" />
-         </effect></Button>
       <ImageView fitHeight="136.0" fitWidth="173.0" layoutX="158.0" layoutY="97.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../resources/photo_2017-09-09_20-11-53.jpg" />

@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXDrawer?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.SplitPane?>
@@ -10,18 +12,26 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="630.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cincoenlinea.MenuPrincipalController">
+<AnchorPane id="AnchorPane" fx:id="panelPrincipal" prefHeight="391.0" prefWidth="799.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.MenuPrincipalController">
    <children>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#33b5c9" height="57.0" stroke="BLACK" strokeType="INSIDE" width="630.0" />
-      <Label fx:id="menuPrincipal" layoutX="212.0" layoutY="7.0" text="%menuPrincipal">
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1cb8cd" height="57.0" stroke="WHITE" strokeType="INSIDE" width="799.0" />
+      <Label fx:id="menuPrincipal" layoutX="267.0" layoutY="10.0" text="%menuPrincipal">
          <font>
             <Font name="Myanmar Sangam MN Bold" size="27.0" />
          </font>
       </Label>
-      <SplitPane dividerPositions="0.29797979797979796" layoutX="-2.0" layoutY="57.0" prefHeight="338.0" prefWidth="630.0">
+      <SplitPane dividerPositions="0.29797979797979796" layoutX="-2.0" layoutY="57.0" prefHeight="340.0" prefWidth="799.0">
         <items>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                <children>
+                  <Button fx:id="hamburgerReglas" layoutX="32.0" layoutY="117.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="135.0" text="%reglas">
+                     <font>
+                        <Font name="Malayalam Sangam MN" size="17.0" />
+                     </font>
+                     <effect>
+                        <ColorAdjust brightness="-0.25" contrast="0.59" />
+                     </effect>
+                  </Button>
                   <Button fx:id="iniciarPartida" layoutX="32.0" layoutY="53.0" mnemonicParsing="false" text="%iniciarPartida">
                      <font>
                         <Font name="Malayalam Sangam MN" size="17.0" />
@@ -30,7 +40,7 @@
                         <ColorAdjust brightness="-0.25" contrast="0.59" />
                      </effect>
                   </Button>
-                  <Button fx:id="reglas" layoutX="32.0" layoutY="117.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="125.0" text="%reglas">
+                  <Button fx:id="raking" layoutX="32.0" layoutY="180.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="135.0" text="%ranking">
                      <font>
                         <Font name="Malayalam Sangam MN" size="17.0" />
                      </font>
@@ -38,15 +48,7 @@
                         <ColorAdjust brightness="-0.25" contrast="0.59" />
                      </effect>
                   </Button>
-                  <Button fx:id="raking" layoutX="32.0" layoutY="180.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="125.0" text="%ranking">
-                     <font>
-                        <Font name="Malayalam Sangam MN" size="17.0" />
-                     </font>
-                     <effect>
-                        <ColorAdjust brightness="-0.25" contrast="0.59" />
-                     </effect>
-                  </Button>
-                  <Button fx:id="informacion" layoutX="29.0" layoutY="246.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="125.0" text="%informacion">
+                  <Button fx:id="informacion" layoutX="29.0" layoutY="246.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="135.0" text="%informacion">
                      <font>
                         <Font name="Malayalam Sangam MN" size="17.0" />
                      </font>
@@ -56,13 +58,14 @@
                   </Button>
                </children>
             </AnchorPane>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+          <AnchorPane fx:id="paneSecundario" minHeight="0.0" minWidth="0.0" prefHeight="338.0" prefWidth="506.0">
                <children>
-                  <ImageView fitHeight="278.0" fitWidth="382.0" layoutX="100.0" layoutY="29.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="278.0" fitWidth="297.0" layoutX="147.0" layoutY="30.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../resources/photo_2017-09-09_20-11-53.jpg" />
                      </image>
                   </ImageView>
+                  <JFXDrawer fx:id="draweMenu" defaultDrawerSize="400.0" direction="RIGHT" layoutY="-1.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="341.0" prefWidth="557.0" />
                </children>
                <effect>
                   <ColorAdjust brightness="0.07" contrast="-0.1" />
@@ -70,18 +73,8 @@
             </AnchorPane>
         </items>
       </SplitPane>
-      <Button fx:id="espanol" layoutX="455.0" layoutY="15.0" mnemonicParsing="false" onAction="#cambiarIdiomaMX" text="%espanol">
-         <effect>
-            <ColorAdjust brightness="-0.15" contrast="1.0" />
-         </effect>
-         <font>
-            <Font name="Malayalam Sangam MN" size="13.0" />
-         </font>
-      </Button>
-      <Button fx:id="ingles" layoutX="551.0" layoutY="15.0" mnemonicParsing="false" onAction="#cambiarIdiomaUS" text="%ingles">
-         <effect>
-            <ColorAdjust brightness="-0.15" contrast="1.0" />
-         </effect>
-      </Button>
+      <JFXButton fx:id="espanol" layoutX="629.0" layoutY="17.0" onAction="#cambiarIdiomaMX" text="%espanol" />
+      <JFXButton fx:id="ingles" layoutX="721.0" layoutY="16.0" onAction="#cambiarIdiomaUS" text="%english" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="38.0" layoutX="707.0" layoutY="11.0" stroke="BLACK" strokeType="INSIDE" width="3.0" />
    </children>
 </AnchorPane>
