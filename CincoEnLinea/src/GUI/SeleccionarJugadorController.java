@@ -6,14 +6,21 @@
 package GUI;
 
 import com.jfoenix.controls.JFXButton;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.EventType;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -33,12 +40,23 @@ public class SeleccionarJugadorController implements Initializable {
 
     ResourceBundle resources = ResourceBundle.getBundle("resources.idioma");
     MenuPrincipalController menu = new MenuPrincipalController();
+    
+    private Stage stage = new Stage();
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-
+        botonInciarPartida.addEventHandler(MouseEvent.MOUSE_PRESSED, (e) -> {
+            try {
+                AnchorPane pane = FXMLLoader.load(getClass().getResource("Tablero.fxml"), resources);
+                 Scene scenePartida = new Scene(pane);
+                stage.setScene(scenePartida);
+                stage.show();
+            } catch (IOException ex) {
+                Logger.getLogger(MenuPrincipalController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        });
     }
 
     public void configurarIdioma() {

@@ -5,13 +5,22 @@
  */
 package GUI;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
+import logica.JugadorLOG;
 
 /**
  * FXML Controller class
@@ -47,11 +56,25 @@ public class LoginController implements Initializable {
     private Button espanol;
 
     ResourceBundle resources = ResourceBundle.getBundle("resources.idioma");
+    
+    private Stage stage = new Stage();
      
      
     @Override
     public void initialize(URL url, ResourceBundle rb) {
       this.resources = rb;
+      
+      ingresar.addEventHandler(MouseEvent.MOUSE_PRESSED, (e) -> {
+            try {
+                AnchorPane pane = FXMLLoader.load(getClass().getResource("MenuPrincipal.fxml"), resources);
+                 Scene scenePartida = new Scene(pane);
+                stage.setScene(scenePartida);
+                stage.show();
+            } catch (IOException ex) {
+                Logger.getLogger(MenuPrincipalController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+        });
       
      
       
@@ -85,7 +108,17 @@ public class LoginController implements Initializable {
         resources = ResourceBundle.getBundle("resources.idioma_en_US");
         configurarIdioma();
     }
-
+    
+    private JugadorLOG obtenerValores(){
+    JugadorLOG jugador = null;
+   if(fieldUsuario.getText().equals("") || fieldContraseña.getText().equals("")){     
+   }else{
+      String user = fieldUsuario.getText();
+      String clave = fieldContraseña.getText();
+      jugador = new JugadorLOG(user, clave);
+   }
+   return jugador;
+}
        
     
 }

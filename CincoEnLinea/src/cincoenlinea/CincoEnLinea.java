@@ -10,6 +10,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import logica.JugadorLOG;
+import persistencia.consultas.JugadorCONS;
 
 /**
  *
@@ -33,8 +35,9 @@ public class CincoEnLinea extends Application {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         launch(args);
+
     }
     
 }
