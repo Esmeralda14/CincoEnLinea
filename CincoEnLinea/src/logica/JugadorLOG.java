@@ -10,7 +10,6 @@ package logica;
  * @author marianacro
  */
 public class JugadorLOG {
-    private int idjugador;
     private String usuario;
     private String clave;
 
@@ -18,15 +17,11 @@ public class JugadorLOG {
         this.usuario = usuario;
         this.clave = clave;
     }
-    
 
-    public int getIdjugador() {
-        return idjugador;
+    public JugadorLOG() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    public void setIdjugador(int idjugador) {
-        this.idjugador = idjugador;
-    }
 
     public String getUsuario() {
         return usuario;

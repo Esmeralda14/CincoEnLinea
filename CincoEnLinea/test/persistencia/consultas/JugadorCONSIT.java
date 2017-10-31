@@ -12,13 +12,14 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import persistencia.Jugadores;
 
 /**
  *
  * @author marianacro
  */
 public class JugadorCONSIT {
-    JugadorLOG jug = new JugadorLOG("esme","perrito");
+    
     public JugadorCONSIT() {
     }
     
@@ -44,13 +45,24 @@ public class JugadorCONSIT {
     @Test
     public void testRegistrarJugador() throws Exception {
         System.out.println("registrarJugador");
-        Object jugador = jug;
+        Jugadores jugador = null;
         JugadorCONS instance = new JugadorCONS();
-        boolean resultEsperado = instance.registrarJugador(jugador);
-        boolean result = true;
-        assertEquals(result, resultEsperado);
-        // TODO review the generated test code and remove the default call to fail.
-        
+        boolean expResult = false;
+        boolean result = instance.registrarJugador(jugador);
+        assertEquals(expResult, result);
+    }
+
+    /**
+     * Test of validarInisioSesion method, of class JugadorCONS.
+     */
+    @Test
+    public void testValidarInisioSesion() {
+        System.out.println("validarInisioSesion");
+        JugadorLOG jugador = new JugadorLOG("marianacro", "mc9718");
+        JugadorCONS instance = new JugadorCONS();
+        String expResult = "Inicio de sesión exitoso";
+        String result = instance.validarInisioSesion(jugador);
+        assertEquals(expResult, result);
     }
     
 }

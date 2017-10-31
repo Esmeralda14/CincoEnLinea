@@ -8,14 +8,13 @@ package persistencia;
 import java.io.Serializable;
 import java.util.Collection;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
@@ -28,46 +27,32 @@ import javax.xml.bind.annotation.XmlTransient;
 @Table(name = "Jugadores")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Jugadores.findAll", query = "SELECT j FROM Jugadores j"),
-    @NamedQuery(name = "Jugadores.findByIdJugadores", query = "SELECT j FROM Jugadores j WHERE j.idJugadores = :idJugadores"),
-    @NamedQuery(name = "Jugadores.findByUsuario", query = "SELECT j FROM Jugadores j WHERE j.usuario = :usuario"),
-    @NamedQuery(name = "Jugadores.findByClave", query = "SELECT j FROM Jugadores j WHERE j.clave = :clave")})
+    @NamedQuery(name = "Jugadores.findAll", query = "SELECT j FROM Jugadores j")
+    , @NamedQuery(name = "Jugadores.findByUsuario", query = "SELECT j FROM Jugadores j WHERE j.usuario = :usuario")
+    , @NamedQuery(name = "Jugadores.findByClave", query = "SELECT j FROM Jugadores j WHERE j.clave = :clave")})
 public class Jugadores implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
-    @Column(name = "idJugadores")
-    private Integer idJugadores;
-    @Basic(optional = false)
     @Column(name = "usuario")
     private String usuario;
+    @Basic(optional = false)
     @Column(name = "clave")
     private String clave;
-    @JoinTable(name = "Jugadores_has_Partida", joinColumns = {
-        @JoinColumn(name = "Jugadores_idJugadores", referencedColumnName = "idJugadores")}, inverseJoinColumns = {
-        @JoinColumn(name = "Partida_idPartida", referencedColumnName = "idPartida")})
-    @ManyToMany
-    private Collection<Partida> partidaCollection;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "jugadores")
+    private Collection<JugadoreshasPartida> jugadoreshasPartidaCollection;
 
     public Jugadores() {
     }
 
-    public Jugadores(Integer idJugadores) {
-        this.idJugadores = idJugadores;
-    }
-
-    public Jugadores(Integer idJugadores, String usuario) {
-        this.idJugadores = idJugadores;
+    public Jugadores(String usuario) {
         this.usuario = usuario;
     }
 
-    public Integer getIdJugadores() {
-        return idJugadores;
-    }
-
-    public void setIdJugadores(Integer idJugadores) {
-        this.idJugadores = idJugadores;
+    public Jugadores(String usuario, String clave) {
+        this.usuario = usuario;
+        this.clave = clave;
     }
 
     public String getUsuario() {
@@ -87,18 +72,18 @@ public class Jugadores implements Serializable {
     }
 
     @XmlTransient
-    public Collection<Partida> getPartidaCollection() {
-        return partidaCollection;
+    public Collection<JugadoreshasPartida> getJugadoreshasPartidaCollection() {
+        return jugadoreshasPartidaCollection;
     }
 
-    public void setPartidaCollection(Collection<Partida> partidaCollection) {
-        this.partidaCollection = partidaCollection;
+    public void setJugadoreshasPartidaCollection(Collection<JugadoreshasPartida> jugadoreshasPartidaCollection) {
+        this.jugadoreshasPartidaCollection = jugadoreshasPartidaCollection;
     }
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (idJugadores != null ? idJugadores.hashCode() : 0);
+        hash += (usuario != null ? usuario.hashCode() : 0);
         return hash;
     }
 
@@ -109,7 +94,7 @@ public class Jugadores implements Serializable {
             return false;
         }
         Jugadores other = (Jugadores) object;
-        if ((this.idJugadores == null && other.idJugadores != null) || (this.idJugadores != null && !this.idJugadores.equals(other.idJugadores))) {
+        if ((this.usuario == null && other.usuario != null) || (this.usuario != null && !this.usuario.equals(other.usuario))) {
             return false;
         }
         return true;
@@ -117,7 +102,7 @@ public class Jugadores implements Serializable {
 
     @Override
     public String toString() {
-        return "persistencia.Jugadores[ idJugadores=" + idJugadores + " ]";
+        return "persistencia.Jugadores[ usuario=" + usuario + " ]";
     }
     
 }

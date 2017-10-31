@@ -8,12 +8,13 @@ package persistencia;
 import java.io.Serializable;
 import java.util.Collection;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
@@ -27,8 +28,7 @@ import javax.xml.bind.annotation.XmlTransient;
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Partida.findAll", query = "SELECT p FROM Partida p")
-    , @NamedQuery(name = "Partida.findByIdPartida", query = "SELECT p FROM Partida p WHERE p.idPartida = :idPartida")
-    , @NamedQuery(name = "Partida.findByPuntuacionObtenida", query = "SELECT p FROM Partida p WHERE p.puntuacionObtenida = :puntuacionObtenida")})
+    , @NamedQuery(name = "Partida.findByIdPartida", query = "SELECT p FROM Partida p WHERE p.idPartida = :idPartida")})
 public class Partida implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -36,10 +36,8 @@ public class Partida implements Serializable {
     @Basic(optional = false)
     @Column(name = "idPartida")
     private Integer idPartida;
-    @Column(name = "puntuacionObtenida")
-    private Integer puntuacionObtenida;
-    @ManyToMany(mappedBy = "partidaCollection")
-    private Collection<Jugadores> jugadoresCollection;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "partida")
+    private Collection<JugadoreshasPartida> jugadoreshasPartidaCollection;
 
     public Partida() {
     }
@@ -56,21 +54,13 @@ public class Partida implements Serializable {
         this.idPartida = idPartida;
     }
 
-    public Integer getPuntuacionObtenida() {
-        return puntuacionObtenida;
-    }
-
-    public void setPuntuacionObtenida(Integer puntuacionObtenida) {
-        this.puntuacionObtenida = puntuacionObtenida;
-    }
-
     @XmlTransient
-    public Collection<Jugadores> getJugadoresCollection() {
-        return jugadoresCollection;
+    public Collection<JugadoreshasPartida> getJugadoreshasPartidaCollection() {
+        return jugadoreshasPartidaCollection;
     }
 
-    public void setJugadoresCollection(Collection<Jugadores> jugadoresCollection) {
-        this.jugadoresCollection = jugadoresCollection;
+    public void setJugadoreshasPartidaCollection(Collection<JugadoreshasPartida> jugadoreshasPartidaCollection) {
+        this.jugadoreshasPartidaCollection = jugadoreshasPartidaCollection;
     }
 
     @Override

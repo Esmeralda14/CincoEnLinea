@@ -5,6 +5,7 @@
  */
 package controladores;
 
+import controladores.exceptions.IllegalOrphanException;
 import controladores.exceptions.NonexistentEntityException;
 import controladores.exceptions.PreexistingEntityException;
 import java.io.Serializable;
@@ -12,7 +13,7 @@ import javax.persistence.Query;
 import javax.persistence.EntityNotFoundException;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
-import persistencia.Jugadores;
+import persistencia.JugadoreshasPartida;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -36,23 +37,28 @@ public class PartidaJpaController implements Serializable {
     }
 
     public void create(Partida partida) throws PreexistingEntityException, Exception {
-        if (partida.getJugadoresCollection() == null) {
-            partida.setJugadoresCollection(new ArrayList<Jugadores>());
+        if (partida.getJugadoreshasPartidaCollection() == null) {
+            partida.setJugadoreshasPartidaCollection(new ArrayList<JugadoreshasPartida>());
         }
         EntityManager em = null;
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            Collection<Jugadores> attachedJugadoresCollection = new ArrayList<Jugadores>();
-            for (Jugadores jugadoresCollectionJugadoresToAttach : partida.getJugadoresCollection()) {
-                jugadoresCollectionJugadoresToAttach = em.getReference(jugadoresCollectionJugadoresToAttach.getClass(), jugadoresCollectionJugadoresToAttach.getIdJugadores());
-                attachedJugadoresCollection.add(jugadoresCollectionJugadoresToAttach);
+            Collection<JugadoreshasPartida> attachedJugadoreshasPartidaCollection = new ArrayList<JugadoreshasPartida>();
+            for (JugadoreshasPartida jugadoreshasPartidaCollectionJugadoreshasPartidaToAttach : partida.getJugadoreshasPartidaCollection()) {
+                jugadoreshasPartidaCollectionJugadoreshasPartidaToAttach = em.getReference(jugadoreshasPartidaCollectionJugadoreshasPartidaToAttach.getClass(), jugadoreshasPartidaCollectionJugadoreshasPartidaToAttach.getJugadoreshasPartidaPK());
+                attachedJugadoreshasPartidaCollection.add(jugadoreshasPartidaCollectionJugadoreshasPartidaToAttach);
             }
-            partida.setJugadoresCollection(attachedJugadoresCollection);
+            partida.setJugadoreshasPartidaCollection(attachedJugadoreshasPartidaCollection);
             em.persist(partida);
-            for (Jugadores jugadoresCollectionJugadores : partida.getJugadoresCollection()) {
-                jugadoresCollectionJugadores.getPartidaCollection().add(partida);
-                jugadoresCollectionJugadores = em.merge(jugadoresCollectionJugadores);
+            for (JugadoreshasPartida jugadoreshasPartidaCollectionJugadoreshasPartida : partida.getJugadoreshasPartidaCollection()) {
+                Partida oldPartidaOfJugadoreshasPartidaCollectionJugadoreshasPartida = jugadoreshasPartidaCollectionJugadoreshasPartida.getPartida();
+                jugadoreshasPartidaCollectionJugadoreshasPartida.setPartida(partida);
+                jugadoreshasPartidaCollectionJugadoreshasPartida = em.merge(jugadoreshasPartidaCollectionJugadoreshasPartida);
+                if (oldPartidaOfJugadoreshasPartidaCollectionJugadoreshasPartida != null) {
+                    oldPartidaOfJugadoreshasPartidaCollectionJugadoreshasPartida.getJugadoreshasPartidaCollection().remove(jugadoreshasPartidaCollectionJugadoreshasPartida);
+                    oldPartidaOfJugadoreshasPartidaCollectionJugadoreshasPartida = em.merge(oldPartidaOfJugadoreshasPartidaCollectionJugadoreshasPartida);
+                }
             }
             em.getTransaction().commit();
         } catch (Exception ex) {
@@ -67,32 +73,43 @@ public class PartidaJpaController implements Serializable {
         }
     }
 
-    public void edit(Partida partida) throws NonexistentEntityException, Exception {
+    public void edit(Partida partida) throws IllegalOrphanException, NonexistentEntityException, Exception {
         EntityManager em = null;
         try {
             em = getEntityManager();
             em.getTransaction().begin();
             Partida persistentPartida = em.find(Partida.class, partida.getIdPartida());
-            Collection<Jugadores> jugadoresCollectionOld = persistentPartida.getJugadoresCollection();
-            Collection<Jugadores> jugadoresCollectionNew = partida.getJugadoresCollection();
-            Collection<Jugadores> attachedJugadoresCollectionNew = new ArrayList<Jugadores>();
-            for (Jugadores jugadoresCollectionNewJugadoresToAttach : jugadoresCollectionNew) {
-                jugadoresCollectionNewJugadoresToAttach = em.getReference(jugadoresCollectionNewJugadoresToAttach.getClass(), jugadoresCollectionNewJugadoresToAttach.getIdJugadores());
-                attachedJugadoresCollectionNew.add(jugadoresCollectionNewJugadoresToAttach);
-            }
-            jugadoresCollectionNew = attachedJugadoresCollectionNew;
-            partida.setJugadoresCollection(jugadoresCollectionNew);
-            partida = em.merge(partida);
-            for (Jugadores jugadoresCollectionOldJugadores : jugadoresCollectionOld) {
-                if (!jugadoresCollectionNew.contains(jugadoresCollectionOldJugadores)) {
-                    jugadoresCollectionOldJugadores.getPartidaCollection().remove(partida);
-                    jugadoresCollectionOldJugadores = em.merge(jugadoresCollectionOldJugadores);
+            Collection<JugadoreshasPartida> jugadoreshasPartidaCollectionOld = persistentPartida.getJugadoreshasPartidaCollection();
+            Collection<JugadoreshasPartida> jugadoreshasPartidaCollectionNew = partida.getJugadoreshasPartidaCollection();
+            List<String> illegalOrphanMessages = null;
+            for (JugadoreshasPartida jugadoreshasPartidaCollectionOldJugadoreshasPartida : jugadoreshasPartidaCollectionOld) {
+                if (!jugadoreshasPartidaCollectionNew.contains(jugadoreshasPartidaCollectionOldJugadoreshasPartida)) {
+                    if (illegalOrphanMessages == null) {
+                        illegalOrphanMessages = new ArrayList<String>();
+                    }
+                    illegalOrphanMessages.add("You must retain JugadoreshasPartida " + jugadoreshasPartidaCollectionOldJugadoreshasPartida + " since its partida field is not nullable.");
                 }
             }
-            for (Jugadores jugadoresCollectionNewJugadores : jugadoresCollectionNew) {
-                if (!jugadoresCollectionOld.contains(jugadoresCollectionNewJugadores)) {
-                    jugadoresCollectionNewJugadores.getPartidaCollection().add(partida);
-                    jugadoresCollectionNewJugadores = em.merge(jugadoresCollectionNewJugadores);
+            if (illegalOrphanMessages != null) {
+                throw new IllegalOrphanException(illegalOrphanMessages);
+            }
+            Collection<JugadoreshasPartida> attachedJugadoreshasPartidaCollectionNew = new ArrayList<JugadoreshasPartida>();
+            for (JugadoreshasPartida jugadoreshasPartidaCollectionNewJugadoreshasPartidaToAttach : jugadoreshasPartidaCollectionNew) {
+                jugadoreshasPartidaCollectionNewJugadoreshasPartidaToAttach = em.getReference(jugadoreshasPartidaCollectionNewJugadoreshasPartidaToAttach.getClass(), jugadoreshasPartidaCollectionNewJugadoreshasPartidaToAttach.getJugadoreshasPartidaPK());
+                attachedJugadoreshasPartidaCollectionNew.add(jugadoreshasPartidaCollectionNewJugadoreshasPartidaToAttach);
+            }
+            jugadoreshasPartidaCollectionNew = attachedJugadoreshasPartidaCollectionNew;
+            partida.setJugadoreshasPartidaCollection(jugadoreshasPartidaCollectionNew);
+            partida = em.merge(partida);
+            for (JugadoreshasPartida jugadoreshasPartidaCollectionNewJugadoreshasPartida : jugadoreshasPartidaCollectionNew) {
+                if (!jugadoreshasPartidaCollectionOld.contains(jugadoreshasPartidaCollectionNewJugadoreshasPartida)) {
+                    Partida oldPartidaOfJugadoreshasPartidaCollectionNewJugadoreshasPartida = jugadoreshasPartidaCollectionNewJugadoreshasPartida.getPartida();
+                    jugadoreshasPartidaCollectionNewJugadoreshasPartida.setPartida(partida);
+                    jugadoreshasPartidaCollectionNewJugadoreshasPartida = em.merge(jugadoreshasPartidaCollectionNewJugadoreshasPartida);
+                    if (oldPartidaOfJugadoreshasPartidaCollectionNewJugadoreshasPartida != null && !oldPartidaOfJugadoreshasPartidaCollectionNewJugadoreshasPartida.equals(partida)) {
+                        oldPartidaOfJugadoreshasPartidaCollectionNewJugadoreshasPartida.getJugadoreshasPartidaCollection().remove(jugadoreshasPartidaCollectionNewJugadoreshasPartida);
+                        oldPartidaOfJugadoreshasPartidaCollectionNewJugadoreshasPartida = em.merge(oldPartidaOfJugadoreshasPartidaCollectionNewJugadoreshasPartida);
+                    }
                 }
             }
             em.getTransaction().commit();
@@ -112,7 +129,7 @@ public class PartidaJpaController implements Serializable {
         }
     }
 
-    public void destroy(Integer id) throws NonexistentEntityException {
+    public void destroy(Integer id) throws IllegalOrphanException, NonexistentEntityException {
         EntityManager em = null;
         try {
             em = getEntityManager();
@@ -124,10 +141,16 @@ public class PartidaJpaController implements Serializable {
             } catch (EntityNotFoundException enfe) {
                 throw new NonexistentEntityException("The partida with id " + id + " no longer exists.", enfe);
             }
-            Collection<Jugadores> jugadoresCollection = partida.getJugadoresCollection();
-            for (Jugadores jugadoresCollectionJugadores : jugadoresCollection) {
-                jugadoresCollectionJugadores.getPartidaCollection().remove(partida);
-                jugadoresCollectionJugadores = em.merge(jugadoresCollectionJugadores);
+            List<String> illegalOrphanMessages = null;
+            Collection<JugadoreshasPartida> jugadoreshasPartidaCollectionOrphanCheck = partida.getJugadoreshasPartidaCollection();
+            for (JugadoreshasPartida jugadoreshasPartidaCollectionOrphanCheckJugadoreshasPartida : jugadoreshasPartidaCollectionOrphanCheck) {
+                if (illegalOrphanMessages == null) {
+                    illegalOrphanMessages = new ArrayList<String>();
+                }
+                illegalOrphanMessages.add("This Partida (" + partida + ") cannot be destroyed since the JugadoreshasPartida " + jugadoreshasPartidaCollectionOrphanCheckJugadoreshasPartida + " in its jugadoreshasPartidaCollection field has a non-nullable partida field.");
+            }
+            if (illegalOrphanMessages != null) {
+                throw new IllegalOrphanException(illegalOrphanMessages);
             }
             em.remove(partida);
             em.getTransaction().commit();
