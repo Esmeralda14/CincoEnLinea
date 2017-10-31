@@ -25,7 +25,6 @@ public class JugadorCONS {
     }
     
     public String validarInisioSesion(JugadorLOG jugador){
-      jugador = new JugadorLOG(jugador.getUsuario(), jugador.getClave());
       String message = "Unknow";
       EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("CincoEnLineaPU", null);
       JugadoresJpaController controller = new JugadoresJpaController();
@@ -34,13 +33,13 @@ public class JugadorCONS {
           jugadores = controller.findJugadores(jugador.getUsuario());
          if (jugadores.getUsuario().equals(jugador.getUsuario())) {
             if (jugadores.getClave().equals(jugador.getClave())) {
-               return "Inicio de sesión exitoso";
+               return "1";
             } else {
-               return "Contraseña incorrecta";
+               return "2";
             }
          }
       } catch (NullPointerException e) {
-         return "Usuario no existente";
+         return "3";
       }
       return message;
     }

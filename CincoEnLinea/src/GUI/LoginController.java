@@ -7,6 +7,8 @@ package GUI;
 
 import java.io.IOException;
 import java.net.URL;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -14,6 +16,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -21,6 +25,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import logica.JugadorLOG;
+import persistencia.consultas.JugadorCONS;
 
 /**
  * FXML Controller class
@@ -58,22 +63,49 @@ public class LoginController implements Initializable {
     ResourceBundle resources = ResourceBundle.getBundle("resources.idioma");
     
     private Stage stage = new Stage();
-     
+    JugadorCONS consultasJugador = new JugadorCONS();
+
      
     @Override
     public void initialize(URL url, ResourceBundle rb) {
       this.resources = rb;
       
       ingresar.addEventHandler(MouseEvent.MOUSE_PRESSED, (e) -> {
-            try {
-                AnchorPane pane = FXMLLoader.load(getClass().getResource("MenuPrincipal.fxml"), resources);
-                 Scene scenePartida = new Scene(pane);
-                stage.setScene(scenePartida);
-                stage.show();
-            } catch (IOException ex) {
-                Logger.getLogger(MenuPrincipalController.class.getName()).log(Level.SEVERE, null, ex);
+            String resultado = "";
+          try {
+              resultado = consultasJugador.validarInisioSesion(obtenerValores());
+          } catch (NoSuchAlgorithmException ex) {
+              Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
+          }
+          switch (resultado) {
+              case "1":
+                  try {
+                      AnchorPane pane = FXMLLoader.load(getClass().getResource("MenuPrincipal.fxml"), resources);
+                      Scene scenePartida = new Scene(pane);
+                      stage.setScene(scenePartida);
+                      stage.showAndWait();
+                  } catch (IOException ex) {
+                      Logger.getLogger(MenuPrincipalController.class.getName()).log(Level.SEVERE, null, ex);
+                  }
+                  break;
+              case "2":
+                  Alert alert = new Alert(AlertType.WARNING);
+                  alert.setTitle("¡Advertencia!");
+                  alert.setHeaderText("Contraseña Incorrecta :c");
+                  alert.showAndWait();
+               break;
+              case "3":
+                  Alert alert2 = new Alert(AlertType.WARNING);
+                  alert2.setTitle("¡Advertencia!");
+                  alert2.setHeaderText("Este Usuario no existe o es incorrecto");
+                  alert2.showAndWait();
+                  break;
+                
             }
 
+          
+          
+ 
         });
       
      
@@ -87,7 +119,7 @@ public class LoginController implements Initializable {
         labelContraseña.setText(resources.getString("labelContrasena"));
         ingresar.setText(resources.getString("ingresar"));
         registrar.setText(resources.getString("registrar"));
-        ingles.setText(resources.getString("ingles"));
+        ingles.setText(resources.getString("english"));
         espanol.setText(resources.getString("espanol"));
         fieldContraseña.setText("");
         fieldUsuario.setText("");
@@ -109,16 +141,27 @@ public class LoginController implements Initializable {
         configurarIdioma();
     }
     
-    private JugadorLOG obtenerValores(){
+    private JugadorLOG obtenerValores() throws NoSuchAlgorithmException{
     JugadorLOG jugador = null;
+    
    if(fieldUsuario.getText().equals("") || fieldContraseña.getText().equals("")){     
    }else{
       String user = fieldUsuario.getText();
       String clave = fieldContraseña.getText();
-      jugador = new JugadorLOG(user, clave);
+      jugador = new JugadorLOG(user, makeHash(clave));
    }
    return jugador;
 }
-       
+private String makeHash(String string) throws NoSuchAlgorithmException{
+        MessageDigest messageDigest = MessageDigest.getInstance("SHA-256");
+        byte[] hash=messageDigest.digest(string.getBytes());
+        StringBuilder stringBuilder = new StringBuilder();
+        
+        for(int i=0; i<hash.length;i++){
+                stringBuilder.append(Integer.toString((hash[i]&0xff)+0x100,16).substring(1));
+        }        
+        return  stringBuilder.toString();
+}
+
     
 }

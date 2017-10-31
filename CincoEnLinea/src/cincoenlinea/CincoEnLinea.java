@@ -23,7 +23,7 @@ public class CincoEnLinea extends Application {
     public void start(Stage stage){  
     try{
         ResourceBundle bundle = ResourceBundle.getBundle("resources.idioma");
-        AnchorPane page  = FXMLLoader.load(getClass().getResource("/GUI/MenuPrincipal.fxml"),bundle);
+        AnchorPane page  = FXMLLoader.load(getClass().getResource("/GUI/Login.fxml"),bundle);
         Scene scene = new Scene(page);
         stage.setScene(scene);
         stage.show();

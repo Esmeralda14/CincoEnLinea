@@ -19,6 +19,7 @@ import java.util.Collection;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 import persistencia.Jugadores;
 
 /**
@@ -33,7 +34,7 @@ public class JugadoresJpaController implements Serializable {
     private EntityManagerFactory emf = null;
 
     public JugadoresJpaController() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        this.emf = Persistence.createEntityManagerFactory("CincoEnLineaPU");
     }
 
     public EntityManager getEntityManager() {

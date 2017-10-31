@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXButton?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
@@ -13,13 +14,13 @@
 
 <AnchorPane id="AnchorPane" prefHeight="549.0" prefWidth="444.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.LoginController">
    <children>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#45b3b9" height="64.0" layoutX="-14.0" layoutY="-11.0" stroke="BLACK" strokeType="INSIDE" width="458.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#45b3b9" height="64.0" layoutX="-14.0" layoutY="-11.0" stroke="#45b3b9" strokeType="INSIDE" width="458.0" />
       <Label fx:id="inicioSesion" layoutX="117.0" layoutY="5.0" text="%inicioSesion">
          <font>
             <Font name="Myanmar Sangam MN Bold" size="36.0" />
          </font>
       </Label>
-      <Label fx:id="labelUsuario" layoutX="100.0" layoutY="246.0" text="%labelUsuario">
+      <Label fx:id="labelUsuario" layoutX="155.0" layoutY="247.0" text="%labelUsuario">
          <font>
             <Font name="Myanmar Sangam MN" size="19.0" />
          </font>
@@ -28,17 +29,17 @@
          <effect>
             <ColorAdjust contrast="-0.29" />
          </effect></TextField>
-      <Label fx:id="labelContraseña" layoutX="100.0" layoutY="330.0" text="%labelContrasena">
+      <Label fx:id="labelContraseña" layoutX="140.0" layoutY="327.0" text="%labelContrasena">
          <font>
             <Font name="Myanmar Sangam MN" size="19.0" />
          </font>
       </Label>
-      <Button fx:id="ingresar" layoutX="176.0" layoutY="421.0" mnemonicParsing="false" text="%ingresar">
+      <Button fx:id="ingresar" layoutX="176.0" layoutY="421.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="94.0" text="%ingresar">
          <font>
             <Font name="Malayalam Sangam MN" size="16.0" />
          </font>
       </Button>
-      <Button fx:id="registrar" layoutX="175.0" layoutY="470.0" mnemonicParsing="false" text="%registrar">
+      <Button fx:id="registrar" layoutX="175.0" layoutY="470.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="94.0" text="%registrar">
          <font>
             <Font name="Malayalam Sangam MN" size="16.0" />
          </font>
@@ -55,6 +56,9 @@
             <ColorAdjust contrast="1.0" />
          </effect>
       </ImageView>
+      <JFXButton fx:id="espanol" layoutX="280.0" layoutY="58.0" onAction="#cambiarIdiomaEs" text="%espanol" textFill="#0c00ff" underline="true" />
+      <JFXButton fx:id="ingles" layoutX="359.0" layoutY="58.0" onAction="#cambiarIdiomaIngles" text="%english" textFill="#0c00ff" underline="true" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="28.0" layoutX="351.0" layoutY="57.0" stroke="BLACK" strokeType="INSIDE" width="3.0" />
    </children>
    <effect>
       <ColorAdjust contrast="0.15" />

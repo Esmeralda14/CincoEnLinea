@@ -57,7 +57,7 @@ public class MenuPrincipalController implements Initializable {
     private Button informacion;
 
     ResourceBundle resources = ResourceBundle.getBundle("resources.idioma");
-    private ReglasController controller = new ReglasController();
+    //private MenuPrincipalController controller = new MenuPrincipalController();
     private Stage stage = new Stage();
 
     @Override
@@ -115,8 +115,6 @@ public class MenuPrincipalController implements Initializable {
 
     public void configurarIdioma() {
         menuPrincipal.setText(resources.getString("menuPrincipal"));
-        espanol.setText(resources.getString("espanol"));
-        ingles.setText(resources.getString("english"));
         iniciarPartida.setText(resources.getString("iniciarPartida"));
         hamburgerReglas.setText(resources.getString("reglas"));
         raking.setText(resources.getString("ranking"));
