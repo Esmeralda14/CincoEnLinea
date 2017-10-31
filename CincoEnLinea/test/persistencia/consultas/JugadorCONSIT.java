@@ -42,15 +42,15 @@ public class JugadorCONSIT {
     /**
      * Test of registrarJugador method, of class JugadorCONS.
      */
-    @Test
-    public void testRegistrarJugador() throws Exception {
-        System.out.println("registrarJugador");
-        Jugadores jugador = null;
-        JugadorCONS instance = new JugadorCONS();
-        boolean expResult = false;
-        boolean result = instance.registrarJugador(jugador);
-        assertEquals(expResult, result);
-    }
+//    @Test
+//    public void testRegistrarJugador() throws Exception {
+//        System.out.println("registrarJugador");
+//        Jugadores jugador = null;
+//        JugadorCONS instance = new JugadorCONS();
+//        boolean expResult = false;
+//        boolean result = instance.registrarJugador(jugador);
+//        assertEquals(expResult, result);
+//    }
 
     /**
      * Test of validarInisioSesion method, of class JugadorCONS.
@@ -60,7 +60,7 @@ public class JugadorCONSIT {
         System.out.println("validarInisioSesion");
         JugadorLOG jugador = new JugadorLOG("marianacro", "mc9718");
         JugadorCONS instance = new JugadorCONS();
-        String expResult = "Inicio de sesión exitoso";
+        String expResult = "2";
         String result = instance.validarInisioSesion(jugador);
         assertEquals(expResult, result);
     }
