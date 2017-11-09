@@ -24,25 +24,25 @@ public class JugadorCONS {
         return true;
     }
     
-    public String validarInisioSesion(JugadorLOG jugador){
-      String message = "Unknow";
-      EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("CincoEnLineaPU", null);
-      JugadoresJpaController controller = new JugadoresJpaController();
-      Jugadores jugadores = null;        
-      try {
-          jugadores = controller.findJugadores(jugador.getUsuario());
-         if (jugadores.getUsuario().equals(jugador.getUsuario())) {
-            if (jugadores.getClave().equals(jugador.getClave())) {
-               return "1";
-            } else {
-               return "2";
-            }
-         }
-      } catch (NullPointerException e) {
-         return "3";
-      }
-      return message;
-    }
+//    public String validarInisioSesion(JugadorLOG jugador){
+//      String message = "Unknow";
+//      EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("CincoEnLineaPU", null);
+//      JugadoresJpaController controller = new JugadoresJpaController();
+//      Jugadores jugadores = null;        
+//      try {
+//          jugadores = controller.findJugadores(jugador.getUsuario());
+//         if (jugadores.getUsuario().equals(jugador.getUsuario())) {
+//            if (jugadores.getClave().equals(jugador.getClave())) {
+//               return "1";
+//            } else {
+//               return "2";
+//            }
+//         }
+//      } catch (NullPointerException e) {
+//         return "3";
+//      }
+//      return message;
+//    }
     }
     
     

@@ -55,14 +55,14 @@ public class JugadorCONSIT {
     /**
      * Test of validarInisioSesion method, of class JugadorCONS.
      */
-    @Test
-    public void testValidarInisioSesion() {
-        System.out.println("validarInisioSesion");
-        JugadorLOG jugador = new JugadorLOG("marianacro", "mc9718");
-        JugadorCONS instance = new JugadorCONS();
-        String expResult = "2";
-        String result = instance.validarInisioSesion(jugador);
-        assertEquals(expResult, result);
-    }
+//    @Test
+//    public void testValidarInisioSesion() {
+//        System.out.println("validarInisioSesion");
+//        JugadorLOG jugador = new JugadorLOG("marianacro", "mc9718");
+//        JugadorCONS instance = new JugadorCONS();
+//        String expResult = "2";
+//        String result = instance.validarInisioSesion(jugador);
+//        assertEquals(expResult, result);
+//    }
     
 }

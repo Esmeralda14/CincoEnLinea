@@ -5,6 +5,7 @@
  */
 package GUI;
 
+import RMIConexionClient.AdminClient;
 import java.io.IOException;
 import java.net.URL;
 import java.security.MessageDigest;
@@ -25,7 +26,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import logica.JugadorLOG;
-import persistencia.consultas.JugadorCONS;
 
 /**
  * FXML Controller class
@@ -63,7 +63,8 @@ public class LoginController implements Initializable {
     ResourceBundle resources = ResourceBundle.getBundle("resources.idioma");
     
     private Stage stage = new Stage();
-    JugadorCONS consultasJugador = new JugadorCONS();
+    
+    
 
      
     @Override
@@ -73,7 +74,7 @@ public class LoginController implements Initializable {
       ingresar.addEventHandler(MouseEvent.MOUSE_PRESSED, (e) -> {
             String resultado = "";
           try {
-              resultado = consultasJugador.validarInisioSesion(obtenerValores());
+              resultado = AdminClient.conexionRMI(obtenerValores());
           } catch (NoSuchAlgorithmException ex) {
               Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
           }
@@ -89,16 +90,10 @@ public class LoginController implements Initializable {
                   }
                   break;
               case "2":
-                  Alert alert = new Alert(AlertType.WARNING);
-                  alert.setTitle("¡Advertencia!");
-                  alert.setHeaderText("Contraseña Incorrecta :c");
-                  alert.showAndWait();
+                  mensajeAlerta("2");
                break;
               case "3":
-                  Alert alert2 = new Alert(AlertType.WARNING);
-                  alert2.setTitle("¡Advertencia!");
-                  alert2.setHeaderText("Este Usuario no existe o es incorrecto");
-                  alert2.showAndWait();
+                  mensajeAlerta("3");
                   break;
                 
             }
@@ -108,10 +103,26 @@ public class LoginController implements Initializable {
  
         });
       
+      
      
+      
       
     }
     
+    private void mensajeAlerta(String resultado){
+        String mensaje = "";
+        Alert alert = new Alert(AlertType.WARNING);
+        alert.setTitle("¡Advertencia!");
+        if(resultado.equals("2")){
+            mensaje = "Contraseña incorrecta";
+            alert.setHeaderText(mensaje);
+        }
+        if(resultado.equals("3")){
+            mensaje = "Este usuario no existe o esta incorrecto";
+            alert.setHeaderText(mensaje);
+        }
+        alert.showAndWait();
+    }
     
     public void configurarIdioma(){
         inicioSesion.setText(resources.getString("inicioSesion"));
