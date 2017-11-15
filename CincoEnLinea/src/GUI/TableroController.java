@@ -5,6 +5,7 @@
  */
 package GUI;
 
+
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
@@ -12,6 +13,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
 /**
  * FXML Controller class
@@ -28,6 +31,8 @@ public class TableroController implements Initializable {
     private Button botonReiniciar;
     @FXML
     private Button botonMenu;
+    @FXML
+    private Button AA;
 
     /**
      * Initializes the controller class.
@@ -36,12 +41,13 @@ public class TableroController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }
-    ResourceBundle resources = ResourceBundle.getBundle("resources.idioma");    
+    ResourceBundle resources = ResourceBundle.getBundle("resources.idioma");  
+    
     
     public void configurarIdioma(){
-        labelJugador.setText(resources.getString("labelJugador"));
-        botonReiniciar.setText(resources.getString("botonReiniciar"));
-        botonMenu.setText(resources.getString("botonMenu"));
+        labelJugador.setText(resources.getString("Jugador"));
+        botonReiniciar.setText(resources.getString("Reiniciar"));
+        botonMenu.setText(resources.getString("Menu"));
 
     }
     
@@ -57,4 +63,7 @@ public class TableroController implements Initializable {
         configurarIdioma();
         
     }
-}
+    
+    public void marcarCasilla(Button nombreBoton){
+         nombreBoton.setStyle("-fx-background-image: url('/resources/fichaAzul.png')");
+    }}
