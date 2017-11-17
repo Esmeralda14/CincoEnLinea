@@ -5,7 +5,6 @@
  */
 package GUI;
 
-import RMIConexionClient.AdminClient;
 import java.io.IOException;
 import java.net.URL;
 import java.security.MessageDigest;
@@ -25,7 +24,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import logica.JugadorLOG;
+import Logica.JugadorLOG;
+import Persistencia.consultas.JugadorCONS;
 
 /**
  * FXML Controller class
@@ -73,8 +73,9 @@ public class LoginController implements Initializable {
       
       ingresar.addEventHandler(MouseEvent.MOUSE_PRESSED, (e) -> {
             String resultado = "";
+            JugadorCONS jugadorCONS = null;
           try {
-              resultado = AdminClient.conexionRMI(obtenerValores());
+              resultado = jugadorCONS.validarInisioSesion(obtenerValores());
           } catch (NoSuchAlgorithmException ex) {
               Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
           }

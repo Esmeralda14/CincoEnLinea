@@ -5,14 +5,14 @@
  */
 package persistencia.consultas;
 
-import logica.JugadorLOG;
+import Logica.JugadorLOG;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
-import persistencia.Jugadores;
+
 
 /**
  *
@@ -55,14 +55,14 @@ public class JugadorCONSIT {
     /**
      * Test of validarInisioSesion method, of class JugadorCONS.
      */
-//    @Test
-//    public void testValidarInisioSesion() {
-//        System.out.println("validarInisioSesion");
-//        JugadorLOG jugador = new JugadorLOG("marianacro", "mc9718");
-//        JugadorCONS instance = new JugadorCONS();
-//        String expResult = "2";
-//        String result = instance.validarInisioSesion(jugador);
-//        assertEquals(expResult, result);
-//    }
+    @Test
+    public void testValidarInisioSesion() {
+        System.out.println("validarInisioSesion");
+        JugadorLOG jugador = new JugadorLOG("marianacro", "mc9718");
+        JugadorCONS instance = new JugadorCONS();
+        String expResult = "2";
+        String result = instance.validarInisioSesion(jugador);
+        assertEquals(expResult, result);
+    }
     
 }
