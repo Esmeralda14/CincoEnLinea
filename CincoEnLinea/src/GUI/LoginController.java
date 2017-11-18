@@ -71,7 +71,7 @@ public class LoginController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
       this.resources = rb;
       
-      ingresar.addEventHandler(MouseEvent.MOUSE_PRESSED, (e) -> {
+      ingresar.addEventHandler(MouseEvent.MOUSE_PRESSED, (MouseEvent e) -> {
             String resultado = "";
             JugadorCONS jugadorCONS = new JugadorCONS();
           try {
@@ -98,11 +98,21 @@ public class LoginController implements Initializable {
                   break;
                 
             }
+          
+          });
+      
+          registrar.addEventHandler(MouseEvent.MOUSE_PRESSED, (e) -> {
+            try {
+                AnchorPane pane = FXMLLoader.load(getClass().getResource("Registrarse.fxml"), resources);
+                Scene sceneRegistrarse = new Scene(pane);
+                stage.setScene(sceneRegistrarse);
+                stage.show();
+            } catch (IOException ex) {
+                Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
+            }
 
-          
-          
- 
-        });
+        
+      });
       
       
      

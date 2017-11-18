@@ -37,8 +37,12 @@ public class JugadorCONS {
       return message;
     }
     
-    public Jugadores registrarJugador(){
-        
-        return jugador;
-    } 
+    
+    
+    
+    public boolean registrarJugador(Jugadores jugador) throws Exception{
+    JugadoresJpaController controller = new JugadoresJpaController();
+    controller.create(jugador);
+          return true;
+      }
 }
