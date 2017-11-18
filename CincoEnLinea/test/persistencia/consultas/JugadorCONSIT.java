@@ -5,13 +5,14 @@
  */
 package persistencia.consultas;
 
-import Logica.JugadorLOG;
+import logica.JugadorLOG;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import Persistencia.consultas.JugadorCONS;
 
 
 /**

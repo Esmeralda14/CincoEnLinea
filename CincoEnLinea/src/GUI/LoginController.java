@@ -24,7 +24,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import Logica.JugadorLOG;
+import logica.JugadorLOG;
 import Persistencia.consultas.JugadorCONS;
 
 /**
@@ -73,7 +73,7 @@ public class LoginController implements Initializable {
       
       ingresar.addEventHandler(MouseEvent.MOUSE_PRESSED, (e) -> {
             String resultado = "";
-            JugadorCONS jugadorCONS = null;
+            JugadorCONS jugadorCONS = new JugadorCONS();
           try {
               resultado = jugadorCONS.validarInisioSesion(obtenerValores());
           } catch (NoSuchAlgorithmException ex) {

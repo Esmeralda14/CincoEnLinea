@@ -6,7 +6,7 @@
 package Persistencia.consultas;
 
 import Controladores.JugadoresJpaController;
-import Logica.JugadorLOG;
+import logica.JugadorLOG;
 import Persistencia.Jugadores;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -21,7 +21,7 @@ public class JugadorCONS {
       String message = "Unknow";
       EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("CincoEnLineaPU", null);
       JugadoresJpaController controller = new JugadoresJpaController();
-      Jugadores jugadores = null;        
+      Jugadores jugadores = new Jugadores();        
       try {
           jugadores = controller.findJugadores(jugador.getUsuario());
          if (jugadores.getUsuario().equals(jugador.getUsuario())) {
@@ -36,4 +36,9 @@ public class JugadorCONS {
       }
       return message;
     }
+    
+    public Jugadores registrarJugador(){
+        
+        return jugador;
+    } 
 }
