@@ -34,12 +34,12 @@
             <Font name="Myanmar Sangam MN" size="19.0" />
          </font>
       </Label>
-      <Button fx:id="ingresar" layoutX="176.0" layoutY="421.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="94.0" text="%ingresar">
+      <Button fx:id="ingresar" layoutX="156.0" layoutY="421.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="142.0" text="%ingresar">
          <font>
             <Font name="Malayalam Sangam MN" size="16.0" />
          </font>
       </Button>
-      <Button fx:id="registrar" layoutX="175.0" layoutY="470.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="94.0" text="%registrar">
+      <Button fx:id="registrar" layoutX="156.0" layoutY="471.0" mnemonicParsing="false" onAction="#abrirRegistrar" prefHeight="37.0" prefWidth="142.0" text="%registrar">
          <font>
             <Font name="Malayalam Sangam MN" size="16.0" />
          </font>

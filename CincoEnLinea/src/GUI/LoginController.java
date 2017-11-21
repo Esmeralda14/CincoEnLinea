@@ -26,6 +26,9 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import logica.JugadorLOG;
 import Persistencia.consultas.JugadorCONS;
+import javafx.event.ActionEvent;
+import javafx.scene.Parent;
+import javafx.stage.Modality;
 
 /**
  * FXML Controller class
@@ -101,23 +104,14 @@ public class LoginController implements Initializable {
           
           });
       
-          registrar.addEventHandler(MouseEvent.MOUSE_PRESSED, (e) -> {
-            try {
-                AnchorPane pane = FXMLLoader.load(getClass().getResource("Registrarse.fxml"), resources);
-                Scene sceneRegistrarse = new Scene(pane);
-                stage.setScene(sceneRegistrarse);
-                stage.show();
-            } catch (IOException ex) {
-                Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
-            }
-
-        
-      });
-      
-      
-     
-      
-      
+   }
+    
+    @FXML
+    private void abrirRegistrar(ActionEvent abrirRegistrar) throws IOException {
+        AnchorPane pane = FXMLLoader.load(getClass().getResource("Registrarse.fxml"), resources);
+        Scene sceneRegistro = new Scene(pane);
+        stage.setScene(sceneRegistro);
+        stage.showAndWait();
     }
     
     private void mensajeAlerta(String resultado){
