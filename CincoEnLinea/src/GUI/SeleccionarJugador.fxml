@@ -31,10 +31,15 @@
             <Font size="17.0" />
          </font>
       </JFXButton>
-      <ImageView fitHeight="99.0" fitWidth="113.0" layoutX="432.0" layoutY="241.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="112.0" fitWidth="107.0" layoutX="418.0" layoutY="241.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../resources/photo_2017-09-09_20-11-53.jpg" />
          </image>
       </ImageView>
+      <JFXButton fx:id="botonActualizarLista" layoutX="35.0" layoutY="353.0" style="-fx-background-color: #FFFA86;" text="%actualizarLista">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </JFXButton>
    </children>
 </AnchorPane>

@@ -6,7 +6,9 @@
 package GUI;
 
 import com.jfoenix.controls.JFXButton;
+import io.socket.emitter.Emitter;
 import java.io.IOException;
+import java.net.Socket;
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -30,16 +32,24 @@ import javafx.stage.Stage;
 public class SeleccionarJugadorController implements Initializable {
 
     @FXML
+    private Label jugadoresConectados;
+
+    @FXML
     private ListView<?> listaJugadores;
+
     @FXML
     private JFXButton botonInciarPartida;
+
     @FXML
     private JFXButton botonMenuPrincipal;
+
     @FXML
-    private Label jugadoresConectados;
+    private JFXButton botonActualizarLista;
+
 
     ResourceBundle resources = ResourceBundle.getBundle("resources.idioma");
     MenuPrincipalController menu = new MenuPrincipalController();
+    static Socket socket = null;
     
     private Stage stage = new Stage();
     /**
@@ -63,6 +73,7 @@ public class SeleccionarJugadorController implements Initializable {
         botonInciarPartida.setText(resources.getString("¡IniciarPartida!"));
         botonMenuPrincipal.setText(resources.getString("MenuPrincipal"));
         jugadoresConectados.setText(resources.getString("jugadoresConectados"));
+        botonActualizarLista.setText(resources.getString("actualizarLista"));
     }
 
     @FXML
@@ -75,5 +86,16 @@ public class SeleccionarJugadorController implements Initializable {
     public void cambiarIdiomaMX() {
         resources = ResourceBundle.getBundle("resources.idioma_es_MX");
         configurarIdioma();
+    }
+    
+    @FXML
+    public void actualizarListaUsuarios(){
+        
+    }
+    public void conexionServidor(){
+        socket = IO.socket("http://localhost:7000");
+        socket.on(Socket.EVENT_CONNECT, new Emitter.Listener(){
+            
+        }
     }
 }
