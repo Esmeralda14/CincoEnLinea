@@ -9,6 +9,8 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.RadialGradient?>
+<?import javafx.scene.paint.Stop?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
@@ -34,7 +36,7 @@
             <Font name="Myanmar Sangam MN" size="19.0" />
          </font>
       </Label>
-      <Button fx:id="ingresar" layoutX="156.0" layoutY="421.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="142.0" text="%ingresar">
+      <Button fx:id="ingresar" layoutX="156.0" layoutY="421.0" mnemonicParsing="false" onAction="#iniciarSesion" prefHeight="37.0" prefWidth="142.0" text="%ingresar">
          <font>
             <Font name="Malayalam Sangam MN" size="16.0" />
          </font>
@@ -56,9 +58,24 @@
             <ColorAdjust contrast="1.0" />
          </effect>
       </ImageView>
-      <JFXButton fx:id="espanol" layoutX="280.0" layoutY="58.0" onAction="#cambiarIdiomaEs" text="%espanol" textFill="#0c00ff" underline="true" />
-      <JFXButton fx:id="ingles" layoutX="359.0" layoutY="58.0" onAction="#cambiarIdiomaIngles" text="%english" textFill="#0c00ff" underline="true" />
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="28.0" layoutX="351.0" layoutY="57.0" stroke="BLACK" strokeType="INSIDE" width="3.0" />
+      <JFXButton fx:id="espanol" layoutX="290.0" layoutY="58.0" onAction="#cambiarIdiomaEs" text="%espanol" underline="true">
+         <textFill>
+            <RadialGradient centerX="0.5" centerY="0.5" radius="0.5">
+               <stops>
+                  <Stop color="BLACK" />
+                  <Stop color="BLACK" offset="1.0" />
+               </stops>
+            </RadialGradient>
+         </textFill></JFXButton>
+      <JFXButton fx:id="ingles" layoutX="359.0" layoutY="58.0" onAction="#cambiarIdiomaIngles" text="%english" underline="true">
+         <textFill>
+            <RadialGradient centerX="0.5" centerY="0.5" radius="0.5">
+               <stops>
+                  <Stop color="BLACK" />
+                  <Stop color="BLACK" offset="1.0" />
+               </stops>
+            </RadialGradient>
+         </textFill></JFXButton>
    </children>
    <effect>
       <ColorAdjust contrast="0.15" />

@@ -93,7 +93,7 @@ public class TableroController implements Initializable {
         
     }
     @FXML
-    public void actionPerformed (ActionEvent arg0){
+    public void marcarCasilla(ActionEvent arg0){
         Button boton = (Button) arg0.getSource();
         boton.setStyle("-fx-background-image: url('/resources/fichaAzul.png')");
     }}
