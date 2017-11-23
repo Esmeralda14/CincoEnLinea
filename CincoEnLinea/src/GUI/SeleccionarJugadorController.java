@@ -92,10 +92,10 @@ public class SeleccionarJugadorController implements Initializable {
     public void actualizarListaUsuarios(){
         
     }
-    public void conexionServidor(){
-        socket = IO.socket("http://localhost:7000");
-        socket.on(Socket.EVENT_CONNECT, new Emitter.Listener(){
-            
-        }
-    }
+//    public void conexionServidor(){
+//        socket = IO.socket("http://localhost:7000");
+//        socket.on(Socket.EVENT_CONNECT, new Emitter.Listener(){
+//            
+//        }
+//    }
 }

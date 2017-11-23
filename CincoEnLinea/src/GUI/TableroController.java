@@ -8,6 +8,7 @@ package GUI;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -32,7 +33,35 @@ public class TableroController implements Initializable {
     @FXML
     private Button botonMenu;
     @FXML
+    private Button AH;
+
+    @FXML
+    private Button AG;
+
+    @FXML
+    private Button AF;
+
+    @FXML
+    private Button AE;
+
+    @FXML
+    private Button AD;
+
+    @FXML
+    private Button AC;
+
+    @FXML
+    private Button AB;
+
+    @FXML
     private Button AA;
+
+    @FXML
+    private Button AJ;
+
+    @FXML
+    private Button AI;
+
 
     /**
      * Initializes the controller class.
@@ -63,7 +92,8 @@ public class TableroController implements Initializable {
         configurarIdioma();
         
     }
-    
-    public void marcarCasilla(Button nombreBoton){
-         nombreBoton.setStyle("-fx-background-image: url('/resources/fichaAzul.png')");
+    @FXML
+    public void actionPerformed (ActionEvent arg0){
+        Button boton = (Button) arg0.getSource();
+        boton.setStyle("-fx-background-image: url('/resources/fichaAzul.png')");
     }}
