@@ -50,13 +50,11 @@ public class SeleccionarJugadorController implements Initializable {
     ResourceBundle resources = ResourceBundle.getBundle("resources.idioma");
     MenuPrincipalController menu = new MenuPrincipalController();
     static Socket socket = null;
-    
     private Stage stage = new Stage();
-    /**
-     * Initializes the controller class.
-     */
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        this.resources = rb;
         botonInciarPartida.addEventHandler(MouseEvent.MOUSE_PRESSED, (e) -> {
             try {
                 AnchorPane pane = FXMLLoader.load(getClass().getResource("Tablero.fxml"), resources);
@@ -91,6 +89,18 @@ public class SeleccionarJugadorController implements Initializable {
     @FXML
     public void actualizarListaUsuarios(){
         
+    }
+    
+    @FXML
+    public void abrirMenuPrincipal(){
+        try {
+            AnchorPane pane = FXMLLoader.load(getClass().getResource("MenuPrincipal.fxml"), resources);
+            Scene scenePartida = new Scene(pane);
+            stage.setScene(scenePartida);
+            stage.show();
+        } catch (IOException ex) {
+            Logger.getLogger(MenuPrincipalController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 //    public void conexionServidor(){
 //        socket = IO.socket("http://localhost:7000");

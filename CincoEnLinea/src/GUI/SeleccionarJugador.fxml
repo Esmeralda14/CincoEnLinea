@@ -26,7 +26,7 @@
             <Font size="17.0" />
          </font>
       </JFXButton>
-      <JFXButton fx:id="botonMenuPrincipal" layoutX="393.0" layoutY="178.0" prefHeight="39.0" prefWidth="171.0" style="-fx-background-color: #FF5959;" text="%MenuPrincipal">
+      <JFXButton fx:id="botonMenuPrincipal" layoutX="393.0" layoutY="178.0" onAction="#abrirMenuPrincipal" prefHeight="39.0" prefWidth="171.0" style="-fx-background-color: #FF5959;" text="%MenuPrincipal">
          <font>
             <Font size="17.0" />
          </font>

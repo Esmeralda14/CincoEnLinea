@@ -5,17 +5,23 @@
  */
 package GUI;
 
-
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -32,68 +38,53 @@ public class TableroController implements Initializable {
     private Button botonReiniciar;
     @FXML
     private Button botonMenu;
-    @FXML
-    private Button AH;
-
-    @FXML
-    private Button AG;
-
-    @FXML
-    private Button AF;
-
-    @FXML
-    private Button AE;
-
-    @FXML
-    private Button AD;
-
-    @FXML
-    private Button AC;
-
-    @FXML
-    private Button AB;
-
-    @FXML
-    private Button AA;
-
-    @FXML
-    private Button AJ;
-
-    @FXML
-    private Button AI;
-
-
+    
+    private Stage stage = new Stage();
     /**
      * Initializes the controller class.
      */
+    ResourceBundle resources = ResourceBundle.getBundle("resources.idioma");
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        this.resources = rb;
     }
-    ResourceBundle resources = ResourceBundle.getBundle("resources.idioma");  
-    
-    
-    public void configurarIdioma(){
+
+    public void configurarIdioma() {
         labelJugador.setText(resources.getString("Jugador"));
         botonReiniciar.setText(resources.getString("Reiniciar"));
         botonMenu.setText(resources.getString("Menu"));
 
     }
-    
+
     @FXML
-    public void cambiarIdiomaUS(){
+    public void cambiarIdiomaUS() {
         resources = ResourceBundle.getBundle("resources.idioma_en_US");
         configurarIdioma();
     }
-    
+
     @FXML
-    public void cambiarIdiomaMX(){
+    public void cambiarIdiomaMX() {
         resources = ResourceBundle.getBundle("resources.idioma_es_MX");
         configurarIdioma();
-        
+
     }
+
     @FXML
-    public void marcarCasilla(ActionEvent arg0){
+    public void marcarCasilla(ActionEvent arg0) {
         Button boton = (Button) arg0.getSource();
         boton.setStyle("-fx-background-image: url('/resources/fichaAzul.png')");
-    }}
+    }
+    
+    @FXML
+    public void abrirMenu(){
+        try {
+            AnchorPane pane = FXMLLoader.load(getClass().getResource("MenuPrincipal.fxml"), resources);
+            Scene scenePartida = new Scene(pane);
+            stage.setScene(scenePartida);
+            stage.show();
+        } catch (IOException ex) {
+            Logger.getLogger(MenuPrincipalController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+}

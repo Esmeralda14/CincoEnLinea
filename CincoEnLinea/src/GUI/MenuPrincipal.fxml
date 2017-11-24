@@ -23,7 +23,7 @@
         <items>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                <children>
-                  <Button fx:id="hamburgerReglas" layoutX="32.0" layoutY="117.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="135.0" text="%reglas">
+                  <Button fx:id="hamburgerReglas" layoutX="50.0" layoutY="110.0" mnemonicParsing="false" onAction="#mostrarReglas" prefHeight="38.0" prefWidth="135.0" text="%reglas">
                      <font>
                         <Font name="Malayalam Sangam MN" size="17.0" />
                      </font>
@@ -31,7 +31,7 @@
                         <ColorAdjust brightness="-0.25" contrast="0.59" />
                      </effect>
                   </Button>
-                  <Button fx:id="iniciarPartida" layoutX="32.0" layoutY="53.0" mnemonicParsing="false" text="%iniciarPartida">
+                  <Button fx:id="iniciarPartida" layoutX="50.0" layoutY="46.0" mnemonicParsing="false" onAction="#iniciarPartida" text="%iniciarPartida">
                      <font>
                         <Font name="Malayalam Sangam MN" size="17.0" />
                      </font>
@@ -39,7 +39,7 @@
                         <ColorAdjust brightness="-0.25" contrast="0.59" />
                      </effect>
                   </Button>
-                  <Button fx:id="raking" layoutX="32.0" layoutY="180.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="135.0" text="%ranking">
+                  <Button fx:id="raking" layoutX="50.0" layoutY="169.0" mnemonicParsing="false" onAction="#mostrarRanking" prefHeight="38.0" prefWidth="135.0" text="%ranking">
                      <font>
                         <Font name="Malayalam Sangam MN" size="17.0" />
                      </font>
@@ -47,9 +47,17 @@
                         <ColorAdjust brightness="-0.25" contrast="0.59" />
                      </effect>
                   </Button>
-                  <Button fx:id="informacion" layoutX="29.0" layoutY="246.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="135.0" text="%informacion">
+                  <Button fx:id="informacion" layoutX="50.0" layoutY="229.0" mnemonicParsing="false" onAction="#mostrarInformacion" prefHeight="38.0" prefWidth="135.0" text="%informacion">
                      <font>
                         <Font name="Malayalam Sangam MN" size="17.0" />
+                     </font>
+                     <effect>
+                        <ColorAdjust brightness="-0.25" contrast="0.59" />
+                     </effect>
+                  </Button>
+                  <Button fx:id="cerrarSesion" layoutX="14.0" layoutY="295.0" mnemonicParsing="false" onAction="#cerrarSesion" prefHeight="26.0" prefWidth="117.0" text="%CerrarSesion" textFill="#0d00ff">
+                     <font>
+                        <Font size="11.0" />
                      </font>
                      <effect>
                         <ColorAdjust brightness="-0.25" contrast="0.59" />
