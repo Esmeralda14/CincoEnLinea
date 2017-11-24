@@ -75,11 +75,17 @@ public class LoginController implements Initializable {
     }
 
     @FXML
-    private void abrirRegistrar(ActionEvent abrirRegistrar) throws IOException {
-        AnchorPane pane = FXMLLoader.load(getClass().getResource("Registrarse.fxml"), resources);
-        Scene sceneRegistro = new Scene(pane);
-        stage.setScene(sceneRegistro);
-        stage.showAndWait();
+    private void abrirRegistrar(ActionEvent abrirRegistrar) {
+        try {
+            AnchorPane pane = FXMLLoader.load(getClass().getResource("Registrarse.fxml"), resources);
+            Scene sceneRegistro = new Scene(pane);
+            stage.setScene(sceneRegistro);
+            stage.showAndWait();
+        } catch (IOException ex) {
+            Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        stage = (Stage) registrar.getScene().getWindow();
+        stage.close();
     }
 
     @FXML
@@ -102,6 +108,8 @@ public class LoginController implements Initializable {
                 } catch (IOException ex) {
                     Logger.getLogger(MenuPrincipalController.class.getName()).log(Level.SEVERE, null, ex);
                 }
+                stage = (Stage) inicioSesion.getScene().getWindow();
+                stage.close();
                 break;
             case "2":
                 mensajeAlerta("2");

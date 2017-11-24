@@ -2,6 +2,7 @@ package GUI;
 
 import Persistencia.Jugadores;
 import Persistencia.consultas.JugadorCONS;
+import java.io.IOException;
 import java.net.URL;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -12,12 +13,16 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.event.EventType;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 import logica.JugadorLOG;
 
 /**
@@ -55,7 +60,7 @@ public class RegistrarseController implements Initializable {
     private Button regresar;
 
     ResourceBundle resources = ResourceBundle.getBundle("resources.idioma");
-
+    private Stage stage = new Stage();
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         this.resources = rb;
@@ -76,6 +81,7 @@ public class RegistrarseController implements Initializable {
         try {
             jugador.registrarJugador(obtenerValores());
             alertaRegistrada();
+            abrirInicioSesion();
         } catch (NoSuchAlgorithmException ex) {
             Logger.getLogger(RegistrarseController.class.getName()).log(Level.SEVERE, null, ex);
         } catch (Exception ex) {
@@ -142,4 +148,18 @@ public class RegistrarseController implements Initializable {
         resources = ResourceBundle.getBundle("resources.idioma_en_US");
         configurarIdioma();
     }
+    @FXML
+    public void abrirInicioSesion() {
+        try {
+            AnchorPane pane = FXMLLoader.load(getClass().getResource("MenuPrincipal.fxml"), resources);
+            Scene scenePartida = new Scene(pane);
+            stage.setScene(scenePartida);
+            stage.show();
+        } catch (IOException ex) {
+            Logger.getLogger(MenuPrincipalController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        stage = (Stage) regresar.getScene().getWindow();
+        stage.close();
+    }
 }
+

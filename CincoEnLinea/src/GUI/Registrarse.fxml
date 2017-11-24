@@ -29,6 +29,6 @@
       <PasswordField fx:id="fieldContraseña" layoutX="57.0" layoutY="288.0" prefHeight="27.0" prefWidth="255.0" />
       <TextField fx:id="fieldUsuario" layoutX="57.0" layoutY="171.0" prefHeight="27.0" prefWidth="255.0" />
       <Button fx:id="Bregistrarse" layoutX="137.0" layoutY="347.0" mnemonicParsing="false" onAction="#registrarUsuario" prefHeight="37.0" prefWidth="97.0" text="%Bregistrarse" />
-      <Button fx:id="regresar" layoutX="274.0" layoutY="432.0" mnemonicParsing="false" text="%regresar" />
+      <Button fx:id="regresar" layoutX="274.0" layoutY="432.0" mnemonicParsing="false" onAction="#abrirInicioSesion" text="%regresar" />
    </children>
 </AnchorPane>

@@ -86,5 +86,7 @@ public class TableroController implements Initializable {
         } catch (IOException ex) {
             Logger.getLogger(MenuPrincipalController.class.getName()).log(Level.SEVERE, null, ex);
         }
+        stage = (Stage) botonMenu.getScene().getWindow();
+        stage.close();
     }
 }
