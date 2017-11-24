@@ -55,16 +55,7 @@ public class SeleccionarJugadorController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         this.resources = rb;
-        botonInciarPartida.addEventHandler(MouseEvent.MOUSE_PRESSED, (e) -> {
-            try {
-                AnchorPane pane = FXMLLoader.load(getClass().getResource("Tablero.fxml"), resources);
-                 Scene scenePartida = new Scene(pane);
-                stage.setScene(scenePartida);
-                stage.show();
-            } catch (IOException ex) {
-                Logger.getLogger(MenuPrincipalController.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        });
+
     }
 
     public void configurarIdioma() {
@@ -101,7 +92,23 @@ public class SeleccionarJugadorController implements Initializable {
         } catch (IOException ex) {
             Logger.getLogger(MenuPrincipalController.class.getName()).log(Level.SEVERE, null, ex);
         }
+        stage = (Stage) botonMenuPrincipal.getScene().getWindow();
+        stage.close();
     }
+    @FXML
+    public void iniciarPartida(){
+        try {
+                AnchorPane pane = FXMLLoader.load(getClass().getResource("Tablero.fxml"), resources);
+                 Scene scenePartida = new Scene(pane);
+                stage.setScene(scenePartida);
+                stage.show();
+            } catch (IOException ex) {
+                Logger.getLogger(MenuPrincipalController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        stage = (Stage) botonInciarPartida.getScene().getWindow();
+        stage.close();
+    }
+    
 //    public void conexionServidor(){
 //        socket = IO.socket("http://localhost:7000");
 //        socket.on(Socket.EVENT_CONNECT, new Emitter.Listener(){

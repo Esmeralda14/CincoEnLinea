@@ -147,7 +147,7 @@ public class MenuPrincipalController implements Initializable {
         } catch (IOException ex) {
             Logger.getLogger(MenuPrincipalController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        stage = (Stage) iniciarPartida.getScene().getWindow();
+        stage = (Stage) cerrarSesion.getScene().getWindow();
         stage.close();
     }
     

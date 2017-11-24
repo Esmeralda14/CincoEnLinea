@@ -151,7 +151,7 @@ public class RegistrarseController implements Initializable {
     @FXML
     public void abrirInicioSesion() {
         try {
-            AnchorPane pane = FXMLLoader.load(getClass().getResource("MenuPrincipal.fxml"), resources);
+            AnchorPane pane = FXMLLoader.load(getClass().getResource("Login.fxml"), resources);
             Scene scenePartida = new Scene(pane);
             stage.setScene(scenePartida);
             stage.show();

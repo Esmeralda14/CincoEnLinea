@@ -21,7 +21,7 @@
          </children>
       </Pane>
       <ListView fx:id="listaJugadores" layoutX="35.0" layoutY="93.0" prefHeight="247.0" prefWidth="331.0" />
-      <JFXButton fx:id="botonInciarPartida" buttonType="RAISED" layoutX="393.0" layoutY="105.0" prefHeight="39.0" prefWidth="171.0" style="-fx-background-color: #6DFF19;" text="%¡IniciarPartida!">
+      <JFXButton fx:id="botonInciarPartida" buttonType="RAISED" layoutX="393.0" layoutY="105.0" onAction="#iniciarPartida" prefHeight="39.0" prefWidth="171.0" style="-fx-background-color: #6DFF19;" text="%¡IniciarPartida!">
          <font>
             <Font size="17.0" />
          </font>

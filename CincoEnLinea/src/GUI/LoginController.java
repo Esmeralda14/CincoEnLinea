@@ -75,12 +75,12 @@ public class LoginController implements Initializable {
     }
 
     @FXML
-    private void abrirRegistrar(ActionEvent abrirRegistrar) {
+    private void abrirRegistrar() {
         try {
             AnchorPane pane = FXMLLoader.load(getClass().getResource("Registrarse.fxml"), resources);
             Scene sceneRegistro = new Scene(pane);
             stage.setScene(sceneRegistro);
-            stage.showAndWait();
+            stage.show();
         } catch (IOException ex) {
             Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -104,7 +104,7 @@ public class LoginController implements Initializable {
                     AnchorPane pane = FXMLLoader.load(getClass().getResource("MenuPrincipal.fxml"), resources);
                     Scene scenePartida = new Scene(pane);
                     stage.setScene(scenePartida);
-                    stage.showAndWait();
+                    stage.show();
                 } catch (IOException ex) {
                     Logger.getLogger(MenuPrincipalController.class.getName()).log(Level.SEVERE, null, ex);
                 }
