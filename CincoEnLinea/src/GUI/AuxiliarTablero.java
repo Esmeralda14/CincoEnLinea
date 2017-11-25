@@ -4,19 +4,23 @@
  */
 package GUI;
 
+import Logica.PartidaLOG;
+
 
 /**
  * Clase auxiliar donde que se ocupara para la declaración e implementación de
  * herramientas para la obtención de datos del tablero.
  */
 public class AuxiliarTablero {
+    PartidaLOG partida = new PartidaLOG();
     
-    public void separarPosicion(String nombreBoton){
+    public void separarPosicion(String nombreBoton, int turno){
         String posX ="";
         String posY="";
         int cont = 0;
         posX = nombreBoton.substring(cont, cont+1);
         posY = nombreBoton.substring(cont + 1, cont+2);
+//        partida.guardarTiro(convertirPosicion(posX), convertir(posy), turno)
     }
     
     public int convertirPosicion(String posicion){

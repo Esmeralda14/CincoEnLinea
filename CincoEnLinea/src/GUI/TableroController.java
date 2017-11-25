@@ -80,12 +80,12 @@ public class TableroController implements Initializable {
            boton.setStyle("-fx-background-image: url('/resources/fichaAzul.png')"); 
            turno = 2;
            boton.setDisable(true);
-           auxiliarTab.separarPosicion(boton.getId());
+//           auxiliarTab.separarPosicion(boton.getId());
         }else{
             boton.setStyle("-fx-background-image: url('/resources/fichaVerde.png')");
             turno=1;
             boton.setDisable(true);
-            auxiliarTab.separarPosicion(boton.getId());
+//            auxiliarTab.separarPosicion(boton.getId());
         }
         
     }

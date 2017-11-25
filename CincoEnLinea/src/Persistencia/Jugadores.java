@@ -6,18 +6,14 @@
 package Persistencia;
 
 import java.io.Serializable;
-import java.util.Collection;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -29,7 +25,8 @@ import javax.xml.bind.annotation.XmlTransient;
 @NamedQueries({
     @NamedQuery(name = "Jugadores.findAll", query = "SELECT j FROM Jugadores j")
     , @NamedQuery(name = "Jugadores.findByUsuario", query = "SELECT j FROM Jugadores j WHERE j.usuario = :usuario")
-    , @NamedQuery(name = "Jugadores.findByClave", query = "SELECT j FROM Jugadores j WHERE j.clave = :clave")})
+    , @NamedQuery(name = "Jugadores.findByClave", query = "SELECT j FROM Jugadores j WHERE j.clave = :clave")
+    , @NamedQuery(name = "Jugadores.findByPuntuacionTotal", query = "SELECT j FROM Jugadores j WHERE j.puntuacionTotal = :puntuacionTotal")})
 public class Jugadores implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -40,8 +37,8 @@ public class Jugadores implements Serializable {
     @Basic(optional = false)
     @Column(name = "clave")
     private String clave;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "jugadores")
-    private Collection<JugadoreshasPartida> jugadoreshasPartidaCollection;
+    @Column(name = "puntuacionTotal")
+    private Integer puntuacionTotal;
 
     public Jugadores() {
     }
@@ -71,13 +68,12 @@ public class Jugadores implements Serializable {
         this.clave = clave;
     }
 
-    @XmlTransient
-    public Collection<JugadoreshasPartida> getJugadoreshasPartidaCollection() {
-        return jugadoreshasPartidaCollection;
+    public Integer getPuntuacionTotal() {
+        return puntuacionTotal;
     }
 
-    public void setJugadoreshasPartidaCollection(Collection<JugadoreshasPartida> jugadoreshasPartidaCollection) {
-        this.jugadoreshasPartidaCollection = jugadoreshasPartidaCollection;
+    public void setPuntuacionTotal(Integer puntuacionTotal) {
+        this.puntuacionTotal = puntuacionTotal;
     }
 
     @Override
