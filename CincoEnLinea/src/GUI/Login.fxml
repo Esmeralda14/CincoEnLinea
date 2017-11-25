@@ -9,8 +9,6 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.paint.RadialGradient?>
-<?import javafx.scene.paint.Stop?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
@@ -58,24 +56,8 @@
             <ColorAdjust contrast="1.0" />
          </effect>
       </ImageView>
-      <JFXButton fx:id="espanol" layoutX="290.0" layoutY="58.0" onAction="#cambiarIdiomaEs" text="%espanol" underline="true">
-         <textFill>
-            <RadialGradient centerX="0.5" centerY="0.5" radius="0.5">
-               <stops>
-                  <Stop color="BLACK" />
-                  <Stop color="BLACK" offset="1.0" />
-               </stops>
-            </RadialGradient>
-         </textFill></JFXButton>
-      <JFXButton fx:id="ingles" layoutX="359.0" layoutY="58.0" onAction="#cambiarIdiomaIngles" text="%english" underline="true">
-         <textFill>
-            <RadialGradient centerX="0.5" centerY="0.5" radius="0.5">
-               <stops>
-                  <Stop color="BLACK" />
-                  <Stop color="BLACK" offset="1.0" />
-               </stops>
-            </RadialGradient>
-         </textFill></JFXButton>
+      <JFXButton fx:id="espanol" layoutX="290.0" layoutY="58.0" onAction="#cambiarIdiomaEs" text="%espanol" underline="true" />
+      <JFXButton fx:id="ingles" layoutX="359.0" layoutY="58.0" onAction="#cambiarIdiomaIngles" text="%english" underline="true" />
    </children>
    <effect>
       <ColorAdjust contrast="0.15" />

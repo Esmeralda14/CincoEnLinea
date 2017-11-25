@@ -1,7 +1,6 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * @author Mariana Cadena Romero
+ * @author Esmeralda Jimenez Ramos 
  */
 package GUI;
 
@@ -13,9 +12,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 
 /**
- * FXML Controller class
- *
- * @author marianacro
+ *Clase controller sobre la interfaz gráfica de la información del proyecto 
  */
 public class InformacionController implements Initializable {
 

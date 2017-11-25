@@ -26,7 +26,7 @@ import javafx.stage.Stage;
 /**
  * FXML Controller class
  *
- * @author Esmeralda
+ * @author 
  */
 public class TableroController implements Initializable {
 
@@ -44,11 +44,12 @@ public class TableroController implements Initializable {
      * Initializes the controller class.
      */
     ResourceBundle resources = ResourceBundle.getBundle("resources.idioma");
+    int turno = 1;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         this.resources = rb;
-    }
+        }
 
     public void configurarIdioma() {
         labelJugador.setText(resources.getString("Jugador"));
@@ -56,7 +57,7 @@ public class TableroController implements Initializable {
         botonMenu.setText(resources.getString("Menu"));
 
     }
-
+    
     @FXML
     public void cambiarIdiomaUS() {
         resources = ResourceBundle.getBundle("resources.idioma_en_US");
@@ -70,10 +71,23 @@ public class TableroController implements Initializable {
 
     }
 
+
     @FXML
     public void marcarCasilla(ActionEvent arg0) {
+        AuxiliarTablero auxiliarTab = new AuxiliarTablero();
         Button boton = (Button) arg0.getSource();
-        boton.setStyle("-fx-background-image: url('/resources/fichaAzul.png')");
+        if(turno==1){
+           boton.setStyle("-fx-background-image: url('/resources/fichaAzul.png')"); 
+           turno = 2;
+           boton.setDisable(true);
+           auxiliarTab.separarPosicion(boton.getId());
+        }else{
+            boton.setStyle("-fx-background-image: url('/resources/fichaVerde.png')");
+            turno=1;
+            boton.setDisable(true);
+            auxiliarTab.separarPosicion(boton.getId());
+        }
+        
     }
     
     @FXML
@@ -89,4 +103,10 @@ public class TableroController implements Initializable {
         stage = (Stage) botonMenu.getScene().getWindow();
         stage.close();
     }
+    
+    public void obtenerCoordenadas(){
+        
+    }
+    
+    
 }

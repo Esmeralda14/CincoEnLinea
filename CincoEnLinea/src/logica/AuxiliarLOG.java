@@ -12,7 +12,7 @@ import java.security.NoSuchAlgorithmException;
  *
  * @author marianacro
  */
-public class Auxiliar {
+public class AuxiliarLOG {
     
     public String makeHash(String string) throws NoSuchAlgorithmException {
         MessageDigest messageDigest = MessageDigest.getInstance("SHA-256");

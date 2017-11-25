@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.effect.ColorAdjust?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -9,14 +8,6 @@
 
 <AnchorPane id="AnchorPane" prefHeight="341.0" prefWidth="535.0" style="-fx-background-color: #FFFFFF;" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.InformacionController">
    <children>
-      <ImageView fitHeight="125.0" fitWidth="144.0" layoutX="196.0" layoutY="24.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../resources/Logo-UV.png" />
-         </image>
-         <effect>
-            <ColorAdjust brightness="0.07" contrast="0.05" hue="0.02" />
-         </effect>
-      </ImageView>
       <Label fx:id="version" layoutX="292.0" layoutY="273.0" text="%version">
          <font>
             <Font name="Malayalam Sangam MN" size="14.0" />
@@ -47,5 +38,10 @@
             <Font name="System Bold" size="16.0" />
          </font>
       </Label>
+      <ImageView fitHeight="135.0" fitWidth="188.0" layoutX="198.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../resources/Logo-UV.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>

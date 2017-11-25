@@ -1,7 +1,6 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * @author Mariana Cadena Romero
+ * @author Esmeralda Jimenez Ramos
  */
 package GUI;
 
@@ -29,12 +28,10 @@ import Persistencia.consultas.JugadorCONS;
 import javafx.event.ActionEvent;
 import javafx.scene.Parent;
 import javafx.stage.Modality;
-import logica.Auxiliar;
+import logica.AuxiliarLOG;
 
 /**
- * FXML Controller class
- *
- * @author marianacro
+ * Clase controller de la interfaz gráfica del inisio de sesión.
  */
 public class LoginController implements Initializable {
 
@@ -74,6 +71,9 @@ public class LoginController implements Initializable {
         this.resources = rb;
     }
 
+    /**
+     * Metodo para abrir la ventana registrar desde el inicio de sesión.
+     */
     @FXML
     private void abrirRegistrar() {
         try {
@@ -88,6 +88,10 @@ public class LoginController implements Initializable {
         stage.close();
     }
 
+    
+    /**
+     * Metodo para iniciar sesión 
+     */
     @FXML
     private void iniciarSesion() {
 
@@ -145,8 +149,6 @@ public class LoginController implements Initializable {
         registrar.setText(resources.getString("registrar"));
         ingles.setText(resources.getString("english"));
         espanol.setText(resources.getString("espanol"));
-        fieldContraseña.setText("");
-        fieldUsuario.setText("");
 
     }
 
@@ -170,7 +172,7 @@ public class LoginController implements Initializable {
         } else {
             String user = fieldUsuario.getText();
             String clave = fieldContraseña.getText();
-            Auxiliar aux = new Auxiliar();
+            AuxiliarLOG aux = new AuxiliarLOG();
             jugador = new JugadorLOG(user, aux.makeHash(clave));
         }
         return jugador;
