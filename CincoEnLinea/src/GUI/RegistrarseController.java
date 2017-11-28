@@ -1,5 +1,6 @@
 package GUI;
 
+import Dominio.AuxiliarDAO;
 import Persistencia.Jugadores;
 import Persistencia.consultas.JugadorCONS;
 import java.io.IOException;
@@ -91,13 +92,14 @@ public class RegistrarseController implements Initializable {
 
     private Jugadores obtenerValores() {
         Jugadores entidadJugador = null;
+        AuxiliarDAO aux = new AuxiliarDAO();
         if (fieldUsuario.getText().equals("") || fieldContraseña.getText().equals("")) {
             alertaCamposVacios();
         } else {
             String user = fieldUsuario.getText();
             String clave = fieldContraseña.getText();
             try {
-                entidadJugador = new Jugadores(user, makeHash(clave));
+                entidadJugador = new Jugadores(user,aux.makeHash(clave));
             } catch (NoSuchAlgorithmException ex) {
                 Logger.getLogger(RegistrarseController.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -106,16 +108,7 @@ public class RegistrarseController implements Initializable {
         return entidadJugador;
     }
 
-    private String makeHash(String string) throws NoSuchAlgorithmException {
-        MessageDigest messageDigest = MessageDigest.getInstance("SHA-256");
-        byte[] hash = messageDigest.digest(string.getBytes());
-        StringBuilder stringBuilder = new StringBuilder();
-
-        for (int i = 0; i < hash.length; i++) {
-            stringBuilder.append(Integer.toString((hash[i] & 0xff) + 0x100, 16).substring(1));
-        }
-        return stringBuilder.toString();
-    }
+    
 
     public void alertaCamposVacios() {
         Alert alertaCampos = new Alert(Alert.AlertType.WARNING);

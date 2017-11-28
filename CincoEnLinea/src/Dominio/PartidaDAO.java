@@ -34,7 +34,6 @@ public class PartidaDAO {
     //No entra al for 
     public boolean validarColumna(int turno) {
         int contador = 0;
-        System.out.println("aqui se queda esta cosa sin for");
         for (int fila = 0; fila > tablero.length; fila++) {
             for (int columna = 0; columna > tablero.length; columna++) {
                 System.out.println("los sacado del verificar es: " + turno + "=" + tablero[columna][fila]);
@@ -50,6 +49,22 @@ public class PartidaDAO {
 
         }
         return false;
+    }
+    
+    public boolean validarFila(int turno){
+        int cont = 0;
+        //for para la columna
+        for (int columna = 0; columna < tablero.length; columna++) {
+            for (int fila = 0; fila < tablero.length; fila++) {
+                if(turno == tablero[fila][columna]){
+                    cont++;
+                    if(cont == 5){
+                        return true;
+                    }
+                }
+            }
+        }
+    return false;
     }
     
 }
