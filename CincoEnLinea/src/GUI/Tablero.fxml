@@ -10,62 +10,62 @@
 
 <AnchorPane id="AnchorPane" fx:id="AA" prefHeight="442.0" prefWidth="657.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.TableroController">
    <children>
-      <Button layoutX="332.0" layoutY="101.0" mnemonicParsing="false" onAction="#marcarCasilla" prefHeight="40.0" prefWidth="40.0" />
-      <Button layoutX="292.0" layoutY="101.0" mnemonicParsing="false" onAction="#marcarCasilla" prefHeight="40.0" prefWidth="40.0" />
-      <Button layoutX="252.0" layoutY="101.0" mnemonicParsing="false" onAction="#marcarCasilla" prefHeight="40.0" prefWidth="40.0" />
-      <Button layoutX="212.0" layoutY="101.0" mnemonicParsing="false" onAction="#marcarCasilla" prefHeight="40.0" prefWidth="40.0" />
-      <Button layoutX="172.0" layoutY="101.0" mnemonicParsing="false" onAction="#marcarCasilla" prefHeight="40.0" prefWidth="40.0" />
-      <Button layoutX="132.0" layoutY="101.0" mnemonicParsing="false" onAction="#marcarCasilla" prefHeight="40.0" prefWidth="40.0" />
-      <Button layoutX="92.0" layoutY="101.0" mnemonicParsing="false" onAction="#marcarCasilla" prefHeight="40.0" prefWidth="40.0" />
-      <Button layoutX="52.0" layoutY="101.0" mnemonicParsing="false" onAction="#marcarCasilla" prefHeight="40.0" prefWidth="40.0" />
-      <Button layoutX="332.0" layoutY="141.0" mnemonicParsing="false" onAction="#marcarCasilla" prefHeight="40.0" prefWidth="40.0" />
-      <Button layoutX="292.0" layoutY="141.0" mnemonicParsing="false" onAction="#marcarCasilla" prefHeight="40.0" prefWidth="40.0" />
-      <Button layoutX="252.0" layoutY="141.0" mnemonicParsing="false" onAction="#marcarCasilla" prefHeight="40.0" prefWidth="40.0" />
-      <Button layoutX="212.0" layoutY="141.0" mnemonicParsing="false" onAction="#marcarCasilla" prefHeight="40.0" prefWidth="40.0" />
-      <Button layoutX="172.0" layoutY="141.0" mnemonicParsing="false" onAction="#marcarCasilla" prefHeight="40.0" prefWidth="40.0" />
-      <Button layoutX="132.0" layoutY="141.0" mnemonicParsing="false" onAction="#marcarCasilla" prefHeight="40.0" prefWidth="40.0" />
-      <Button layoutX="92.0" layoutY="141.0" mnemonicParsing="false" onAction="#marcarCasilla" prefHeight="40.0" prefWidth="40.0" />
-      <Button layoutX="52.0" layoutY="141.0" mnemonicParsing="false" onAction="#marcarCasilla" prefHeight="40.0" prefWidth="40.0" />
-      <Button layoutX="332.0" layoutY="181.0" mnemonicParsing="false" onAction="#marcarCasilla" prefHeight="40.0" prefWidth="40.0" />
-      <Button layoutX="292.0" layoutY="181.0" mnemonicParsing="false" onAction="#marcarCasilla" prefHeight="40.0" prefWidth="40.0" />
-      <Button layoutX="252.0" layoutY="181.0" mnemonicParsing="false" onAction="#marcarCasilla" prefHeight="40.0" prefWidth="40.0" />
-      <Button layoutX="212.0" layoutY="181.0" mnemonicParsing="false" onAction="#marcarCasilla" prefHeight="40.0" prefWidth="40.0" />
-      <Button layoutX="172.0" layoutY="181.0" mnemonicParsing="false" onAction="#marcarCasilla" prefHeight="40.0" prefWidth="40.0" />
-      <Button layoutX="132.0" layoutY="181.0" mnemonicParsing="false" onAction="#marcarCasilla" prefHeight="40.0" prefWidth="40.0" />
-      <Button layoutX="92.0" layoutY="181.0" mnemonicParsing="false" onAction="#marcarCasilla" prefHeight="40.0" prefWidth="40.0" />
-      <Button layoutX="52.0" layoutY="181.0" mnemonicParsing="false" onAction="#marcarCasilla" prefHeight="40.0" prefWidth="40.0" />
-      <Button layoutX="332.0" layoutY="221.0" mnemonicParsing="false" onAction="#marcarCasilla" prefHeight="40.0" prefWidth="40.0" />
-      <Button layoutX="292.0" layoutY="221.0" mnemonicParsing="false" onAction="#marcarCasilla" prefHeight="40.0" prefWidth="40.0" />
-      <Button layoutX="252.0" layoutY="221.0" mnemonicParsing="false" onAction="#marcarCasilla" prefHeight="40.0" prefWidth="40.0" />
-      <Button layoutX="212.0" layoutY="221.0" mnemonicParsing="false" onAction="#marcarCasilla" prefHeight="40.0" prefWidth="40.0" />
-      <Button layoutX="172.0" layoutY="221.0" mnemonicParsing="false" onAction="#marcarCasilla" prefHeight="40.0" prefWidth="40.0" />
-      <Button layoutX="132.0" layoutY="221.0" mnemonicParsing="false" onAction="#marcarCasilla" prefHeight="40.0" prefWidth="40.0" />
-      <Button layoutX="92.0" layoutY="221.0" mnemonicParsing="false" onAction="#marcarCasilla" prefHeight="40.0" prefWidth="40.0" />
-      <Button layoutX="52.0" layoutY="221.0" mnemonicParsing="false" onAction="#marcarCasilla" prefHeight="40.0" prefWidth="40.0" />
-      <Button layoutX="332.0" layoutY="261.0" mnemonicParsing="false" onAction="#marcarCasilla" prefHeight="40.0" prefWidth="40.0" />
-      <Button layoutX="292.0" layoutY="261.0" mnemonicParsing="false" onAction="#marcarCasilla" prefHeight="40.0" prefWidth="40.0" />
-      <Button layoutX="252.0" layoutY="261.0" mnemonicParsing="false" onAction="#marcarCasilla" prefHeight="40.0" prefWidth="40.0" />
-      <Button layoutX="212.0" layoutY="261.0" mnemonicParsing="false" onAction="#marcarCasilla" prefHeight="40.0" prefWidth="40.0" />
-      <Button layoutX="172.0" layoutY="261.0" mnemonicParsing="false" onAction="#marcarCasilla" prefHeight="40.0" prefWidth="40.0" />
-      <Button layoutX="132.0" layoutY="261.0" mnemonicParsing="false" onAction="#marcarCasilla" prefHeight="40.0" prefWidth="40.0" />
-      <Button layoutX="92.0" layoutY="261.0" mnemonicParsing="false" onAction="#marcarCasilla" prefHeight="40.0" prefWidth="40.0" />
-      <Button layoutX="52.0" layoutY="261.0" mnemonicParsing="false" onAction="#marcarCasilla" prefHeight="40.0" prefWidth="40.0" />
-      <Button layoutX="332.0" layoutY="301.0" mnemonicParsing="false" onAction="#marcarCasilla" prefHeight="40.0" prefWidth="40.0" />
-      <Button layoutX="292.0" layoutY="301.0" mnemonicParsing="false" onAction="#marcarCasilla" prefHeight="40.0" prefWidth="40.0" />
-      <Button layoutX="252.0" layoutY="301.0" mnemonicParsing="false" onAction="#marcarCasilla" prefHeight="40.0" prefWidth="40.0" />
-      <Button layoutX="212.0" layoutY="301.0" mnemonicParsing="false" onAction="#marcarCasilla" prefHeight="40.0" prefWidth="40.0" />
-      <Button layoutX="172.0" layoutY="301.0" mnemonicParsing="false" onAction="#marcarCasilla" prefHeight="40.0" prefWidth="40.0" />
-      <Button layoutX="132.0" layoutY="301.0" mnemonicParsing="false" onAction="#marcarCasilla" prefHeight="40.0" prefWidth="40.0" />
-      <Button layoutX="92.0" layoutY="301.0" mnemonicParsing="false" onAction="#marcarCasilla" prefHeight="40.0" prefWidth="40.0" />
-      <Button layoutX="52.0" layoutY="301.0" mnemonicParsing="false" onAction="#marcarCasilla" prefHeight="40.0" prefWidth="40.0" />
-      <Button layoutX="332.0" layoutY="341.0" mnemonicParsing="false" onAction="#marcarCasilla" prefHeight="40.0" prefWidth="40.0" />
-      <Button layoutX="292.0" layoutY="341.0" mnemonicParsing="false" onAction="#marcarCasilla" prefHeight="40.0" prefWidth="40.0" />
-      <Button layoutX="252.0" layoutY="341.0" mnemonicParsing="false" onAction="#marcarCasilla" prefHeight="40.0" prefWidth="40.0" />
-      <Button layoutX="212.0" layoutY="341.0" mnemonicParsing="false" onAction="#marcarCasilla" prefHeight="40.0" prefWidth="40.0" />
-      <Button layoutX="172.0" layoutY="341.0" mnemonicParsing="false" onAction="#marcarCasilla" prefHeight="40.0" prefWidth="40.0" />
-      <Button layoutX="132.0" layoutY="341.0" mnemonicParsing="false" onAction="#marcarCasilla" prefHeight="40.0" prefWidth="40.0" />
-      <Button layoutX="92.0" layoutY="341.0" mnemonicParsing="false" onAction="#marcarCasilla" prefHeight="40.0" prefWidth="40.0" />
-      <Button layoutX="52.0" layoutY="341.0" mnemonicParsing="false" onAction="#marcarCasilla" prefHeight="40.0" prefWidth="40.0" />
+      <Button fx:id="BH" layoutX="332.0" layoutY="101.0" mnemonicParsing="false" onAction="#marcarCasilla" prefHeight="40.0" prefWidth="40.0" />
+      <Button fx:id="BG" layoutX="292.0" layoutY="101.0" mnemonicParsing="false" onAction="#marcarCasilla" prefHeight="40.0" prefWidth="40.0" />
+      <Button fx:id="BF" layoutX="252.0" layoutY="101.0" mnemonicParsing="false" onAction="#marcarCasilla" prefHeight="40.0" prefWidth="40.0" />
+      <Button fx:id="BE" layoutX="212.0" layoutY="101.0" mnemonicParsing="false" onAction="#marcarCasilla" prefHeight="40.0" prefWidth="40.0" />
+      <Button fx:id="BD" layoutX="172.0" layoutY="101.0" mnemonicParsing="false" onAction="#marcarCasilla" prefHeight="40.0" prefWidth="40.0" />
+      <Button fx:id="BC" layoutX="132.0" layoutY="101.0" mnemonicParsing="false" onAction="#marcarCasilla" prefHeight="40.0" prefWidth="40.0" />
+      <Button fx:id="BB" layoutX="92.0" layoutY="101.0" mnemonicParsing="false" onAction="#marcarCasilla" prefHeight="40.0" prefWidth="40.0" />
+      <Button fx:id="BA" layoutX="52.0" layoutY="101.0" mnemonicParsing="false" onAction="#marcarCasilla" prefHeight="40.0" prefWidth="40.0" />
+      <Button fx:id="CH" layoutX="332.0" layoutY="141.0" mnemonicParsing="false" onAction="#marcarCasilla" prefHeight="40.0" prefWidth="40.0" />
+      <Button fx:id="CG" layoutX="292.0" layoutY="141.0" mnemonicParsing="false" onAction="#marcarCasilla" prefHeight="40.0" prefWidth="40.0" />
+      <Button fx:id="CF" layoutX="252.0" layoutY="141.0" mnemonicParsing="false" onAction="#marcarCasilla" prefHeight="40.0" prefWidth="40.0" />
+      <Button fx:id="CE" layoutX="212.0" layoutY="141.0" mnemonicParsing="false" onAction="#marcarCasilla" prefHeight="40.0" prefWidth="40.0" />
+      <Button fx:id="CD" layoutX="172.0" layoutY="141.0" mnemonicParsing="false" onAction="#marcarCasilla" prefHeight="40.0" prefWidth="40.0" />
+      <Button fx:id="CC" layoutX="132.0" layoutY="141.0" mnemonicParsing="false" onAction="#marcarCasilla" prefHeight="40.0" prefWidth="40.0" />
+      <Button fx:id="CB" layoutX="92.0" layoutY="141.0" mnemonicParsing="false" onAction="#marcarCasilla" prefHeight="40.0" prefWidth="40.0" />
+      <Button fx:id="CA" layoutX="52.0" layoutY="141.0" mnemonicParsing="false" onAction="#marcarCasilla" prefHeight="40.0" prefWidth="40.0" />
+      <Button fx:id="DH" layoutX="332.0" layoutY="181.0" mnemonicParsing="false" onAction="#marcarCasilla" prefHeight="40.0" prefWidth="40.0" />
+      <Button fx:id="DG" layoutX="292.0" layoutY="181.0" mnemonicParsing="false" onAction="#marcarCasilla" prefHeight="40.0" prefWidth="40.0" />
+      <Button fx:id="DF" layoutX="252.0" layoutY="181.0" mnemonicParsing="false" onAction="#marcarCasilla" prefHeight="40.0" prefWidth="40.0" />
+      <Button fx:id="DE" layoutX="212.0" layoutY="181.0" mnemonicParsing="false" onAction="#marcarCasilla" prefHeight="40.0" prefWidth="40.0" />
+      <Button fx:id="DD" layoutX="172.0" layoutY="181.0" mnemonicParsing="false" onAction="#marcarCasilla" prefHeight="40.0" prefWidth="40.0" />
+      <Button fx:id="DC" layoutX="132.0" layoutY="181.0" mnemonicParsing="false" onAction="#marcarCasilla" prefHeight="40.0" prefWidth="40.0" />
+      <Button fx:id="DB" layoutX="92.0" layoutY="181.0" mnemonicParsing="false" onAction="#marcarCasilla" prefHeight="40.0" prefWidth="40.0" />
+      <Button fx:id="DA" layoutX="52.0" layoutY="181.0" mnemonicParsing="false" onAction="#marcarCasilla" prefHeight="40.0" prefWidth="40.0" />
+      <Button fx:id="EH" layoutX="332.0" layoutY="221.0" mnemonicParsing="false" onAction="#marcarCasilla" prefHeight="40.0" prefWidth="40.0" />
+      <Button fx:id="EG" layoutX="292.0" layoutY="221.0" mnemonicParsing="false" onAction="#marcarCasilla" prefHeight="40.0" prefWidth="40.0" />
+      <Button fx:id="EF" layoutX="252.0" layoutY="221.0" mnemonicParsing="false" onAction="#marcarCasilla" prefHeight="40.0" prefWidth="40.0" />
+      <Button fx:id="EE" layoutX="212.0" layoutY="221.0" mnemonicParsing="false" onAction="#marcarCasilla" prefHeight="40.0" prefWidth="40.0" />
+      <Button fx:id="ED" layoutX="172.0" layoutY="221.0" mnemonicParsing="false" onAction="#marcarCasilla" prefHeight="40.0" prefWidth="40.0" />
+      <Button fx:id="EC" layoutX="132.0" layoutY="221.0" mnemonicParsing="false" onAction="#marcarCasilla" prefHeight="40.0" prefWidth="40.0" />
+      <Button fx:id="EB" layoutX="92.0" layoutY="221.0" mnemonicParsing="false" onAction="#marcarCasilla" prefHeight="40.0" prefWidth="40.0" />
+      <Button fx:id="EA" layoutX="52.0" layoutY="221.0" mnemonicParsing="false" onAction="#marcarCasilla" prefHeight="40.0" prefWidth="40.0" />
+      <Button fx:id="FH" layoutX="332.0" layoutY="261.0" mnemonicParsing="false" onAction="#marcarCasilla" prefHeight="40.0" prefWidth="40.0" />
+      <Button fx:id="FG" layoutX="292.0" layoutY="261.0" mnemonicParsing="false" onAction="#marcarCasilla" prefHeight="40.0" prefWidth="40.0" />
+      <Button fx:id="FF" layoutX="252.0" layoutY="261.0" mnemonicParsing="false" onAction="#marcarCasilla" prefHeight="40.0" prefWidth="40.0" />
+      <Button fx:id="FE" layoutX="212.0" layoutY="261.0" mnemonicParsing="false" onAction="#marcarCasilla" prefHeight="40.0" prefWidth="40.0" />
+      <Button fx:id="FD" layoutX="172.0" layoutY="261.0" mnemonicParsing="false" onAction="#marcarCasilla" prefHeight="40.0" prefWidth="40.0" />
+      <Button fx:id="FC" layoutX="132.0" layoutY="261.0" mnemonicParsing="false" onAction="#marcarCasilla" prefHeight="40.0" prefWidth="40.0" />
+      <Button fx:id="FB" layoutX="92.0" layoutY="261.0" mnemonicParsing="false" onAction="#marcarCasilla" prefHeight="40.0" prefWidth="40.0" />
+      <Button fx:id="FA" layoutX="52.0" layoutY="261.0" mnemonicParsing="false" onAction="#marcarCasilla" prefHeight="40.0" prefWidth="40.0" />
+      <Button fx:id="GH" layoutX="332.0" layoutY="301.0" mnemonicParsing="false" onAction="#marcarCasilla" prefHeight="40.0" prefWidth="40.0" />
+      <Button fx:id="GG" layoutX="292.0" layoutY="301.0" mnemonicParsing="false" onAction="#marcarCasilla" prefHeight="40.0" prefWidth="40.0" />
+      <Button fx:id="GF" layoutX="252.0" layoutY="301.0" mnemonicParsing="false" onAction="#marcarCasilla" prefHeight="40.0" prefWidth="40.0" />
+      <Button fx:id="GE" layoutX="212.0" layoutY="301.0" mnemonicParsing="false" onAction="#marcarCasilla" prefHeight="40.0" prefWidth="40.0" />
+      <Button fx:id="GD" layoutX="172.0" layoutY="301.0" mnemonicParsing="false" onAction="#marcarCasilla" prefHeight="40.0" prefWidth="40.0" />
+      <Button fx:id="GC" layoutX="132.0" layoutY="301.0" mnemonicParsing="false" onAction="#marcarCasilla" prefHeight="40.0" prefWidth="40.0" />
+      <Button fx:id="GB" layoutX="92.0" layoutY="301.0" mnemonicParsing="false" onAction="#marcarCasilla" prefHeight="40.0" prefWidth="40.0" />
+      <Button fx:id="GA" layoutX="52.0" layoutY="301.0" mnemonicParsing="false" onAction="#marcarCasilla" prefHeight="40.0" prefWidth="40.0" />
+      <Button fx:id="HH" layoutX="332.0" layoutY="341.0" mnemonicParsing="false" onAction="#marcarCasilla" prefHeight="40.0" prefWidth="40.0" />
+      <Button fx:id="HG" layoutX="292.0" layoutY="341.0" mnemonicParsing="false" onAction="#marcarCasilla" prefHeight="40.0" prefWidth="40.0" />
+      <Button fx:id="HF" layoutX="252.0" layoutY="341.0" mnemonicParsing="false" onAction="#marcarCasilla" prefHeight="40.0" prefWidth="40.0" />
+      <Button fx:id="HE" layoutX="212.0" layoutY="341.0" mnemonicParsing="false" onAction="#marcarCasilla" prefHeight="40.0" prefWidth="40.0" />
+      <Button fx:id="HD" layoutX="172.0" layoutY="341.0" mnemonicParsing="false" onAction="#marcarCasilla" prefHeight="40.0" prefWidth="40.0" />
+      <Button fx:id="HC" layoutX="132.0" layoutY="341.0" mnemonicParsing="false" onAction="#marcarCasilla" prefHeight="40.0" prefWidth="40.0" />
+      <Button fx:id="HB" layoutX="92.0" layoutY="341.0" mnemonicParsing="false" onAction="#marcarCasilla" prefHeight="40.0" prefWidth="40.0" />
+      <Button fx:id="HA" layoutX="52.0" layoutY="341.0" mnemonicParsing="false" onAction="#marcarCasilla" prefHeight="40.0" prefWidth="40.0" />
       <Button fx:id="AH" layoutX="332.0" layoutY="61.0" mnemonicParsing="false" onAction="#marcarCasilla" prefHeight="40.0" prefWidth="40.0" />
       <Button fx:id="AG" layoutX="292.0" layoutY="61.0" mnemonicParsing="false" onAction="#marcarCasilla" prefHeight="40.0" prefWidth="40.0" />
       <Button fx:id="AF" layoutX="252.0" layoutY="61.0" mnemonicParsing="false" onAction="#marcarCasilla" prefHeight="40.0" prefWidth="40.0" />
@@ -73,7 +73,7 @@
       <Button fx:id="AD" layoutX="172.0" layoutY="61.0" mnemonicParsing="false" onAction="#marcarCasilla" prefHeight="40.0" prefWidth="40.0" />
       <Button fx:id="AC" layoutX="132.0" layoutY="61.0" mnemonicParsing="false" onAction="#marcarCasilla" prefHeight="40.0" prefWidth="40.0" />
       <Button fx:id="AB" layoutX="92.0" layoutY="61.0" mnemonicParsing="false" onAction="#marcarCasilla" prefHeight="40.0" prefWidth="40.0" />
-      <Button layoutX="52.0" layoutY="61.0" mnemonicParsing="false" onAction="#marcarCasilla" prefHeight="40.0" prefWidth="40.0" text="AA" textFill="TRANSPARENT" />
+      <Button fx:id="AA" layoutX="52.0" layoutY="61.0" mnemonicParsing="false" onAction="#marcarCasilla" prefHeight="40.0" prefWidth="40.0" text="AA" textFill="TRANSPARENT" />
       <Label fx:id="labelJugador" layoutX="464.0" layoutY="40.0" prefHeight="40.0" prefWidth="136.0" text="%Jugador">
          <font>
             <Font name="Candara" size="30.0" />

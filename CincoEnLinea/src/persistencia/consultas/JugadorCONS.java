@@ -6,7 +6,7 @@
 package Persistencia.consultas;
 
 import Controladores.JugadoresJpaController;
-import logica.JugadorLOG;
+import Dominio.JugadorDAO;
 import Persistencia.Jugadores;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -17,7 +17,7 @@ import javax.persistence.Persistence;
  */
 public class JugadorCONS {
     
-    public String validarInisioSesion(JugadorLOG jugador){
+    public String validarInisioSesion(JugadorDAO jugador){
       String message = "Unknow";
       EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("CincoEnLineaPU", null);
       JugadoresJpaController controller = new JugadoresJpaController();

@@ -23,12 +23,12 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import logica.JugadorLOG;
+import Dominio.JugadorDAO;
 import Persistencia.consultas.JugadorCONS;
 import javafx.event.ActionEvent;
 import javafx.scene.Parent;
 import javafx.stage.Modality;
-import logica.AuxiliarLOG;
+import Dominio.AuxiliarDAO;
 
 /**
  * Clase controller de la interfaz gráfica del inisio de sesión.
@@ -164,16 +164,16 @@ public class LoginController implements Initializable {
         configurarIdioma();
     }
 
-    private JugadorLOG obtenerValores() throws NoSuchAlgorithmException {
-        JugadorLOG jugador = null;
+    private JugadorDAO obtenerValores() throws NoSuchAlgorithmException {
+        JugadorDAO jugador = null;
 
         if (fieldUsuario.getText().equals("")
                 || fieldContraseña.getText().equals("")) {
         } else {
             String user = fieldUsuario.getText();
             String clave = fieldContraseña.getText();
-            AuxiliarLOG aux = new AuxiliarLOG();
-            jugador = new JugadorLOG(user, aux.makeHash(clave));
+            AuxiliarDAO aux = new AuxiliarDAO();
+            jugador = new JugadorDAO(user, aux.makeHash(clave));
         }
         return jugador;
     }

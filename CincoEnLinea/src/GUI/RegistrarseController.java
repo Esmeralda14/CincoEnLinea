@@ -23,7 +23,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import logica.JugadorLOG;
+import Dominio.JugadorDAO;
 
 /**
  * FXML Controller class

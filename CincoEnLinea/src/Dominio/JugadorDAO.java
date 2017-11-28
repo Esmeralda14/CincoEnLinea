@@ -3,25 +3,21 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package logica;
+package Dominio;
 
 /**
  *
- * @author marianacro
+ * @author Esmeralda
  */
-public class JugadorLOG {
-    private String usuario;
-    private String clave;
+public class JugadorDAO {
+    String usuario;
+    String clave;
+    int puntuacionTotal;
 
-    public JugadorLOG(String usuario, String clave) {
+    public JugadorDAO(String usuario, String clave) {
         this.usuario = usuario;
         this.clave = clave;
     }
-
-    public JugadorLOG() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
 
     public String getUsuario() {
         return usuario;
@@ -39,5 +35,13 @@ public class JugadorLOG {
         this.clave = clave;
     }
 
+    public int getPuntuacionTotal() {
+        return puntuacionTotal;
+    }
+
+    public void setPuntuacionTotal(int puntuacionTotal) {
+        this.puntuacionTotal = puntuacionTotal;
+    }
+    
     
 }

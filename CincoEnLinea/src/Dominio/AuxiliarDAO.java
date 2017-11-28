@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package logica;
+package Dominio;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -12,7 +12,7 @@ import java.security.NoSuchAlgorithmException;
  *
  * @author marianacro
  */
-public class AuxiliarLOG {
+public class AuxiliarDAO {
     
     public String makeHash(String string) throws NoSuchAlgorithmException {
         MessageDigest messageDigest = MessageDigest.getInstance("SHA-256");

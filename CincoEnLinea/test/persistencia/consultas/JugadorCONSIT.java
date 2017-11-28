@@ -5,7 +5,7 @@
  */
 package persistencia.consultas;
 
-import logica.JugadorLOG;
+import Dominio.JugadorDAO;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -59,7 +59,7 @@ public class JugadorCONSIT {
     @Test
     public void testValidarInisioSesion() {
         System.out.println("validarInisioSesion");
-        JugadorLOG jugador = new JugadorLOG("marianacro", "mc9718");
+        JugadorDAO jugador = new JugadorDAO("marianacro", "mc9718");
         JugadorCONS instance = new JugadorCONS();
         String expResult = "2";
         String result = instance.validarInisioSesion(jugador);

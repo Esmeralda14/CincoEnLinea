@@ -4,11 +4,12 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="341.0" prefWidth="535.0" style="-fx-background-color: #FFFFFF;" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.InformacionController">
+<AnchorPane id="AnchorPane" focusTraversable="true" prefHeight="341.0" prefWidth="535.0" snapToPixel="false" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.InformacionController">
    <children>
-      <Label fx:id="version" layoutX="292.0" layoutY="273.0" text="%version">
+      <Label fx:id="version" layoutX="259.0" layoutY="276.0" text="%version">
          <font>
             <Font name="Malayalam Sangam MN" size="14.0" />
          </font>
@@ -18,22 +19,22 @@
             <Font name="System Bold" size="19.0" />
          </font>
       </Label>
-      <Label fx:id="nombreMateria" layoutX="175.0" layoutY="165.0" text="%nombreMateria" textFill="#013486">
+      <Label fx:id="nombreMateria" layoutX="176.0" layoutY="165.0" text="%nombreMateria" textFill="#013486">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
       </Label>
-      <Label fx:id="alumnas" layoutX="269.0" layoutY="186.0" text="%alumnas" textFill="#009405">
+      <Label fx:id="alumnas" layoutX="236.0" layoutY="189.0" text="%alumnas" textFill="#009405">
          <font>
             <Font name="System Bold" size="21.0" />
          </font>
       </Label>
-      <Label fx:id="alumna1" layoutX="248.0" layoutY="217.0" text="%alumna1">
+      <Label fx:id="alumna1" layoutX="215.0" layoutY="220.0" text="%alumna1">
          <font>
             <Font name="System Bold" size="16.0" />
          </font>
       </Label>
-      <Label fx:id="alumna2" layoutX="248.0" layoutY="248.0" text="%alumna2">
+      <Label fx:id="alumna2" layoutX="215.0" layoutY="251.0" text="%alumna2">
          <font>
             <Font name="System Bold" size="16.0" />
          </font>
@@ -43,5 +44,6 @@
             <Image url="@../resources/Logo-UV.png" />
          </image>
       </ImageView>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="341.0" layoutX="599.0" stroke="#ffffff00" strokeType="INSIDE" width="7.0" />
    </children>
 </AnchorPane>

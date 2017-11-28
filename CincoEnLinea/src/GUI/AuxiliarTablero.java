@@ -4,7 +4,7 @@
  */
 package GUI;
 
-import Logica.PartidaLOG;
+import Dominio.PartidaDAO;
 
 
 /**
@@ -12,15 +12,16 @@ import Logica.PartidaLOG;
  * herramientas para la obtención de datos del tablero.
  */
 public class AuxiliarTablero {
-    PartidaLOG partida = new PartidaLOG();
+    PartidaDAO partida = new PartidaDAO();
     
     public void separarPosicion(String nombreBoton, int turno){
-        String posX ="";
-        String posY="";
+        String posX ;
+        String posY;
         int cont = 0;
         posX = nombreBoton.substring(cont, cont+1);
         posY = nombreBoton.substring(cont + 1, cont+2);
-//        partida.guardarTiro(convertirPosicion(posX), convertir(posy), turno)
+        System.out.println(posX + "-" + posY);
+        partida.guardarTiro(convertirPosicion(posX), convertirPosicion(posY), turno);
     }
     
     public int convertirPosicion(String posicion){
@@ -60,5 +61,6 @@ public class AuxiliarTablero {
         }
         return posicionObtenida;
     }
+    
     
 }

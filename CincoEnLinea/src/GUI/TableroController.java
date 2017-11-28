@@ -5,6 +5,8 @@
  */
 package GUI;
 
+import Dominio.AuxiliarDAO;
+import Dominio.PartidaDAO;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -15,6 +17,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -40,6 +44,7 @@ public class TableroController implements Initializable {
     private Button botonMenu;
     
     private Stage stage = new Stage();
+     PartidaDAO aux = new PartidaDAO();
     /**
      * Initializes the controller class.
      */
@@ -74,18 +79,48 @@ public class TableroController implements Initializable {
 
     @FXML
     public void marcarCasilla(ActionEvent arg0) {
+        
         AuxiliarTablero auxiliarTab = new AuxiliarTablero();
         Button boton = (Button) arg0.getSource();
+        
         if(turno==1){
            boton.setStyle("-fx-background-image: url('/resources/fichaAzul.png')"); 
-           turno = 2;
-           boton.setDisable(true);
-//           auxiliarTab.separarPosicion(boton.getId());
+           
+            boton.setDisable(true);
+            auxiliarTab.separarPosicion(boton.getId(), turno);
+            boolean bandera = aux.validarColumna(turno);
+            System.out.println(bandera);
+            if (bandera == true) {
+                String mensaje = "";
+                Alert alert = new Alert(AlertType.WARNING);
+                alert.setTitle("¡Advertencia!");
+                mensaje = "Ganaste";
+                alert.setHeaderText(mensaje);
+            }else{
+                System.out.println("Esta wea no sirve");
+                
+                
+            }
+            this.turno = 2;
+
         }else{
             boton.setStyle("-fx-background-image: url('/resources/fichaVerde.png')");
-            turno=1;
+            turno=2;
             boton.setDisable(true);
-//            auxiliarTab.separarPosicion(boton.getId());
+            auxiliarTab.separarPosicion(boton.getId(), turno);
+             boolean bandera = aux.validarColumna(turno);
+            System.out.println(bandera);
+            if (bandera == true) {
+                String mensaje = "";
+                Alert alert = new Alert(AlertType.WARNING);
+                alert.setTitle("¡Advertencia!");
+                mensaje = "Ganaste";
+                alert.setHeaderText(mensaje);
+            }
+                else{
+                System.out.println("Esta wea no sirve");
+            }
+                  this.turno = 1;
         }
         
     }
@@ -104,9 +139,6 @@ public class TableroController implements Initializable {
         stage.close();
     }
     
-    public void obtenerCoordenadas(){
-        
-    }
     
     
 }
