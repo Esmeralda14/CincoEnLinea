@@ -8,7 +8,7 @@ package Dominio;
 public class PartidaDAO {
     private int idpartida;
     private int puntObtenida;
-    public int tablero [][] = new int [8][8];
+    static int tablero [][] = new int [8][8];
     public int getIdpartida() {
         return idpartida;
     }
