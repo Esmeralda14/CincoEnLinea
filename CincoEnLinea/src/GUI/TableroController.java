@@ -89,13 +89,15 @@ public class TableroController implements Initializable {
             boton.setDisable(true);
             auxiliarTab.separarPosicion(boton.getId(), turno);
             boolean bandera = aux.validarColumna(turno);
-            System.out.println(bandera);
-            if (bandera == true) {
+            System.out.println("Bandera turno 1" + bandera);
+            if (bandera) {
+                System.out.println("IF DE ALERTA");
                 String mensaje = "";
                 Alert alert = new Alert(AlertType.WARNING);
                 alert.setTitle("¡Advertencia!");
                 mensaje = "Ganaste";
                 alert.setHeaderText(mensaje);
+                alert.showAndWait();
             }else{
                 System.out.println("Esta wea no sirve");
                 
@@ -109,13 +111,15 @@ public class TableroController implements Initializable {
             boton.setDisable(true);
             auxiliarTab.separarPosicion(boton.getId(), turno);
              boolean bandera = aux.validarColumna(turno);
+            
             System.out.println(bandera);
-            if (bandera == true) {
+            if (bandera) {
                 String mensaje = "";
                 Alert alert = new Alert(AlertType.WARNING);
                 alert.setTitle("¡Advertencia!");
                 mensaje = "Ganaste";
                 alert.setHeaderText(mensaje);
+                alert.showAndWait();
             }
                 else{
                 System.out.println("Esta wea no sirve");

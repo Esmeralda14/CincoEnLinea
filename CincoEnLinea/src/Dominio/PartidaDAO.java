@@ -34,37 +34,47 @@ public class PartidaDAO {
     //No entra al for 
     public boolean validarColumna(int turno) {
         int contador = 0;
-        for (int fila = 0; fila > tablero.length; fila++) {
-            for (int columna = 0; columna > tablero.length; columna++) {
-                System.out.println("los sacado del verificar es: " + turno + "=" + tablero[columna][fila]);
+        
+        for (int fila = 0; fila < tablero.length; fila++) {
+           
+            for (int columna = 0; columna < tablero.length; columna++) {
+                validarFila(columna, fila, turno);
                 if (turno == tablero[columna][fila]) {
                     contador++;
                     System.out.println(contador);
                     if (contador == 5) {
                         return true;
+                        
                     }
+                }else{
+                    contador = 0;
                 }
 
             }
-
+            contador = 0;
         }
         return false;
     }
     
-    public boolean validarFila(int turno){
+    public boolean validarFila(int posX, int posY, int turno){
         int cont = 0;
         //for para la columna
-        for (int columna = 0; columna < tablero.length; columna++) {
-            for (int fila = 0; fila < tablero.length; fila++) {
-                if(turno == tablero[fila][columna]){
+        for (posX = 0; posX < tablero.length; posX++) {
+            
+                if(turno == tablero[posX][posY]){
                     cont++;
                     if(cont == 5){
                         return true;
                     }
+                }else{
+                    cont = 0;
                 }
+                cont = 0;
             }
-        }
+        
     return false;
     }
+    
+    
     
 }
