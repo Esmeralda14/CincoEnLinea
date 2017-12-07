@@ -102,7 +102,7 @@ public class TableroController implements Initializable {
             turno=2;
             boton.setDisable(true);
             auxiliarTab.separarPosicion(boton.getId(), turno);
-            if (aux.validarColumna(turno) || aux.validarFila(turno)) {
+            if (aux.validarColumna(turno) || aux.validarFila(turno) || aux.validarDiagonalIzquierda(turno)) {
                 Alert alert = new Alert(AlertType.WARNING);
                 alert.setTitle("¡FELICIDADES!");
                 String mensaje = "Ganaste usuario 2";

@@ -66,4 +66,19 @@ public class PartidaDAO {
         }
         return false;
     }
+
+    public boolean validarDiagonalIzquierda(int turno) {
+        boolean resultado = false;
+        for (int fila = 0; fila < 8 - 4; fila++) {
+            for (int columna = 0; columna < 8 - 4; columna++) {
+                if (tablero[fila][columna] == turno && tablero[fila][columna] == tablero[fila + 1][columna + 1]
+                        && tablero[fila][columna] == tablero[fila + 2][columna + 2]
+                        && tablero[fila][columna] == tablero[fila + 3][columna + 3]
+                        && tablero[fila][columna] == tablero[fila + 4][columna + 4]) {
+                    resultado = true;
+                }
+            }
+        }
+        return resultado;
+    }
 }
