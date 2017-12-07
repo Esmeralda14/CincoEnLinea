@@ -71,14 +71,40 @@ public class PartidaDAO {
         boolean resultado = false;
         for (int fila = 0; fila < 8 - 4; fila++) {
             for (int columna = 0; columna < 8 - 4; columna++) {
-                if (tablero[fila][columna] == turno && tablero[fila][columna] == tablero[fila + 1][columna + 1]
-                        && tablero[fila][columna] == tablero[fila + 2][columna + 2]
+                if (tablero[fila][columna] == turno 
+                        && tablero[fila][columna] == tablero[fila + 4][columna + 4]
                         && tablero[fila][columna] == tablero[fila + 3][columna + 3]
-                        && tablero[fila][columna] == tablero[fila + 4][columna + 4]) {
+                        && tablero[fila][columna] == tablero[fila + 2][columna + 2]
+                        && tablero[fila][columna] == tablero[fila + 1][columna + 1]) {
                     resultado = true;
                 }
             }
         }
         return resultado;
+    }
+
+    public boolean validarDiagonalDerecha(int turno) {
+        boolean resultado = false;
+        for (int fila = 4; fila < 8; fila++) {
+            for (int columna = 0; columna < 8 - 4; columna++) {
+                if (tablero[fila][columna] == turno
+                        && tablero[fila][columna] == tablero[fila - 4][columna + 4]
+                        && tablero[fila][columna] == tablero[fila - 3][columna + 3]
+                        && tablero[fila][columna] == tablero[fila - 2][columna + 2]
+                        && tablero[fila][columna] == tablero[fila - 1][columna + 1]) {
+                    resultado = true;
+                }
+            }
+        }
+        return resultado;
+    }
+
+    public void limpiarTablero() {
+        for (int fila = 0; fila < tablero.length; fila++) {
+            for (int columna = 0; columna < tablero.length; columna++) {
+                tablero[fila][columna] = 0;
+            }
+
+        }
     }
 }

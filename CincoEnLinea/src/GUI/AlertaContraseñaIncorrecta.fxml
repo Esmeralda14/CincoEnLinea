@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="185.0" prefWidth="316.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.AlertaContraseñaIncorrectaController">
+   <children>
+      <ImageView fitHeight="189.0" fitWidth="317.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../resources/fondoAlerta.png" />
+         </image>
+      </ImageView>
+      <JFXButton fx:id="botonAceptar" cacheShape="false" centerShape="false" focusTraversable="false" layoutX="7.0" layoutY="142.0" onAction="#clicAceptar" prefHeight="37.0" prefWidth="304.0" scaleShape="false" text="%aceptar">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </JFXButton>
+      <Label fx:id="labelErrorIS" layoutX="34.0" layoutY="22.0" text="%LabelErrorInicioSesion">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </Label>
+      <Label fx:id="labelUsuarioProporcionado" layoutX="77.0" layoutY="75.0" text="%LabelUsuarioProporcionado">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="LabelEsIncorrecto" layoutX="103.0" layoutY="99.0" text="%LabelEsIncorrecto">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

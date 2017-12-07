@@ -29,6 +29,8 @@ import javafx.event.ActionEvent;
 import javafx.scene.Parent;
 import javafx.stage.Modality;
 import Dominio.AuxiliarDAO;
+import javafx.scene.paint.Color;
+import javafx.stage.StageStyle;
 
 /**
  * Clase controller de la interfaz gráfica del inisio de sesión.
@@ -93,7 +95,7 @@ public class LoginController implements Initializable {
      * Metodo para iniciar sesión 
      */
     @FXML
-    private void iniciarSesion() {
+    public void iniciarSesion() {
 
         String resultado = "";
         JugadorCONS jugadorCONS = new JugadorCONS();
@@ -127,18 +129,23 @@ public class LoginController implements Initializable {
     }
 
     private void mensajeAlerta(String resultado) {
-        String mensaje = "";
-        Alert alert = new Alert(AlertType.WARNING);
-        alert.setTitle("¡Advertencia!");
         if (resultado.equals("2")) {
-            mensaje = "Contraseña incorrecta";
-            alert.setHeaderText(mensaje);
+            
+            
         }
         if (resultado.equals("3")) {
-            mensaje = "Este usuario no existe o esta incorrecto";
-            alert.setHeaderText(mensaje);
+            AnchorPane pane;
+            try {
+                pane = FXMLLoader.load(getClass().getResource("AlertaContraseñaIncorrecta.fxml"), resources);
+                Scene sceneAlerta = new Scene(pane);
+                sceneAlerta.setFill(Color.TRANSPARENT);
+                stage.initStyle(StageStyle.TRANSPARENT);
+                stage.setScene(sceneAlerta);
+                stage.show();
+            } catch (IOException ex) {
+                Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
-        alert.showAndWait();
     }
 
     public void configurarIdioma() {

@@ -74,27 +74,17 @@
       <Button fx:id="AC" layoutX="132.0" layoutY="61.0" mnemonicParsing="false" onAction="#marcarCasilla" prefHeight="40.0" prefWidth="40.0" />
       <Button fx:id="AB" layoutX="92.0" layoutY="61.0" mnemonicParsing="false" onAction="#marcarCasilla" prefHeight="40.0" prefWidth="40.0" />
       <Button fx:id="AA" layoutX="52.0" layoutY="61.0" mnemonicParsing="false" onAction="#marcarCasilla" prefHeight="40.0" prefWidth="40.0" text="AA" textFill="TRANSPARENT" />
-      <Label fx:id="labelJugador" layoutX="464.0" layoutY="40.0" prefHeight="40.0" prefWidth="136.0" text="%Jugador">
+      <Label fx:id="labelJugador" layoutX="464.0" layoutY="81.0" prefHeight="40.0" prefWidth="136.0" text="%Jugador">
          <font>
             <Font name="Candara" size="30.0" />
          </font>
       </Label>
-      <TextField fx:id="textJugador" editable="false" layoutX="431.0" layoutY="100.0" prefHeight="40.0" prefWidth="202.0" style="-fx-background-color: #A9F5E1;">
+      <TextField fx:id="textJugador" editable="false" layoutX="431.0" layoutY="141.0" prefHeight="40.0" prefWidth="202.0" style="-fx-background-color: #A9F5E1;">
          <font>
             <Font name="Candara" size="20.0" />
          </font>
       </TextField>
-      <Button fx:id="botonReiniciar" layoutX="437.0" layoutY="182.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="111.0" text="%Reiniciar">
-         <font>
-            <Font name="Candara" size="19.0" />
-         </font>
-      </Button>
-      <Button fx:id="botonMenu" layoutX="437.0" layoutY="234.0" mnemonicParsing="false" onAction="#abrirMenu" prefHeight="36.0" prefWidth="111.0" text="%Menu">
-         <font>
-            <Font name="Candara" size="19.0" />
-         </font>
-      </Button>
-      <ImageView fitHeight="123.0" fitWidth="118.0" layoutX="473.0" layoutY="287.0">
+      <ImageView fitHeight="145.0" fitWidth="150.0" layoutX="450.0" layoutY="221.0">
          <image>
             <Image url="@../resources/photo_2017-09-09_20-11-53.jpg" />
          </image>

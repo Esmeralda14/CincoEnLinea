@@ -82,18 +82,23 @@ public class TableroController implements Initializable {
         
         AuxiliarTablero auxiliarTab = new AuxiliarTablero();
         Button boton = (Button) arg0.getSource();
-        
-        if(turno==1){
-           boton.setStyle("-fx-background-image: url('/resources/fichaAzul.png')"); 
-           
+
+        if (turno == 1) {
+            boton.setStyle("-fx-background-image: url('/resources/fichaAzul.png')");
+
             boton.setDisable(true);
             auxiliarTab.separarPosicion(boton.getId(), turno);
-            if (aux.validarColumna(turno) || aux.validarFila(turno)) {
-                Alert alert = new Alert(AlertType.WARNING);
-                alert.setTitle("¡FELICIDADES!");
-                String mensaje = "Ganaste usuario 1";
-                alert.setHeaderText(mensaje);
-                alert.showAndWait();
+            if (aux.validarColumna(turno) || aux.validarFila(turno) || aux.validarDiagonalIzquierda(turno) || aux.validarDiagonalDerecha(turno)) {
+                try {
+                    AnchorPane pane = FXMLLoader.load(getClass().getResource("AlertaGanador.fxml"), resources);
+                    Scene scenePartida = new Scene(pane);
+                    stage.setScene(scenePartida);
+                    stage.show();
+                } catch (IOException ex) {
+                    Logger.getLogger(MenuPrincipalController.class.getName()).log(Level.SEVERE, null, ex);
+
+                }
+
             }
             this.turno = 2;
 
@@ -102,31 +107,23 @@ public class TableroController implements Initializable {
             turno=2;
             boton.setDisable(true);
             auxiliarTab.separarPosicion(boton.getId(), turno);
-            if (aux.validarColumna(turno) || aux.validarFila(turno) || aux.validarDiagonalIzquierda(turno)) {
-                Alert alert = new Alert(AlertType.WARNING);
-                alert.setTitle("¡FELICIDADES!");
-                String mensaje = "Ganaste usuario 2";
-                alert.setHeaderText(mensaje);
-                alert.showAndWait();
+            if (aux.validarColumna(turno) || aux.validarFila(turno) || aux.validarDiagonalIzquierda(turno) || aux.validarDiagonalDerecha(turno)) {
+                try {
+                    AnchorPane pane = FXMLLoader.load(getClass().getResource("AlertaGanador.fxml"), resources);
+                    Scene scenePartida = new Scene(pane);
+                    stage.setScene(scenePartida);
+                    stage.show();
+                } catch (IOException ex) {
+                    Logger.getLogger(MenuPrincipalController.class.getName()).log(Level.SEVERE, null, ex);
+
+                }
             }
                   this.turno = 1;
         }
         
     }
     
-    @FXML
-    public void abrirMenu(){
-        try {
-            AnchorPane pane = FXMLLoader.load(getClass().getResource("MenuPrincipal.fxml"), resources);
-            Scene scenePartida = new Scene(pane);
-            stage.setScene(scenePartida);
-            stage.show();
-        } catch (IOException ex) {
-            Logger.getLogger(MenuPrincipalController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        stage = (Stage) botonMenu.getScene().getWindow();
-        stage.close();
-    }
+    
     
     
     

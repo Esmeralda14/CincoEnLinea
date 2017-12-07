@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="254.0" prefWidth="340.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.AlertaGanadorController">
+   <children>
+      <ImageView fitHeight="254.0" fitWidth="354.0" layoutX="-2.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../resources/imagenGanador.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="labelGanaste" layoutX="88.0" layoutY="168.0" text="%ganaste" textFill="WHITE">
+         <font>
+            <Font size="26.0" />
+         </font>
+      </Label>
+      <JFXButton fx:id="BotonAceptar" cacheShape="false" centerShape="false" focusTraversable="false" layoutX="130.0" layoutY="227.0" onAction="#clicAceptar" scaleShape="false" text="%aceptar">
+         <cursor>
+            <Cursor fx:constant="DEFAULT" />
+         </cursor>
+      </JFXButton>
+   </children>
+</AnchorPane>
