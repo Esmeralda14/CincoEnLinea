@@ -10,6 +10,7 @@ import io.socket.emitter.Emitter;
 import java.io.IOException;
 import java.net.Socket;
 import java.net.URL;
+import java.util.Locale;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -47,7 +48,10 @@ public class SeleccionarJugadorController implements Initializable {
     private JFXButton botonActualizarLista;
 
 
-    ResourceBundle resources = ResourceBundle.getBundle("resources.idioma");
+        
+    String idioma = Locale.getDefault().toString();
+    String idiomaResource = "resources.idioma_" + idioma;
+    ResourceBundle resources = ResourceBundle.getBundle(idiomaResource);
     MenuPrincipalController menu = new MenuPrincipalController();
     static Socket socket = null;
     private Stage stage = new Stage();

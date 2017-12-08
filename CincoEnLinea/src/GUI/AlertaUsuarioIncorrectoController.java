@@ -9,37 +9,32 @@ import com.jfoenix.controls.JFXButton;
 import java.net.URL;
 import java.util.Locale;
 import java.util.ResourceBundle;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
 /**
  * FXML Controller class
  *
- * @author Esmeralda
+ * @author marianacro
  */
-public class AlertaContraseñaIncorrectaController implements Initializable {
+public class AlertaUsuarioIncorrectoController implements Initializable {
 
     @FXML
     private JFXButton botonAceptar;
+
     @FXML
     private Label labelErrorIS;
-    @FXML
-    private Label labelContrasenaProporcionado;
-    @FXML
-    private Label LabelEsIncorrecta;
 
-    /**
-     * Initializes the controller class.
-     */
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-    }    
+    @FXML
+    private Label labelUsuarioProporcionado;
 
-       
+    @FXML
+    private Label labelEsIncorrecto;
+    
+        
     String idioma = Locale.getDefault().toString();
     String idiomaResource = "resources.idioma_" + idioma;
     ResourceBundle resources = ResourceBundle.getBundle(idiomaResource);
@@ -48,8 +43,8 @@ public class AlertaContraseñaIncorrectaController implements Initializable {
     public void configurarIdioma(){
         botonAceptar.setText(resources.getString("aceptar"));
         labelErrorIS.setText(resources.getString("LabelErrorInicioSesion"));
-        labelContrasenaProporcionado.setText(resources.getString("LabelContrasenaProporcionada"));
-        LabelEsIncorrecta.setText(resources.getString("LabelEsIncorrecta"));
+        labelUsuarioProporcionado.setText(resources.getString("LabelUsuarioProporcionado"));
+        labelEsIncorrecto.setText(resources.getString("LabelEsIncorrecto"));
         
     }
     
@@ -72,5 +67,11 @@ public class AlertaContraseñaIncorrectaController implements Initializable {
         stage = (Stage) botonAceptar.getScene().getWindow();
         stage.close();
     }
+
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+        
+        
+    }    
     
 }

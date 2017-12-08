@@ -8,6 +8,7 @@ package GUI;
 import Dominio.PartidaDAO;
 import java.io.IOException;
 import java.net.URL;
+import java.util.Locale;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -33,7 +34,11 @@ public class AlertaGanadorController implements Initializable {
     @FXML
     private Button botonAceptar;
     
-    ResourceBundle resources = ResourceBundle.getBundle("resources.idioma");
+        
+    String idioma = Locale.getDefault().toString();
+    String idiomaResource = "resources.idioma_" + idioma;
+    ResourceBundle resources = ResourceBundle.getBundle(idiomaResource);
+    Stage stage = new Stage();
     
     
     public void configurarIdioma(){
@@ -62,11 +67,9 @@ public class AlertaGanadorController implements Initializable {
     
     @FXML
     public void clicAceptar(){
-    Stage stage = new Stage();
+
     
     PartidaDAO partida = new PartidaDAO();
-    
-    
         try {
             AnchorPane pane = FXMLLoader.load(getClass().getResource("MenuPrincipal.fxml"), resources);
             Scene scenePartida = new Scene(pane);
@@ -74,10 +77,12 @@ public class AlertaGanadorController implements Initializable {
             stage.show();
         } catch (IOException ex) {
             Logger.getLogger(MenuPrincipalController.class.getName()).log(Level.SEVERE, null, ex);
+        
+                partida.limpiarTablero();
         }
         stage = (Stage) botonAceptar.getScene().getWindow();
         stage.close();
-        partida.limpiarTablero();
+
     } 
     
 }

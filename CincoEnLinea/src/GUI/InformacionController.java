@@ -5,6 +5,7 @@
 package GUI;
 
 import java.net.URL;
+import java.util.Locale;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -46,7 +47,10 @@ public class InformacionController implements Initializable {
     @FXML
     private Button Bregresar;
     
-    ResourceBundle resources = ResourceBundle.getBundle("resources.idioma");
+        
+    String idioma = Locale.getDefault().toString();
+    String idiomaResource = "resources.idioma_" + idioma;
+    ResourceBundle resources = ResourceBundle.getBundle(idiomaResource);
     
     
     @Override

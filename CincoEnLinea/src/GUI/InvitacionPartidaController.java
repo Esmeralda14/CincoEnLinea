@@ -6,6 +6,7 @@ package GUI;
 
 import com.jfoenix.controls.JFXButton;
 import java.net.URL;
+import java.util.Locale;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -39,7 +40,10 @@ public class InvitacionPartidaController implements Initializable {
     
     
     
-    ResourceBundle resources = ResourceBundle.getBundle("resources.idioma");
+        
+    String idioma = Locale.getDefault().toString();
+    String idiomaResource = "resources.idioma_" + idioma;
+    ResourceBundle resources = ResourceBundle.getBundle(idiomaResource);
     
     private Stage stage = new Stage();
 

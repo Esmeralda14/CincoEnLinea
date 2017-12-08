@@ -6,6 +6,7 @@
 package GUI;
 
 import java.net.URL;
+import java.util.Locale;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -25,7 +26,10 @@ public class RankingController implements Initializable {
     @FXML
     private TableColumn<?, ?> columnaPuntaje;
 
-    ResourceBundle resources = ResourceBundle.getBundle("resources.idioma");
+        
+    String idioma = Locale.getDefault().toString();
+    String idiomaResource = "resources.idioma_" + idioma;
+    ResourceBundle resources = ResourceBundle.getBundle(idiomaResource);
      
     
     @Override

@@ -100,8 +100,8 @@ public class PartidaDAO {
     }
 
     public void limpiarTablero() {
-        for (int fila = 0; fila < tablero.length; fila++) {
-            for (int columna = 0; columna < tablero.length; columna++) {
+        for (int fila = 0; fila <= tablero.length; fila++) {
+            for (int columna = 0; columna <= tablero.length; columna++) {
                 tablero[fila][columna] = 0;
             }
 

@@ -25,6 +25,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import Dominio.JugadorDAO;
+import java.util.Locale;
 
 /**
  * FXML Controller class
@@ -60,7 +61,10 @@ public class RegistrarseController implements Initializable {
     @FXML
     private Button regresar;
 
-    ResourceBundle resources = ResourceBundle.getBundle("resources.idioma");
+        
+    String idioma = Locale.getDefault().toString();
+    String idiomaResource = "resources.idioma_" + idioma;
+    ResourceBundle resources = ResourceBundle.getBundle(idiomaResource);
     private Stage stage = new Stage();
     @Override
     public void initialize(URL url, ResourceBundle rb) {

@@ -1,6 +1,7 @@
 package cincoenlinea;
 
 import java.io.IOException;
+import java.util.Locale;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -19,8 +20,14 @@ public class CincoEnLinea extends Application {
     @Override
     public void start(Stage stage){  
     try{
-        ResourceBundle bundle = ResourceBundle.getBundle("resources.idioma");
-        AnchorPane page  = FXMLLoader.load(getClass().getResource("/GUI/Login.fxml"),bundle);
+   
+              
+    String idioma = Locale.getDefault().toString();
+    String idiomaResource = "resources.idioma_" + idioma;
+        System.out.println(idioma);
+        System.out.println(idiomaResource);
+    ResourceBundle resources = ResourceBundle.getBundle(idiomaResource);
+        AnchorPane page  = FXMLLoader.load(getClass().getResource("/GUI/Login.fxml"),resources);
         Scene scene = new Scene(page);
         stage.setScene(scene);
         stage.show();

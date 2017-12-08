@@ -9,6 +9,7 @@ import Dominio.AuxiliarDAO;
 import Dominio.PartidaDAO;
 import java.io.IOException;
 import java.net.URL;
+import java.util.Locale;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -48,7 +49,10 @@ public class TableroController implements Initializable {
     /**
      * Initializes the controller class.
      */
-    ResourceBundle resources = ResourceBundle.getBundle("resources.idioma");
+        
+    String idioma = Locale.getDefault().toString();
+    String idiomaResource = "resources.idioma_" + idioma;
+    ResourceBundle resources = ResourceBundle.getBundle(idiomaResource);;
     int turno = 1;
 
     @Override

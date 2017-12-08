@@ -7,8 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="185.0" prefWidth="316.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.111" fx:controller="GUI.AlertaContraseñaIncorrectaController">
+<AnchorPane id="AnchorPane" prefHeight="185.0" prefWidth="316.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.AlertaContraseñaIncorrectaController">
    <children>
       <ImageView fitHeight="189.0" fitWidth="317.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -25,12 +24,12 @@
             <Font size="22.0" />
          </font>
       </Label>
-      <Label fx:id="labelContrasenaProporcionado" layoutX="77.0" layoutY="75.0" text="%LabelContrasenaProporcionada">
+      <Label fx:id="labelUsuarioProporcionado" layoutX="77.0" layoutY="75.0" text="%LabelUsuarioProporcionado">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
-      <Label fx:id="LabelEsIncorrecta" layoutX="103.0" layoutY="99.0" text="%LabelEsIncorrecta">
+      <Label fx:id="LabelEsIncorrecto" layoutX="103.0" layoutY="99.0" text="%LabelEsIncorrecto">
          <font>
             <Font size="14.0" />
          </font>

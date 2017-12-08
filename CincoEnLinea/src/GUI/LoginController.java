@@ -29,6 +29,7 @@ import javafx.event.ActionEvent;
 import javafx.scene.Parent;
 import javafx.stage.Modality;
 import Dominio.AuxiliarDAO;
+import java.util.Locale;
 import javafx.scene.paint.Color;
 import javafx.stage.StageStyle;
 
@@ -64,9 +65,15 @@ public class LoginController implements Initializable {
     @FXML
     private Button espanol;
 
-    ResourceBundle resources = ResourceBundle.getBundle("resources.idioma");
+    
 
     private Stage stage = new Stage();
+    
+
+    
+    String idioma = Locale.getDefault().toString();
+    String idiomaResource = "resources.idioma_" + idioma;
+    ResourceBundle resources = ResourceBundle.getBundle(idiomaResource);
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -130,13 +137,22 @@ public class LoginController implements Initializable {
 
     private void mensajeAlerta(String resultado) {
         if (resultado.equals("2")) {
-            
-            
+            AnchorPane pane;
+            try {
+                pane = FXMLLoader.load(getClass().getResource("AlertaContraseñaIncorrecta.fxml"), resources);
+                Scene sceneAlerta = new Scene(pane);
+                sceneAlerta.setFill(Color.TRANSPARENT);
+                stage.initStyle(StageStyle.TRANSPARENT);
+                stage.setScene(sceneAlerta);
+                stage.show();
+            } catch (IOException ex) {
+                Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         if (resultado.equals("3")) {
             AnchorPane pane;
             try {
-                pane = FXMLLoader.load(getClass().getResource("AlertaContraseñaIncorrecta.fxml"), resources);
+                pane = FXMLLoader.load(getClass().getResource("AlertaUsuarioIncorrecto.fxml"), resources);
                 Scene sceneAlerta = new Scene(pane);
                 sceneAlerta.setFill(Color.TRANSPARENT);
                 stage.initStyle(StageStyle.TRANSPARENT);
@@ -176,6 +192,7 @@ public class LoginController implements Initializable {
 
         if (fieldUsuario.getText().equals("")
                 || fieldContraseña.getText().equals("")) {
+            
         } else {
             String user = fieldUsuario.getText();
             String clave = fieldContraseña.getText();
