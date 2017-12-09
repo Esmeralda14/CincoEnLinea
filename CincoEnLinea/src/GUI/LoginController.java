@@ -29,6 +29,8 @@ import javafx.event.ActionEvent;
 import javafx.scene.Parent;
 import javafx.stage.Modality;
 import Dominio.AuxiliarDAO;
+import java.io.DataOutputStream;
+import java.net.Socket;
 import java.util.Locale;
 import javafx.scene.paint.Color;
 import javafx.stage.StageStyle;
@@ -74,6 +76,8 @@ public class LoginController implements Initializable {
     String idioma = Locale.getDefault().toString();
     String idiomaResource = "resources.idioma_" + idioma;
     ResourceBundle resources = ResourceBundle.getBundle(idiomaResource);
+    String host = "localhost";
+    int puerto = 5000;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -210,8 +214,21 @@ public class LoginController implements Initializable {
             String clave = fieldContraseña.getText();
             AuxiliarDAO aux = new AuxiliarDAO();
             jugador = new JugadorDAO(user, aux.makeHash(clave));
+            agregarJugadorListaServidor(jugador.getUsuario());
+            
         }
         return jugador;
+    }
+    
+    public void agregarJugadorListaServidor(String jugador){
+        try {
+            Socket socket = new Socket(host, puerto);
+            DataOutputStream mensaje = new DataOutputStream(socket.getOutputStream());
+            
+            mensaje.writeUTF(jugador);
+        } catch (IOException ex) {
+            Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
 }
