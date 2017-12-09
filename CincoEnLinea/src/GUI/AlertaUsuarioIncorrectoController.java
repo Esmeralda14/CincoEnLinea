@@ -9,19 +9,19 @@ import com.jfoenix.controls.JFXButton;
 import java.net.URL;
 import java.util.Locale;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
 /**
  * FXML Controller class
  *
- * @author marianacro
+ * @author Esmeralda
  */
 public class AlertaUsuarioIncorrectoController implements Initializable {
-
+    
     @FXML
     private JFXButton botonAceptar;
 
@@ -69,9 +69,10 @@ public class AlertaUsuarioIncorrectoController implements Initializable {
     }
 
     @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        
-        
-    }    
+    public void initialize(URL location, ResourceBundle resources) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    
     
 }

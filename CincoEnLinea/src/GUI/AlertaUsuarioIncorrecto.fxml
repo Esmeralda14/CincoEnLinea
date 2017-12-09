@@ -29,7 +29,7 @@
             <Font size="14.0" />
          </font>
       </Label>
-      <Label fx:id="LabelEsIncorrecto" layoutX="103.0" layoutY="99.0" text="%LabelEsIncorrecto">
+      <Label fx:id="labelEsIncorrecto" layoutX="103.0" layoutY="99.0" text="%LabelEsIncorrecto">
          <font>
             <Font size="14.0" />
          </font>

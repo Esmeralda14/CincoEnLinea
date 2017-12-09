@@ -36,7 +36,7 @@
             <Image url="@../resources/photo_2017-09-09_20-11-53.jpg" />
          </image>
       </ImageView>
-      <JFXButton fx:id="botonActualizarLista" layoutX="35.0" layoutY="353.0" style="-fx-background-color: #FFFA86;" text="%actualizarLista">
+      <JFXButton fx:id="botonActualizarLista" layoutX="35.0" layoutY="353.0" onAction="#clicActualizarLista" style="-fx-background-color: #FFFA86;" text="%actualizarLista">
          <font>
             <Font size="16.0" />
          </font>

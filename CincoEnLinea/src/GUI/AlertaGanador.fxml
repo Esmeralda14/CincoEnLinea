@@ -20,7 +20,7 @@
             <Font size="26.0" />
          </font>
       </Label>
-      <JFXButton fx:id="BotonAceptar" cacheShape="false" centerShape="false" focusTraversable="false" layoutX="130.0" layoutY="227.0" onAction="#clicAceptar" scaleShape="false" text="%aceptar">
+      <JFXButton fx:id="BotonAceptar" cacheShape="false" centerShape="false" focusTraversable="false" layoutX="4.0" layoutY="210.0" onAction="#clicAceptar" prefHeight="44.0" prefWidth="331.0" scaleShape="false" text="%aceptar">
          <cursor>
             <Cursor fx:constant="DEFAULT" />
          </cursor>

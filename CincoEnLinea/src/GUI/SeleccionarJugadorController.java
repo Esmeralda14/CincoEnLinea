@@ -6,9 +6,6 @@
 package GUI;
 
 import com.jfoenix.controls.JFXButton;
-import io.socket.emitter.Emitter;
-import java.io.IOException;
-import java.net.Socket;
 import java.net.URL;
 import java.util.Locale;
 import java.util.ResourceBundle;
@@ -24,6 +21,13 @@ import javafx.scene.control.ListView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import io.socket.client.IO;
+import io.socket.client.Socket;
+import io.socket.emitter.Emitter;
+import java.io.IOException;
+import java.net.URISyntaxException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * FXML Controller class
@@ -36,7 +40,7 @@ public class SeleccionarJugadorController implements Initializable {
     private Label jugadoresConectados;
 
     @FXML
-    private ListView<?> listaJugadores;
+    private ListView<String> listaJugadores;
 
     @FXML
     private JFXButton botonInciarPartida;
@@ -53,7 +57,7 @@ public class SeleccionarJugadorController implements Initializable {
     String idiomaResource = "resources.idioma_" + idioma;
     ResourceBundle resources = ResourceBundle.getBundle(idiomaResource);
     MenuPrincipalController menu = new MenuPrincipalController();
-    static Socket socket = null;
+    static Socket socket;
     private Stage stage = new Stage();
 
     @Override
@@ -113,10 +117,30 @@ public class SeleccionarJugadorController implements Initializable {
         stage.close();
     }
     
-//    public void conexionServidor(){
-//        socket = IO.socket("http://localhost:7000");
-//        socket.on(Socket.EVENT_CONNECT, new Emitter.Listener(){
-//            
-//        }
-//    }
+    public void conexionServidor(){
+        try {
+            socket = IO.socket("http://localhost:7000");
+            socket.on(Socket.EVENT_CONNECT, new Emitter.Listener(){
+                @Override
+                public void call(Object... os) {
+                    System.out.println("conectado con el servidor");
+                }
+            }).on("Jugadores conectados", new Emitter.Listener(){
+                @Override
+                public void call(Object... os){
+                    listaJugadores.getItems().add(((String)os[0]));
+                    
+                    
+                }
+            });
+            socket.connect();
+        } catch (URISyntaxException ex) {
+            Logger.getLogger(SeleccionarJugadorController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    @FXML
+    public void clicActualizarLista(){
+        socket.emit("Jugadores conectados");
+    }
 }

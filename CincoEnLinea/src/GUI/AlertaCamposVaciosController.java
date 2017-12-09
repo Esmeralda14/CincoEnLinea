@@ -11,7 +11,6 @@ import java.util.Locale;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
@@ -20,25 +19,20 @@ import javafx.stage.Stage;
  *
  * @author marianacro
  */
-public class AlertaContraseñaIncorrectaController implements Initializable {
-@FXML
+public class AlertaCamposVaciosController implements Initializable {
+
+    @FXML
+    private Label labelErrorInicioSesion;
+    @FXML
+    private Label labelNoSePuedeIniciar;
+    @FXML
+    private Label labelCamposVacios;
+    @FXML
     private JFXButton botonAceptar;
-    @FXML
-    private Label labelErrorIS;
-    @FXML
-    private Label labelContrasenaProporcionado;
-    @FXML
-    private Label LabelEsIncorrecta;
 
-    /**
-     * Initializes the controller class.
-     */
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-    }    
-
-       
+    
+    
+        
     String idioma = Locale.getDefault().toString();
     String idiomaResource = "resources.idioma_" + idioma;
     ResourceBundle resources = ResourceBundle.getBundle(idiomaResource);
@@ -46,12 +40,11 @@ public class AlertaContraseñaIncorrectaController implements Initializable {
     
     public void configurarIdioma(){
         botonAceptar.setText(resources.getString("aceptar"));
-        labelErrorIS.setText(resources.getString("LabelErrorInicioSesion"));
-        labelContrasenaProporcionado.setText(resources.getString("LabelContrasenaProporcionada"));
-        LabelEsIncorrecta.setText(resources.getString("LabelEsIncorrecta"));
+        labelErrorInicioSesion.setText(resources.getString("LabelErrorInicioSesion"));
+        labelNoSePuedeIniciar.setText(resources.getString("noSePuedeIniciarSesion"));
+        labelCamposVacios.setText(resources.getString("hayCamposVacios"));
         
     }
-    
     
     @FXML
     public void clicAceptar(){
@@ -59,7 +52,9 @@ public class AlertaContraseñaIncorrectaController implements Initializable {
         stage = (Stage) botonAceptar.getScene().getWindow();
         stage.close();
     }
-
-      
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+        // TODO
+    }    
     
 }

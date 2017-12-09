@@ -145,6 +145,8 @@ public class LoginController implements Initializable {
                 stage.initStyle(StageStyle.TRANSPARENT);
                 stage.setScene(sceneAlerta);
                 stage.show();
+            } catch (RuntimeException ex) {
+                Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
             } catch (IOException ex) {
                 Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -155,7 +157,7 @@ public class LoginController implements Initializable {
                 pane = FXMLLoader.load(getClass().getResource("AlertaUsuarioIncorrecto.fxml"), resources);
                 Scene sceneAlerta = new Scene(pane);
                 sceneAlerta.setFill(Color.TRANSPARENT);
-                stage.initStyle(StageStyle.TRANSPARENT);
+//                stage.initStyle(StageStyle.TRANSPARENT);
                 stage.setScene(sceneAlerta);
                 stage.show();
             } catch (IOException ex) {
@@ -192,7 +194,17 @@ public class LoginController implements Initializable {
 
         if (fieldUsuario.getText().equals("")
                 || fieldContraseña.getText().equals("")) {
-            
+            try {
+                AnchorPane pane;
+                pane = FXMLLoader.load(getClass().getResource("AlertaCamposVacios.fxml"), resources);
+                Scene sceneAlerta = new Scene(pane);
+                sceneAlerta.setFill(Color.TRANSPARENT);
+                stage.initStyle(StageStyle.TRANSPARENT);
+                stage.setScene(sceneAlerta);
+                stage.show();
+            } catch (IOException ex) {
+                Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
+            }
         } else {
             String user = fieldUsuario.getText();
             String clave = fieldContraseña.getText();
