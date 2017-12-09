@@ -5,6 +5,7 @@
  */
 package GUI;
 
+import Dominio.ConexionDAO;
 import com.jfoenix.controls.JFXButton;
 import java.net.URL;
 import java.util.Locale;
@@ -24,6 +25,8 @@ import javafx.stage.Stage;
 import io.socket.client.IO;
 import io.socket.client.Socket;
 import io.socket.emitter.Emitter;
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.logging.Level;
@@ -117,31 +120,17 @@ public class SeleccionarJugadorController implements Initializable {
         stage.close();
     }
     
-    public void conexionServidor(){
-        try {
-            socket = IO.socket("http://192.168.100.10:7000");
-            socket.on(Socket.EVENT_CONNECT, new Emitter.Listener(){
-                @Override
-                public void call(Object... os) {
-                    System.out.println("conectado con el servidor");
-                }
-            }).on("Jugadores conectados", new Emitter.Listener(){
-                @Override
-                public void call(Object... os){
-                    listaJugadores.getItems().add(((String)os[0]));
-                    
-                    
-                }
-            });
-            socket.connect();
-        } catch (URISyntaxException ex) {
-            Logger.getLogger(SeleccionarJugadorController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
+    
     
     @FXML
     public void clicActualizarLista(){
-        System.out.println("Si entra al actualizar linea");
-        socket.emit("Jugadores conectados");
+        try {
+            DataInputStream entrada = new DataInputStream(ConexionDAO.socketLectura.getInputStream());
+            System.out.println("Actualizar lista: " + entrada.readUTF());
+        } catch (IOException ex) {
+            Logger.getLogger(SeleccionarJugadorController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        System.out.println("Actualizar lista");
+        
     }
 }

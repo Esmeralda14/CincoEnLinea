@@ -5,12 +5,14 @@
  */
 package Servidor;
 
+import Dominio.ConexionDAO;
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -25,17 +27,30 @@ public class Servidor {
 
     
     public static void prepararConexion(){
-     int port = 5000;  
-        try {
+        ArrayList<String> jugadores = new ArrayList<>();
+        try {  
+            int port = 5000;
             System.out.println("El servidor esta corriendo");
             serverSocket = new ServerSocket(port);
-            socket = serverSocket.accept();
-            System.out.println("Cliente conectado :)");
-            BufferedReader entrada = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-            DataOutputStream salida = new DataOutputStream(socket.getOutputStream());
-            String usuario;
-            usuario = entrada.readLine();
-            System.out.println(usuario);
+            while(true){
+                try{
+//                    socket = serverSocket.accept();
+                    ConexionDAO.socketEscritura = serverSocket.accept();
+                    ConexionDAO.socketLectura = serverSocket.accept();
+                    System.out.println("Cliente conectado :)");
+                    BufferedReader entrada = new BufferedReader(new InputStreamReader(ConexionDAO.socketLectura.getInputStream()));
+                    DataOutputStream salida = new DataOutputStream(ConexionDAO.socketEscritura.getOutputStream());
+                    String usuario;
+                    usuario = entrada.readLine();
+                    jugadores.add(usuario);
+                    for (int i = 0; i < jugadores.size(); i++) {
+                        salida.writeUTF(jugadores.get(i));
+                    }
+                    System.out.println(usuario);
+                } catch (IOException ex) {
+                    Logger.getLogger(Servidor.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
         } catch (IOException ex) {
             Logger.getLogger(Servidor.class.getName()).log(Level.SEVERE, null, ex);
         }
