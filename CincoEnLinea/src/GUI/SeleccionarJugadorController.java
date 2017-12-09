@@ -141,6 +141,7 @@ public class SeleccionarJugadorController implements Initializable {
     
     @FXML
     public void clicActualizarLista(){
+        System.out.println("Si entra al actualizar linea");
         socket.emit("Jugadores conectados");
     }
 }

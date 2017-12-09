@@ -27,7 +27,7 @@ public class CincoEnLinea extends Application {
         System.out.println(idioma);
         System.out.println(idiomaResource);
         ResourceBundle resources = ResourceBundle.getBundle(idiomaResource);
-        AnchorPane page  = FXMLLoader.load(getClass().getResource("/GUI/SeleccionarJugador.fxml"),resources);
+        AnchorPane page  = FXMLLoader.load(getClass().getResource("/GUI/Login.fxml"),resources);
         Scene scene = new Scene(page);
         stage.setScene(scene);
         stage.show();
