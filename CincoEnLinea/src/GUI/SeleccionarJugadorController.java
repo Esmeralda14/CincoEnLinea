@@ -28,6 +28,7 @@ import io.socket.emitter.Emitter;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.net.URISyntaxException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -125,8 +126,12 @@ public class SeleccionarJugadorController implements Initializable {
     @FXML
     public void clicActualizarLista(){
         try {
-            DataInputStream entrada = new DataInputStream(ConexionDAO.socketLectura.getInputStream());
-            System.out.println("Actualizar lista: " + entrada.readUTF());
+            ObjectInputStream entrada = new ObjectInputStream(ConexionDAO.socketLectura.getInputStream());
+            try {
+                System.out.println("Actualizar lista: " + entrada.readObject());
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(SeleccionarJugadorController.class.getName()).log(Level.SEVERE, null, ex);
+            }
         } catch (IOException ex) {
             Logger.getLogger(SeleccionarJugadorController.class.getName()).log(Level.SEVERE, null, ex);
         }

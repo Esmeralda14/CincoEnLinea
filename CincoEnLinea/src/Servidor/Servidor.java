@@ -10,6 +10,7 @@ import java.io.BufferedReader;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.ObjectOutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
@@ -39,12 +40,13 @@ public class Servidor {
                     ConexionDAO.socketLectura = serverSocket.accept();
                     System.out.println("Cliente conectado :)");
                     BufferedReader entrada = new BufferedReader(new InputStreamReader(ConexionDAO.socketLectura.getInputStream()));
-                    DataOutputStream salida = new DataOutputStream(ConexionDAO.socketEscritura.getOutputStream());
+                    ObjectOutputStream salida = new ObjectOutputStream(ConexionDAO.socketEscritura.getOutputStream());
                     String usuario;
                     usuario = entrada.readLine();
                     jugadores.add(usuario);
                     for (int i = 0; i < jugadores.size(); i++) {
-                        salida.writeUTF(jugadores.get(i));
+                        salida.writeObject(jugadores.get(i));
+                        salida.flush();
                     }
                     System.out.println(usuario);
                 } catch (IOException ex) {
