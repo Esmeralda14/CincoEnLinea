@@ -8,6 +8,10 @@ package Persistencia.consultas;
 import Controladores.JugadoresJpaController;
 import Dominio.JugadorDAO;
 import Persistencia.Jugadores;
+import java.util.ArrayList;
+import static java.util.Collections.list;
+import java.util.List;
+import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
@@ -16,10 +20,11 @@ import javax.persistence.Persistence;
  * @author marianacro
  */
 public class JugadorCONS {
+    EntityManagerFactory emfactory = Persistence.createEntityManagerFactory("CincoEnLineaPU");
+    EntityManager entitymanager = emfactory.createEntityManager();
     
     public String validarInisioSesion(JugadorDAO jugador){
       String message = "Unknow";
-      EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("CincoEnLineaPU", null);
       JugadoresJpaController controller = new JugadoresJpaController();
       Jugadores jugadores = new Jugadores();        
       try {
@@ -45,4 +50,16 @@ public class JugadorCONS {
     controller.create(jugador);
           return true;
       }
+    
+    public List<Jugadores> recuperarUsuariosRankiados(){
+        List<Jugadores> jugadores;
+        jugadores = entitymanager.createNamedQuery("usuarios.puntaje").getResultList();
+        return jugadores;
+    }
+    
+    public List<Jugadores> recuperarPuntajeJugadores(){
+        List<Jugadores> puntajes;
+        puntajes = entitymanager.createNamedQuery("puntaje.jugadores").getResultList();
+        return puntajes;
+    }
 }

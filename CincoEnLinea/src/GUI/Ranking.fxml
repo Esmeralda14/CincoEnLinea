@@ -1,17 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXButton?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 
 <AnchorPane id="AnchorPane" prefHeight="304.0" prefWidth="535.0" style="-fx-background-color: #DDFFD3;" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.RankingController">
    <children>
-      <TableView layoutY="18.0" prefHeight="268.0" prefWidth="563.0">
+      <TableView prefHeight="268.0" prefWidth="563.0">
          <columns>
-            <TableColumn fx:id="columnaPosicion" prefWidth="75.0" text="#" />
             <TableColumn fx:id="columnaUsuario" prefWidth="349.0" text="%jugador" />
             <TableColumn fx:id="columnaPuntaje" prefWidth="138.0" text="%puntaje" />
          </columns>
       </TableView>
+      <JFXButton fx:id="botonActualizarRanking" layoutX="-1.0" layoutY="268.0" onAction="#llenarTabla" prefHeight="36.0" prefWidth="563.0" text="Actualizar ranking" />
    </children>
 </AnchorPane>

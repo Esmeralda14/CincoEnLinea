@@ -5,12 +5,22 @@
  */
 package GUI;
 
+import Dominio.JugadorDAO;
+import Persistencia.Jugadores;
+import Persistencia.consultas.JugadorCONS;
+import com.jfoenix.controls.JFXButton;
 import java.net.URL;
+import java.util.List;
 import java.util.Locale;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
+
 
 /**
  * FXML Controller class
@@ -20,11 +30,21 @@ import javafx.scene.control.TableColumn;
 public class RankingController implements Initializable {
 
     @FXML
-    private TableColumn<?, ?> columnaPosicion;
+    private TableColumn<Jugadores, String> columnaUsuario;
     @FXML
-    private TableColumn<?, ?> columnaUsuario;
+    private TableColumn<Jugadores, Integer> columnaPuntaje;
+    @FXML 
+    private TableView<Jugadores> tablaRanking;
+    
+    ObservableList<Jugadores> jugadores;
+    ObservableList<Jugadores> puntajes;
+    
+    
     @FXML
-    private TableColumn<?, ?> columnaPuntaje;
+    private JFXButton botonActualizarRanking;
+
+    
+    JugadorCONS cons = new JugadorCONS();
 
         
     String idioma = Locale.getDefault().toString();
@@ -35,6 +55,8 @@ public class RankingController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         this.resources = rb;
+        
+        
     }  
     
         public void configurarIdioma(){
@@ -42,16 +64,23 @@ public class RankingController implements Initializable {
         columnaPuntaje.setText(resources.getString("puntaje"));
     }
     
-    @FXML
-    public void cambiarIdiomaUS(){
-        resources = ResourceBundle.getBundle("resources.idioma_en_US");
-        configurarIdioma();
-    }
     
-    @FXML
-    public void cambiarIdiomaMX(){
-        resources = ResourceBundle.getBundle("resources.idioma_es_MX");
-        configurarIdioma();
+     @FXML
+     public void llenarTabla() {
+        JugadorCONS cons = new JugadorCONS();
+        jugadores = FXCollections.observableList(cons.recuperarUsuariosRankiados());
+        puntajes = FXCollections.observableList(cons.recuperarPuntajeJugadores());
+         System.out.println("usuarios ranking");
+         System.out.println(jugadores);
+         System.out.println(puntajes);
+         System.out.println("llenado de columnas");    
+    columnaUsuario.setCellValueFactory(
+        new PropertyValueFactory<>("usuario"));
+    columnaPuntaje.setCellValueFactory(
+        new PropertyValueFactory<>("puntuacionTotal"));
+    
+        tablaRanking.setItems(jugadores);
+        tablaRanking.setItems(puntajes);
         
     }
     

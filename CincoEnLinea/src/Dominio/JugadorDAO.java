@@ -18,6 +18,8 @@ public class JugadorDAO {
         this.usuario = usuario;
         this.clave = clave;
     }
+    
+    public JugadorDAO(){}
 
     public String getUsuario() {
         return usuario;

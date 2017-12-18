@@ -30,8 +30,10 @@ import javafx.scene.Parent;
 import javafx.stage.Modality;
 import Dominio.AuxiliarDAO;
 import Dominio.ConexionDAO;
-import java.io.DataOutputStream;
-import java.net.Socket;
+import io.socket.client.IO;
+import io.socket.client.Socket;
+import io.socket.emitter.Emitter;
+import java.net.URISyntaxException;
 import java.util.Locale;
 import javafx.scene.paint.Color;
 import javafx.stage.StageStyle;
@@ -77,8 +79,7 @@ public class LoginController implements Initializable {
     String idioma = Locale.getDefault().toString();
     String idiomaResource = "resources.idioma_" + idioma;
     ResourceBundle resources = ResourceBundle.getBundle(idiomaResource);
-    String host = "192.168.100.10";
-    int puerto = 5000;
+    static Socket socket=null;
     
 
     @Override
@@ -216,22 +217,38 @@ public class LoginController implements Initializable {
             String clave = fieldContraseña.getText();
             AuxiliarDAO aux = new AuxiliarDAO();
             jugador = new JugadorDAO(user, aux.makeHash(clave));
-            agregarJugadorListaServidor(jugador.getUsuario());
+//            agregarJugadorListaServidor(jugador.getUsuario());
             
         }
         return jugador;
     }
     
-    public void agregarJugadorListaServidor(String jugador){
-        try {
-            ConexionDAO.socketEscritura = new Socket(host, puerto);
-            ConexionDAO.socketLectura = new Socket(host, puerto);
-            DataOutputStream mensaje = new DataOutputStream(ConexionDAO.socketEscritura.getOutputStream());
-            
-            mensaje.writeUTF(jugador);
-        } catch (IOException ex) {
-            Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
+//    public void agregarJugadorListaServidor(String jugador){
+//        try {
+//          socket = IO.socket("http://localhost:7000");
+//          socket.on(Socket.EVENT_CONNECT, new Emitter.Listener(){
+//            @Override
+//            public void call(Object... os) {
+//                System.out.println("conectado con el servidor");
+//            }
+//         });
+//          socket.connect();
+//          socket.emit("Jugadores conectados", jugador);
+//          
+//        } catch (URISyntaxException ex) {
+//            Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//    }
+//    public void agregarJugadorListaServidor(String jugador){
+//        try {
+//            ConexionDAO.socketEscritura = new Socket(host, puerto);
+//            ConexionDAO.socketLectura = new Socket(host, puerto);
+//            DataOutputStream mensaje = new DataOutputStream(ConexionDAO.socketEscritura.getOutputStream());
+//            
+//            mensaje.writeUTF(jugador);
+//        } catch (IOException ex) {
+//            Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//    }
 
 }

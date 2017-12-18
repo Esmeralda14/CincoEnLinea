@@ -23,10 +23,12 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Table(name = "Jugadores")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Jugadores.findAll", query = "SELECT j FROM Jugadores j")
-    , @NamedQuery(name = "Jugadores.findByUsuario", query = "SELECT j FROM Jugadores j WHERE j.usuario = :usuario")
-    , @NamedQuery(name = "Jugadores.findByClave", query = "SELECT j FROM Jugadores j WHERE j.clave = :clave")
-    , @NamedQuery(name = "Jugadores.findByPuntuacionTotal", query = "SELECT j FROM Jugadores j WHERE j.puntuacionTotal = :puntuacionTotal")})
+    @NamedQuery(name = "Jugadores.findAll", query = "SELECT j FROM Jugadores j"),
+    @NamedQuery(name = "Jugadores.findByUsuario", query = "SELECT j FROM Jugadores j WHERE j.usuario = :usuario"),
+    @NamedQuery(name = "Jugadores.findByClave", query = "SELECT j FROM Jugadores j WHERE j.clave = :clave"),
+    @NamedQuery(name = "puntaje.jugadores", query = "SELECT j.puntuacionTotal FROM Jugadores j ORDER BY j.puntuacionTotal DESC"),
+    @NamedQuery(name = "usuarios.puntaje", query = "SELECT j.usuario from Jugadores j ORDER BY j.puntuacionTotal DESC"),
+    @NamedQuery(name = "Jugadores.findByPuntuacionTotal", query = "SELECT j FROM Jugadores j WHERE j.puntuacionTotal = :puntuacionTotal")})
 public class Jugadores implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -50,6 +52,11 @@ public class Jugadores implements Serializable {
     public Jugadores(String usuario, String clave) {
         this.usuario = usuario;
         this.clave = clave;
+    }
+    public Jugadores(String usuario, String clave, int puntuacionTotal){
+        this.usuario = usuario;
+        this.clave = clave;
+        this.puntuacionTotal = puntuacionTotal;
     }
 
     public String getUsuario() {
