@@ -1,18 +1,16 @@
 package GUI;
 
+import Controladores.exceptions.PreexistingEntityException;
 import Dominio.AuxiliarDAO;
 import Persistencia.Jugadores;
 import Persistencia.consultas.JugadorCONS;
 import java.io.IOException;
 import java.net.URL;
-import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
-import javafx.event.EventType;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -21,11 +19,11 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import Dominio.JugadorDAO;
 import java.util.Locale;
+import javafx.scene.paint.Color;
+import javafx.stage.StageStyle;
 
 /**
  * FXML Controller class
@@ -84,17 +82,20 @@ public class RegistrarseController implements Initializable {
     public void registrarUsuario(ActionEvent registrar) {
         JugadorCONS jugador = new JugadorCONS();
         try {
+            verificarUsuarioRepetido();
             jugador.registrarJugador(obtenerValores());
             alertaRegistrada();
             abrirInicioSesion();
-        } catch (NoSuchAlgorithmException ex) {
-            Logger.getLogger(RegistrarseController.class.getName()).log(Level.SEVERE, null, ex);
+        }catch(IllegalArgumentException | NullPointerException e){
+          Logger.getLogger(RegistrarseController.class.getName()).log(Level.SEVERE, null, e);
         } catch (Exception ex) {
             Logger.getLogger(RegistrarseController.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
+        
     }
 
-    private Jugadores obtenerValores() {
+    public Jugadores obtenerValores() {
         Jugadores entidadJugador = null;
         AuxiliarDAO aux = new AuxiliarDAO();
         if (fieldUsuario.getText().equals("") || fieldContraseña.getText().equals("")) {
@@ -111,15 +112,45 @@ public class RegistrarseController implements Initializable {
         }
         return entidadJugador;
     }
+    
+    public void verificarUsuarioRepetido(){
+        JugadorCONS jugadorCONS = new JugadorCONS();
+        boolean resultado = jugadorCONS.validarUsuarioRepetido(fieldUsuario.getText());
+        if (resultado) {
+                AnchorPane pane;
+            try {
+                pane = FXMLLoader.load(getClass().getResource("AlertaCamposVaciosRegistro.fxml"), resources);
+                Scene sceneAlerta = new Scene(pane);
+                sceneAlerta.setFill(Color.TRANSPARENT);
+                stage.initStyle(StageStyle.TRANSPARENT);
+                stage.setScene(sceneAlerta);
+                stage.show();
+            }
+            catch (IOException ex) {
+                Logger.getLogger(RegistrarseController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }
 
     
 
     public void alertaCamposVacios() {
-        Alert alertaCampos = new Alert(Alert.AlertType.WARNING);
-        alertaCampos.setTitle("Campos incompletos");
-        alertaCampos.setHeaderText("Alerta");
-        alertaCampos.setContentText("Por favor completa todos los campos");
-        alertaCampos.showAndWait();
+    AnchorPane pane;
+            try {
+                pane = FXMLLoader.load(getClass().getResource("AlertaCamposVaciosRegistro.fxml"), resources);
+                Scene sceneAlerta = new Scene(pane);
+                sceneAlerta.setFill(Color.TRANSPARENT);
+                stage.initStyle(StageStyle.TRANSPARENT);
+                stage.setScene(sceneAlerta);
+                stage.show();
+            } catch(NullPointerException ex){
+                System.out.println("vacioooo");
+            }
+            catch (RuntimeException ex) {
+                Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (IOException ex) {
+                Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
+            } 
     }
 
     /**
@@ -134,17 +165,6 @@ public class RegistrarseController implements Initializable {
         alertaUsuario.showAndWait();
     }
     
-        @FXML
-    public void cambiarIdiomaEs(){
-        resources = ResourceBundle.getBundle("resources.idioma_es_MX");
-        configurarIdioma();
-    }
-    
-    @FXML
-    public void cambiarIdiomaIngles(){
-        resources = ResourceBundle.getBundle("resources.idioma_en_US");
-        configurarIdioma();
-    }
     @FXML
     public void abrirInicioSesion() {
         try {

@@ -184,17 +184,6 @@ public class LoginController implements Initializable {
 
     }
 
-    @FXML
-    public void cambiarIdiomaEs() {
-        resources = ResourceBundle.getBundle("resources.idioma_es_MX");
-        configurarIdioma();
-    }
-
-    @FXML
-    public void cambiarIdiomaIngles() {
-        resources = ResourceBundle.getBundle("resources.idioma_en_US");
-        configurarIdioma();
-    }
 
     private JugadorDAO obtenerValores() throws NoSuchAlgorithmException {
         JugadorDAO jugador = null;
