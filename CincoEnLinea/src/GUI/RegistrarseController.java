@@ -81,12 +81,14 @@ public class RegistrarseController implements Initializable {
     @FXML
     public void registrarUsuario(ActionEvent registrar) {
         JugadorCONS jugador = new JugadorCONS();
+        
         try {
             verificarUsuarioRepetido();
+          
             jugador.registrarJugador(obtenerValores());
             alertaRegistrada();
             abrirInicioSesion();
-        }catch(IllegalArgumentException | NullPointerException e){
+        }catch(IllegalArgumentException | NullPointerException  e){
           Logger.getLogger(RegistrarseController.class.getName()).log(Level.SEVERE, null, e);
         } catch (Exception ex) {
             Logger.getLogger(RegistrarseController.class.getName()).log(Level.SEVERE, null, ex);
@@ -96,6 +98,7 @@ public class RegistrarseController implements Initializable {
     }
 
     public Jugadores obtenerValores() {
+        
         Jugadores entidadJugador = null;
         AuxiliarDAO aux = new AuxiliarDAO();
         if (fieldUsuario.getText().equals("") || fieldContraseña.getText().equals("")) {
@@ -108,7 +111,7 @@ public class RegistrarseController implements Initializable {
             } catch (NoSuchAlgorithmException ex) {
                 Logger.getLogger(RegistrarseController.class.getName()).log(Level.SEVERE, null, ex);
             }
-
+            
         }
         return entidadJugador;
     }
@@ -116,7 +119,7 @@ public class RegistrarseController implements Initializable {
     public void verificarUsuarioRepetido(){
         JugadorCONS jugadorCONS = new JugadorCONS();
         boolean resultado = jugadorCONS.validarUsuarioRepetido(fieldUsuario.getText());
-        if (resultado) {
+        if (resultado == true) {
                 AnchorPane pane;
             try {
                 pane = FXMLLoader.load(getClass().getResource("AlertaCamposVaciosRegistro.fxml"), resources);
@@ -125,9 +128,14 @@ public class RegistrarseController implements Initializable {
                 stage.initStyle(StageStyle.TRANSPARENT);
                 stage.setScene(sceneAlerta);
                 stage.show();
+                System.out.println("usuario repetidooooooo");
             }
             catch (IOException ex) {
                 Logger.getLogger(RegistrarseController.class.getName()).log(Level.SEVERE, null, ex);
+            }catch(NullPointerException ex){
+            }
+            catch (RuntimeException ex) {
+                Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }
@@ -140,11 +148,10 @@ public class RegistrarseController implements Initializable {
                 pane = FXMLLoader.load(getClass().getResource("AlertaCamposVaciosRegistro.fxml"), resources);
                 Scene sceneAlerta = new Scene(pane);
                 sceneAlerta.setFill(Color.TRANSPARENT);
-                stage.initStyle(StageStyle.TRANSPARENT);
+                //stage.initStyle(StageStyle.TRANSPARENT);
                 stage.setScene(sceneAlerta);
                 stage.show();
             } catch(NullPointerException ex){
-                System.out.println("vacioooo");
             }
             catch (RuntimeException ex) {
                 Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);

@@ -69,6 +69,7 @@ public class JugadorCONS {
             controller.create(jugador);
         } catch(PreexistingEntityException e){
                 
+            }catch (NullPointerException e){
             }catch (Exception ex) {
             Logger.getLogger(JugadorCONS.class.getName()).log(Level.SEVERE, null, ex);
         }
