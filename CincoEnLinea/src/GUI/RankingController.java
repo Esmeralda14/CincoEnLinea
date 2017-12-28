@@ -13,6 +13,7 @@ import java.net.URL;
 import java.util.List;
 import java.util.Locale;
 import java.util.ResourceBundle;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -20,6 +21,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.util.Callback;
 
 
 /**
@@ -36,13 +38,8 @@ public class RankingController implements Initializable {
     @FXML 
     private TableView<Jugadores> tablaRanking;
     
-    ObservableList<Jugadores> jugadores;
-    ObservableList<Jugadores> puntajes;
-    
-    
-    @FXML
-    private JFXButton botonActualizarRanking;
-
+    ObservableList<Jugadores> jugadores = null;
+    ObservableList<Jugadores> puntajes = null;
     
     JugadorCONS cons = new JugadorCONS();
 
@@ -72,15 +69,15 @@ public class RankingController implements Initializable {
         puntajes = FXCollections.observableList(cons.recuperarPuntajeJugadores());
          System.out.println("usuarios ranking");
          System.out.println(jugadores);
-         System.out.println(puntajes);
+       
          System.out.println("llenado de columnas");    
-    columnaUsuario.setCellValueFactory(
+        columnaUsuario.setCellValueFactory(
         new PropertyValueFactory<>("usuario"));
-    columnaPuntaje.setCellValueFactory(
+        columnaPuntaje.setCellValueFactory(
         new PropertyValueFactory<>("puntuacionTotal"));
-    
         tablaRanking.setItems(jugadores);
         tablaRanking.setItems(puntajes);
+
         
     }
     

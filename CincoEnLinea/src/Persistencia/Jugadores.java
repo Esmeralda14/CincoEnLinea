@@ -28,7 +28,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Jugadores.findByClave", query = "SELECT j FROM Jugadores j WHERE j.clave = :clave"),
     @NamedQuery(name = "puntaje.jugadores", query = "SELECT j.puntuacionTotal FROM Jugadores j ORDER BY j.puntuacionTotal DESC"),
     @NamedQuery(name = "usuarios.puntaje", query = "SELECT j.usuario from Jugadores j ORDER BY j.puntuacionTotal DESC"),
-    @NamedQuery(name = "Jugadores.findByPuntuacionTotal", query = "SELECT j FROM Jugadores j WHERE j.puntuacionTotal = :puntuacionTotal")})
+    @NamedQuery(name = "Jugadores.findByPuntuacionTotal", query = "select j.usuario, j.puntuacionTotal from Jugadores j where j.puntuacionTotal IS NOT NULL order by j.puntuacionTotal desc")})
 public class Jugadores implements Serializable {
 
     private static final long serialVersionUID = 1L;

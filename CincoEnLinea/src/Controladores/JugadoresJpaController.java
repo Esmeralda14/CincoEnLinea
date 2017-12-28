@@ -25,7 +25,7 @@ import javax.persistence.criteria.Root;
 public class JugadoresJpaController implements Serializable {
 
     public JugadoresJpaController() {
-        this.emf = Persistence.createEntityManagerFactory("CincoEnLineaPU");
+        this.emf = Persistence.createEntityManagerFactory("CincoEnLineaPU2");
     }
     private EntityManagerFactory emf = null;
 

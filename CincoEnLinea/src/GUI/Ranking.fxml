@@ -7,7 +7,7 @@
 
 <AnchorPane id="AnchorPane" prefHeight="304.0" prefWidth="535.0" style="-fx-background-color: #DDFFD3;" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.RankingController">
    <children>
-      <TableView prefHeight="268.0" prefWidth="563.0">
+      <TableView fx:id="tablaRanking" prefHeight="268.0" prefWidth="563.0">
          <columns>
             <TableColumn fx:id="columnaUsuario" prefWidth="349.0" text="%jugador" />
             <TableColumn fx:id="columnaPuntaje" prefWidth="138.0" text="%puntaje" />
