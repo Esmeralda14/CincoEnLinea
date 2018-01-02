@@ -136,6 +136,7 @@ public class SeleccionarJugadorController implements Initializable {
                     Alert alert = new Alert(Alert.AlertType.INFORMATION);
                     alert.setContentText("Invitación enviada");
                     alert.show();
+                    System.out.println("Usuario encontrado");
                 });
             }
         
@@ -146,6 +147,7 @@ public class SeleccionarJugadorController implements Initializable {
                     Alert alert = new Alert(Alert.AlertType.INFORMATION);
                     alert.setContentText("Usuario no encontrado");
                     alert.show();
+                        System.out.println("Usuario no encontrado");
                 });
                  }
              });
