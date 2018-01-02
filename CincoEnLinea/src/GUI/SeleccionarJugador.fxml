@@ -2,7 +2,7 @@
 
 <?import com.jfoenix.controls.JFXButton?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -20,13 +20,12 @@
             </Label>
          </children>
       </Pane>
-      <ListView fx:id="listaJugadores" layoutX="35.0" layoutY="93.0" prefHeight="247.0" prefWidth="331.0" />
-      <JFXButton fx:id="botonInciarPartida" buttonType="RAISED" layoutX="393.0" layoutY="105.0" onAction="#iniciarPartida" prefHeight="39.0" prefWidth="171.0" style="-fx-background-color: #6DFF19;" text="%¡IniciarPartida!">
+      <JFXButton fx:id="botonInciarPartida" buttonType="RAISED" layoutX="385.0" layoutY="159.0" onAction="#iniciarPartida" prefHeight="39.0" prefWidth="171.0" style="-fx-background-color: #6DFF19;" text="%¡IniciarPartida!">
          <font>
             <Font size="17.0" />
          </font>
       </JFXButton>
-      <JFXButton fx:id="botonMenuPrincipal" layoutX="393.0" layoutY="178.0" onAction="#abrirMenuPrincipal" prefHeight="39.0" prefWidth="171.0" style="-fx-background-color: #FF5959;" text="%MenuPrincipal">
+      <JFXButton fx:id="botonMenuPrincipal" layoutX="23.0" layoutY="341.0" onAction="#abrirMenuPrincipal" prefHeight="39.0" prefWidth="171.0" style="-fx-background-color: #FF5959;" text="%MenuPrincipal">
          <font>
             <Font size="17.0" />
          </font>
@@ -36,10 +35,8 @@
             <Image url="@../resources/photo_2017-09-09_20-11-53.jpg" />
          </image>
       </ImageView>
-      <JFXButton fx:id="botonActualizarLista" layoutX="35.0" layoutY="353.0" onAction="#clicActualizarLista" style="-fx-background-color: #FFFA86;" text="%actualizarLista">
-         <font>
-            <Font size="16.0" />
-         </font>
-      </JFXButton>
+      <Label layoutX="29.0" layoutY="116.0" text="Ingresa el usuario con el que deseas iniciar partida:" />
+      <TextField fx:id="textUsuario" layoutX="92.0" layoutY="173.0" prefHeight="27.0" prefWidth="244.0" />
+      <Label layoutX="29.0" layoutY="178.0" text="Usuario:" />
    </children>
 </AnchorPane>

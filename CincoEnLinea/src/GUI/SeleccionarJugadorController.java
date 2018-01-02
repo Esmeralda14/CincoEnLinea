@@ -32,6 +32,8 @@ import java.io.ObjectInputStream;
 import java.net.URISyntaxException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.application.Platform;
+import javafx.scene.control.Alert;
 
 /**
  * FXML Controller class
@@ -107,35 +109,49 @@ public class SeleccionarJugadorController implements Initializable {
         stage = (Stage) botonMenuPrincipal.getScene().getWindow();
         stage.close();
     }
-    @FXML
-    public void iniciarPartida(){
-        try {
-                AnchorPane pane = FXMLLoader.load(getClass().getResource("Tablero.fxml"), resources);
-                 Scene scenePartida = new Scene(pane);
-                stage.setScene(scenePartida);
-                stage.show();
-            } catch (IOException ex) {
-                Logger.getLogger(MenuPrincipalController.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        stage = (Stage) botonInciarPartida.getScene().getWindow();
-        stage.close();
-    }
+//    @FXML
+//    public void iniciarPartida(){
+//        try {
+//                AnchorPane pane = FXMLLoader.load(getClass().getResource("Tablero.fxml"), resources);
+//                 Scene scenePartida = new Scene(pane);
+//                stage.setScene(scenePartida);
+//                stage.show();
+//            } catch (IOException ex) {
+//                Logger.getLogger(MenuPrincipalController.class.getName()).log(Level.SEVERE, null, ex);
+//            }
+//        stage = (Stage) botonInciarPartida.getScene().getWindow();
+//        stage.close();
+//    }
     
     
     
     @FXML
-    public void clicActualizarLista(){
+    public void clicBotonIniciarPartida(){
         try {
-            ObjectInputStream entrada = new ObjectInputStream(ConexionDAO.socketLectura.getInputStream());
-            try {
-                System.out.println("Actualizar lista: " + entrada.readObject());
-            } catch (ClassNotFoundException ex) {
-                Logger.getLogger(SeleccionarJugadorController.class.getName()).log(Level.SEVERE, null, ex);
+             socket = IO.socket("http://192.168.100.10:7000");
+             socket.on("UsuarioEncontrado", new Emitter.Listener() {
+             @Override
+            public void call(Object... os) {
+                Platform.runLater(() -> {
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setContentText("Invitación enviada");
+                    alert.show();
+                });
             }
-        } catch (IOException ex) {
+        
+    }).on("UsuarioNoEncontrado", new Emitter.Listener() {
+                 @Override
+                 public void call(Object... os) {
+                    Platform.runLater(() -> {
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setContentText("Usuario no encontrado");
+                    alert.show();
+                });
+                 }
+             });
+             
+}       catch (URISyntaxException ex) {
             Logger.getLogger(SeleccionarJugadorController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        System.out.println("Actualizar lista");
-        
     }
 }
