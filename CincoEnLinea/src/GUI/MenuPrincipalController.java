@@ -1,16 +1,16 @@
 package GUI;
 
-import cincoenlinea.CincoEnLinea;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDrawer;
-import com.jfoenix.controls.JFXHamburger;
-import com.jfoenix.transitions.hamburger.HamburgerBackArrowBasicTransition;
+import io.socket.client.Socket;
+import io.socket.emitter.Emitter;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Locale;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -18,9 +18,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 /**
@@ -65,10 +63,12 @@ public class MenuPrincipalController implements Initializable {
     String idiomaResource = "resources.idioma_" + idioma;
     ResourceBundle resources = ResourceBundle.getBundle(idiomaResource);
     private Stage stage = new Stage();
+    private Socket socket;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         this.resources = rb;
+//        
     }
 
     public void configurarIdioma() {
@@ -130,10 +130,13 @@ public class MenuPrincipalController implements Initializable {
     @FXML
     public void iniciarPartida() {
         try {
-            AnchorPane pane = FXMLLoader.load(getClass().getResource("SeleccionarJugador.fxml"), resources);
-            Scene scenePartida = new Scene(pane);
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("SeleccionarJugador.fxml"), resources);
+            Parent parent = (Parent) loader.load();
+            SeleccionarJugadorController selectJugadorController = loader.getController();
+            Scene scenePartida = new Scene(parent);
             stage.setScene(scenePartida);
             stage.show();
+            selectJugadorController.setSocket(socket);
         } catch (IOException ex) {
             Logger.getLogger(MenuPrincipalController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -155,4 +158,39 @@ public class MenuPrincipalController implements Initializable {
         stage.close();
     }
     
+    
+    public void mostrarInvitacion() {
+        socket.on("MostrarInvitacion", new Emitter.Listener() {
+            @Override
+            public void call(Object... os) {
+                Platform.runLater(() -> {
+                    try {
+                        FXMLLoader loader  = new FXMLLoader(getClass().getResource("InvitacionPartida.fxml"), resources);
+                        Parent parent = (Parent) loader.load();
+                        InvitacionPartidaController invitacionController = loader.getController();
+                        Scene scenePartida = new Scene(parent);
+                        stage.setScene(scenePartida);
+                        stage.show();
+                        invitacionController.setSocket(socket);
+                        invitacionController.setRoom((String)os[0]);
+                        invitacionController.setUsuarioRival((String)os[1]);
+                    } catch (IOException ex) {
+                        Logger.getLogger(MenuPrincipalController.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                });
+            }
+
+        });
+
+    }
+
+    public Socket getSocket() {
+        return socket;
+    }
+
+    public void setSocket(Socket socket) {
+        this.socket = socket;
+        mostrarInvitacion();
+    }
+
 }

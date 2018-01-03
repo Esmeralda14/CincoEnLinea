@@ -7,6 +7,7 @@ package GUI;
 
 import Dominio.AuxiliarDAO;
 import Dominio.PartidaDAO;
+import io.socket.client.Socket;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Locale;
@@ -26,6 +27,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
 /**
@@ -43,9 +45,13 @@ public class TableroController implements Initializable {
     private Button botonReiniciar;
     @FXML
     private Button botonMenu;
+    @FXML
+    private GridPane gridPaneTablero;
     
     private Stage stage = new Stage();
-     PartidaDAO aux = new PartidaDAO();
+    PartidaDAO aux = new PartidaDAO();
+    private Socket socket;
+     
     /**
      * Initializes the controller class.
      */
@@ -58,6 +64,7 @@ public class TableroController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         this.resources = rb;
+        
         }
 
     public void configurarIdioma() {
@@ -86,7 +93,6 @@ public class TableroController implements Initializable {
         
         AuxiliarTablero auxiliarTab = new AuxiliarTablero();
         Button boton = (Button) arg0.getSource();
-
         if (turno == 1) {
             boton.setStyle("-fx-background-image: url('/resources/fichaAzul.png')");
 
@@ -126,6 +132,15 @@ public class TableroController implements Initializable {
         }
         
     }
+
+    public Socket getSocket() {
+        return socket;
+    }
+
+    public void setSocket(Socket socket) {
+        this.socket = socket;
+    }
+    
     
     
     

@@ -5,35 +5,28 @@
  */
 package GUI;
 
-import Dominio.ConexionDAO;
 import com.jfoenix.controls.JFXButton;
 import java.net.URL;
 import java.util.Locale;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javafx.event.EventType;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import io.socket.client.IO;
 import io.socket.client.Socket;
 import io.socket.emitter.Emitter;
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
 import java.io.IOException;
-import java.io.ObjectInputStream;
 import java.net.URISyntaxException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.application.Platform;
+import javafx.scene.Parent;
 import javafx.scene.control.Alert;
+import javafx.scene.control.TextField;
 
 /**
  * FXML Controller class
@@ -46,9 +39,6 @@ public class SeleccionarJugadorController implements Initializable {
     private Label jugadoresConectados;
 
     @FXML
-    private ListView<String> listaJugadores;
-
-    @FXML
     private JFXButton botonInciarPartida;
 
     @FXML
@@ -56,6 +46,9 @@ public class SeleccionarJugadorController implements Initializable {
 
     @FXML
     private JFXButton botonActualizarLista;
+    
+    @FXML
+    private TextField textUsuario;
 
 
         
@@ -63,7 +56,7 @@ public class SeleccionarJugadorController implements Initializable {
     String idiomaResource = "resources.idioma_" + idioma;
     ResourceBundle resources = ResourceBundle.getBundle(idiomaResource);
     MenuPrincipalController menu = new MenuPrincipalController();
-    static Socket socket;
+    private Socket socket;
     private Stage stage = new Stage();
 
     @Override
@@ -109,28 +102,13 @@ public class SeleccionarJugadorController implements Initializable {
         stage = (Stage) botonMenuPrincipal.getScene().getWindow();
         stage.close();
     }
-//    @FXML
-//    public void iniciarPartida(){
-//        try {
-//                AnchorPane pane = FXMLLoader.load(getClass().getResource("Tablero.fxml"), resources);
-//                 Scene scenePartida = new Scene(pane);
-//                stage.setScene(scenePartida);
-//                stage.show();
-//            } catch (IOException ex) {
-//                Logger.getLogger(MenuPrincipalController.class.getName()).log(Level.SEVERE, null, ex);
-//            }
-//        stage = (Stage) botonInciarPartida.getScene().getWindow();
-//        stage.close();
-//    }
-    
+
     
     
     @FXML
     public void clicBotonIniciarPartida(){
-        try {
-             socket = IO.socket("http://192.168.100.10:7000");
-             socket.on("UsuarioEncontrado", new Emitter.Listener() {
-             @Override
+        socket.on("UsuarioEncontrado", new Emitter.Listener() {
+            @Override
             public void call(Object... os) {
                 Platform.runLater(() -> {
                     Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -139,21 +117,53 @@ public class SeleccionarJugadorController implements Initializable {
                     System.out.println("Usuario encontrado");
                 });
             }
-        
-    }).on("UsuarioNoEncontrado", new Emitter.Listener() {
-                 @Override
-                 public void call(Object... os) {
-                    Platform.runLater(() -> {
+            
+        }).on("UsuarioNoEncontrado", new Emitter.Listener() {
+            @Override
+            public void call(Object... os) {
+                Platform.runLater(() -> {
                     Alert alert = new Alert(Alert.AlertType.INFORMATION);
                     alert.setContentText("Usuario no encontrado");
                     alert.show();
-                        System.out.println("Usuario no encontrado");
+                    System.out.println("Usuario no encontrado");
                 });
-                 }
-             });
-             
-}       catch (URISyntaxException ex) {
-            Logger.getLogger(SeleccionarJugadorController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+            }
+        }).on("AbrirTablero", new Emitter.Listener() {
+            @Override
+            public void call(Object... os) {
+                    Platform.runLater(() -> {
+                        try {
+                            FXMLLoader loader = new FXMLLoader(getClass().getResource("Tablero.fxml"), resources);
+                            Parent parent = (Parent) loader.load();
+                            TableroController tableroController = loader.getController();
+                            Scene scenePartida = new Scene(parent);
+                            
+                            stage.setScene(scenePartida);
+                            stage.show();
+                            tableroController.setSocket(socket);
+                        } catch (IOException ex) {
+                            Logger.getLogger(SeleccionarJugadorController.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                });
+                
+            }
+        });
+        socket.connect();
+        socket.emit("EnviarInvitacion", obtenerValores());
+        
     }
+    
+        public String obtenerValores() {
+            String user = textUsuario.getText();
+            return user;
+    }
+
+    public Socket getSocket() {
+        return socket;
+    }
+
+    public void setSocket(Socket socket) {
+        this.socket = socket;
+    }
+        
 }

@@ -20,7 +20,7 @@
             </Label>
          </children>
       </Pane>
-      <JFXButton fx:id="botonInciarPartida" buttonType="RAISED" layoutX="385.0" layoutY="159.0" onAction="#iniciarPartida" prefHeight="39.0" prefWidth="171.0" style="-fx-background-color: #6DFF19;" text="%¡IniciarPartida!">
+      <JFXButton fx:id="botonInciarPartida" buttonType="RAISED" layoutX="385.0" layoutY="159.0" onAction="#clicBotonIniciarPartida" prefHeight="39.0" prefWidth="171.0" style="-fx-background-color: #6DFF19;" text="%¡IniciarPartida!">
          <font>
             <Font size="17.0" />
          </font>

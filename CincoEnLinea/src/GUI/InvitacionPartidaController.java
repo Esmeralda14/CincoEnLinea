@@ -5,11 +5,18 @@
 package GUI;
 
 import com.jfoenix.controls.JFXButton;
+import io.socket.client.Socket;
+import java.io.IOException;
 import java.net.URL;
 import java.util.Locale;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
@@ -44,8 +51,10 @@ public class InvitacionPartidaController implements Initializable {
     String idioma = Locale.getDefault().toString();
     String idiomaResource = "resources.idioma_" + idioma;
     ResourceBundle resources = ResourceBundle.getBundle(idiomaResource);
-    
+    private Socket socket;
     private Stage stage = new Stage();
+    String usuarioRival;
+    String room;
 
     /**
      * Initializes the controller class.
@@ -74,4 +83,52 @@ public class InvitacionPartidaController implements Initializable {
         botonJugar.setText(resources.getString("jugar"));
         labelInvitacion.setText(resources.getString("invitacion"));
         }
+    
+    
+    @FXML
+    public void clicJugar() {
+        try {
+            socket.emit("IniciarPartida", room);
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("Tablero.fxml"), resources);
+            Parent parent = (Parent) loader.load();
+            TableroController tableroController = loader.getController();
+            Scene scenePartida = new Scene(parent);
+
+            stage.setScene(scenePartida);
+            stage.show();
+            tableroController.setSocket(socket);
+        } catch (IOException ex) {
+            Logger.getLogger(MenuPrincipalController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        stage = (Stage) botonJugar.getScene().getWindow();
+        stage.close();
+    }
+    
+
+    public Socket getSocket() {
+        return socket;
+    }
+
+    public void setSocket(Socket socket) {
+        this.socket = socket;
+    }
+
+    public String getUsuarioRival() {
+        return usuarioRival;
+    }
+
+    public void setUsuarioRival(String usuarioRival) {
+        this.usuarioRival = usuarioRival;
+        nombreUsuario.setText(usuarioRival);
+    }
+
+    public String getRoom() {
+        return room;
+    }
+
+    public void setRoom(String room) {
+        this.room = room;
+    }
+    
+    
 }

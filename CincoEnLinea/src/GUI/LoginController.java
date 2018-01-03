@@ -6,7 +6,6 @@ package GUI;
 
 import java.io.IOException;
 import java.net.URL;
-import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -15,29 +14,21 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import Dominio.JugadorDAO;
 import Persistencia.consultas.JugadorCONS;
-import javafx.event.ActionEvent;
-import javafx.scene.Parent;
-import javafx.stage.Modality;
 import Dominio.AuxiliarDAO;
-import Dominio.ConexionDAO;
 import io.socket.client.IO;
 import io.socket.client.Socket;
 import io.socket.emitter.Emitter;
-import static java.lang.System.exit;
 import java.net.URISyntaxException;
 import java.util.Locale;
+import javafx.scene.Parent;
 import javafx.scene.paint.Color;
-import javafx.stage.StageStyle;
 
 /**
  * Clase controller de la interfaz gráfica del inisio de sesión.
@@ -80,7 +71,7 @@ public class LoginController implements Initializable {
     String idioma = Locale.getDefault().toString();
     String idiomaResource = "resources.idioma_" + idioma;
     ResourceBundle resources = ResourceBundle.getBundle(idiomaResource);
-    static Socket socket=null;
+    private Socket socket;
     JugadorDAO jugador = null;
     
 
@@ -120,11 +111,14 @@ public class LoginController implements Initializable {
         switch (resultado) {
             case "1":
                 try {
-                    AnchorPane pane = FXMLLoader.load(getClass().getResource("MenuPrincipal.fxml"), resources);
-                    Scene scenePartida = new Scene(pane);
+                    FXMLLoader loader= new FXMLLoader(getClass().getResource("MenuPrincipal.fxml"), resources);
+                    Parent parent = (Parent)loader.load();
+                    MenuPrincipalController menuController = loader.getController();
+                    Scene scenePartida = new Scene(parent);
                     stage.setScene(scenePartida);
                     stage.show();
                     agregarJugadorListaServidor(jugador.getUsuario());
+                    menuController.setSocket(socket);
                 } catch (IOException ex) {
                     Logger.getLogger(MenuPrincipalController.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -219,16 +213,15 @@ public class LoginController implements Initializable {
     
     public void agregarJugadorListaServidor(String jugador){
         try {
-          socket = IO.socket("http://localhost:7000");
-          socket.on(Socket.EVENT_CONNECT, new Emitter.Listener(){
-            @Override
-            public void call(Object... os) {
-                System.out.println("conectado con el servidor");
-            }
-         });
-          socket.connect();
-          socket.emit("Jugadores conectados", jugador);
-          
+            socket = IO.socket("http://localhost:7000");
+            socket.on(Socket.EVENT_CONNECT, new Emitter.Listener(){
+                @Override
+                public void call(Object... os) {
+                    System.out.println("conectado con el servidor");
+                }
+            });
+            socket.connect();
+            socket.emit("Jugadores conectados", jugador);
         } catch (URISyntaxException ex) {
             Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
         }
