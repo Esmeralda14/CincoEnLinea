@@ -16,22 +16,22 @@
       </ImageView>
       <JFXButton fx:id="botonAceptar" cacheShape="false" centerShape="false" focusTraversable="false" layoutX="7.0" layoutY="142.0" onAction="#clicAceptar" prefHeight="37.0" prefWidth="304.0" scaleShape="false" text="%aceptar">
          <font>
-            <Font size="14.0" />
+            <Font name="System Bold" size="15.0" />
          </font>
       </JFXButton>
-      <Label fx:id="labelErrorIS" layoutX="34.0" layoutY="22.0" text="%LabelErrorInicioSesion">
+      <Label fx:id="labelErrorIS" layoutX="38.0" layoutY="24.0" text="%LabelErrorInicioSesion" textFill="RED">
          <font>
-            <Font size="22.0" />
+            <Font name="System Bold" size="22.0" />
          </font>
       </Label>
-      <Label fx:id="labelContrasenaProporcionado" layoutX="77.0" layoutY="75.0" text="%LabelContrasenaProporcionada">
+      <Label fx:id="labelContrasenaProporcionado" layoutX="30.0" layoutY="67.0" text="%LabelContrasenaProporcionada" textFill="#0f009a">
          <font>
-            <Font size="14.0" />
+            <Font name="System Bold" size="17.0" />
          </font>
       </Label>
-      <Label fx:id="LabelEsIncorrecta" layoutX="103.0" layoutY="99.0" text="%LabelEsIncorrecta">
+      <Label fx:id="LabelEsIncorrecta" layoutX="81.0" layoutY="93.0" text="%LabelEsIncorrecta" textFill="#0f009a">
          <font>
-            <Font size="14.0" />
+            <Font name="System Bold" size="17.0" />
          </font>
       </Label>
    </children>

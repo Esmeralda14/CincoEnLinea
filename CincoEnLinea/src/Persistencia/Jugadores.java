@@ -28,7 +28,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Jugadores.findByClave", query = "SELECT j FROM Jugadores j WHERE j.clave = :clave"),
     @NamedQuery(name = "puntaje.jugadores", query = "SELECT j.puntuacionTotal FROM Jugadores j ORDER BY j.puntuacionTotal DESC"),
     @NamedQuery(name = "usuarios.puntaje", query = "SELECT j.usuario from Jugadores j ORDER BY j.puntuacionTotal DESC"),
-    @NamedQuery(name = "Jugadores.findByPuntuacionTotal", query = "select j.usuario, j.puntuacionTotal from Jugadores j where j.puntuacionTotal IS NOT NULL order by j.puntuacionTotal desc")})
+    @NamedQuery(name = "Jugadores.findByPuntuacionTotal", query = "select j from Jugadores j where j.puntuacionTotal IS NOT NULL order by j.puntuacionTotal desc")})
 public class Jugadores implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -53,9 +53,8 @@ public class Jugadores implements Serializable {
         this.usuario = usuario;
         this.clave = clave;
     }
-    public Jugadores(String usuario, String clave, int puntuacionTotal){
+    public Jugadores(String usuario, int puntuacionTotal){
         this.usuario = usuario;
-        this.clave = clave;
         this.puntuacionTotal = puntuacionTotal;
     }
 
@@ -105,7 +104,7 @@ public class Jugadores implements Serializable {
 
     @Override
     public String toString() {
-        return "Persistencia.Jugadores[ usuario=" + usuario + " ]";
+        return "Persistencia.Jugadores[ usuario=" + usuario + " puntuacion "+ puntuacionTotal + "]";
     }
     
 }

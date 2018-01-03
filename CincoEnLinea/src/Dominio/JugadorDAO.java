@@ -19,6 +19,11 @@ public class JugadorDAO {
         this.clave = clave;
     }
     
+        public JugadorDAO(String usuario,int puntuacionTotal) {
+        this.usuario = usuario;
+        this.puntuacionTotal = puntuacionTotal;
+    }
+    
     public JugadorDAO(){}
 
     public String getUsuario() {

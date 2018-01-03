@@ -20,21 +20,26 @@ import javafx.stage.Stage;
  *
  * @author Esmeralda
  */
-public class AlertaUsuarioIncorrectoController implements Initializable {
-    
+public class AlertaUsuarioRepetidoController implements Initializable {
+
     @FXML
     private JFXButton botonAceptar;
-
     @FXML
-    private Label labelErrorIS;
-
+    private Label LabelErrorRegistro;
     @FXML
     private Label labelUsuarioProporcionado;
-
     @FXML
-    private Label labelEsIncorrecto;
-    
-        
+    private Label LabelYaExiste;
+
+    /**
+     * Initializes the controller class.
+     */
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+        // TODO
+    }    
+
+          
     String idioma = Locale.getDefault().toString();
     String idiomaResource = "resources.idioma_" + idioma;
     ResourceBundle resources = ResourceBundle.getBundle(idiomaResource);
@@ -42,9 +47,9 @@ public class AlertaUsuarioIncorrectoController implements Initializable {
     
     public void configurarIdioma(){
         botonAceptar.setText(resources.getString("aceptar"));
-        labelErrorIS.setText(resources.getString("LabelErrorInicioSesion"));
+        LabelYaExiste.setText(resources.getString("LabelYaExiste"));
         labelUsuarioProporcionado.setText(resources.getString("LabelUsuarioProporcionado"));
-        labelEsIncorrecto.setText(resources.getString("LabelEsIncorrecto"));
+        LabelErrorRegistro.setText(resources.getString("LabelErrorRegistro"));
         
     }
     
@@ -55,12 +60,5 @@ public class AlertaUsuarioIncorrectoController implements Initializable {
         stage = (Stage) botonAceptar.getScene().getWindow();
         stage.close();
     }
-
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    
     
 }

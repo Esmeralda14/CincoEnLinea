@@ -27,7 +27,6 @@ public class PartidaDAO {
 
     public void guardarTiro(int posX, int posY, int turno) {
         this.tablero[posX][posY]=turno;
-        System.out.println("pos en tablero " + posX +"-"+ posY + "=" + tablero[posX][posY]);
         
     }
     
@@ -100,8 +99,8 @@ public class PartidaDAO {
     }
 
     public void limpiarTablero() {
-        for (int fila = 0; fila <= tablero.length-1; fila++) {
-            for (int columna = 0; columna <= tablero.length-1; columna++) {
+        for (int fila = 0; fila <= tablero.length; fila++) {
+            for (int columna = 0; columna <= tablero.length; columna++) {
                 tablero[fila][columna] = 0;
             }
 

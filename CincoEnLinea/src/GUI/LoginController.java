@@ -33,6 +33,7 @@ import Dominio.ConexionDAO;
 import io.socket.client.IO;
 import io.socket.client.Socket;
 import io.socket.emitter.Emitter;
+import static java.lang.System.exit;
 import java.net.URISyntaxException;
 import java.util.Locale;
 import javafx.scene.paint.Color;
@@ -112,13 +113,10 @@ public class LoginController implements Initializable {
     @FXML
     public void iniciarSesion() {
 
-        String resultado = "";
+        String resultado;
         JugadorCONS jugadorCONS = new JugadorCONS();
-        try {
-            resultado = jugadorCONS.validarInisioSesion(obtenerValores());
-        } catch (NoSuchAlgorithmException ex) {
-            Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        jugador = obtenerValores();
+        resultado = jugadorCONS.validarInisioSesion(jugador);
         switch (resultado) {
             case "1":
                 try {
@@ -151,7 +149,6 @@ public class LoginController implements Initializable {
                 pane = FXMLLoader.load(getClass().getResource("AlertaContraseñaIncorrecta.fxml"), resources);
                 Scene sceneAlerta = new Scene(pane);
                 sceneAlerta.setFill(Color.TRANSPARENT);
-                stage.initStyle(StageStyle.TRANSPARENT);
                 stage.setScene(sceneAlerta);
                 stage.show();
             } catch (RuntimeException ex) {
@@ -166,7 +163,6 @@ public class LoginController implements Initializable {
                 pane = FXMLLoader.load(getClass().getResource("AlertaUsuarioIncorrecto.fxml"), resources);
                 Scene sceneAlerta = new Scene(pane);
                 sceneAlerta.setFill(Color.TRANSPARENT);
-//                stage.initStyle(StageStyle.TRANSPARENT);
                 stage.setScene(sceneAlerta);
                 stage.show();
             } catch (IOException ex) {
@@ -187,30 +183,38 @@ public class LoginController implements Initializable {
     }
 
 
-    private JugadorDAO obtenerValores() throws NoSuchAlgorithmException {
+    public  JugadorDAO obtenerValores() {
 
         if (fieldUsuario.getText().equals("")
                 || fieldContraseña.getText().equals("")) {
+            alertaCamposVacios();
+            
+        } else {
             try {
-                AnchorPane pane;
-                pane = FXMLLoader.load(getClass().getResource("AlertaCamposVacios.fxml"), resources);
-                Scene sceneAlerta = new Scene(pane);
-                sceneAlerta.setFill(Color.TRANSPARENT);
-                stage.initStyle(StageStyle.TRANSPARENT);
-                stage.setScene(sceneAlerta);
-                stage.show();
-            } catch (IOException ex) {
+                String user = fieldUsuario.getText();
+                String clave = fieldContraseña.getText();
+                AuxiliarDAO aux = new AuxiliarDAO();
+                jugador = new JugadorDAO(user, aux.makeHash(clave));
+            } catch (NoSuchAlgorithmException ex) {
                 Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
             }
-        } else {
-            String user = fieldUsuario.getText();
-            String clave = fieldContraseña.getText();
-            AuxiliarDAO aux = new AuxiliarDAO();
-            jugador = new JugadorDAO(user, aux.makeHash(clave));
            
             
         }
         return jugador;
+    }
+    
+    public void alertaCamposVacios() {
+        try {
+            AnchorPane pane;
+            pane = FXMLLoader.load(getClass().getResource("AlertaCamposVacios.fxml"), resources);
+            Scene sceneAlerta = new Scene(pane);
+            sceneAlerta.setFill(Color.TRANSPARENT);
+            stage.setScene(sceneAlerta);
+            stage.show();
+        } catch (IOException ex) {
+            Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
     public void agregarJugadorListaServidor(String jugador){

@@ -63,6 +63,8 @@ public class RegistrarseController implements Initializable {
     String idioma = Locale.getDefault().toString();
     String idiomaResource = "resources.idioma_" + idioma;
     ResourceBundle resources = ResourceBundle.getBundle(idiomaResource);
+    JugadorCONS jugadorCONS = new JugadorCONS();
+    
     private Stage stage = new Stage();
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -81,17 +83,18 @@ public class RegistrarseController implements Initializable {
     @FXML
     public void registrarUsuario(ActionEvent registrar) {
         JugadorCONS jugador = new JugadorCONS();
-        
-        try {
-            verificarUsuarioRepetido();
-          
+        if (fieldUsuario.getText().equals("") || fieldContraseña.getText().equals("")) {
+            alertaCamposVacios();
+        } else {
+            boolean resultado = jugadorCONS.validarUsuarioRepetido(fieldUsuario.getText());
+            if (resultado) {
+                alertaUsuarioRepetido();
+            }else{
             jugador.registrarJugador(obtenerValores());
             alertaRegistrada();
             abrirInicioSesion();
-        }catch(IllegalArgumentException | NullPointerException  e){
-          Logger.getLogger(RegistrarseController.class.getName()).log(Level.SEVERE, null, e);
-        } catch (Exception ex) {
-            Logger.getLogger(RegistrarseController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
         }
         
         
@@ -101,9 +104,7 @@ public class RegistrarseController implements Initializable {
         
         Jugadores entidadJugador = null;
         AuxiliarDAO aux = new AuxiliarDAO();
-        if (fieldUsuario.getText().equals("") || fieldContraseña.getText().equals("")) {
-            alertaCamposVacios();
-        } else {
+        
             String user = fieldUsuario.getText();
             String clave = fieldContraseña.getText();
             try {
@@ -112,20 +113,19 @@ public class RegistrarseController implements Initializable {
                 Logger.getLogger(RegistrarseController.class.getName()).log(Level.SEVERE, null, ex);
             }
             
-        }
+        
         return entidadJugador;
     }
     
-    public void verificarUsuarioRepetido(){
-        JugadorCONS jugadorCONS = new JugadorCONS();
-        boolean resultado = jugadorCONS.validarUsuarioRepetido(fieldUsuario.getText());
-        if (resultado == true) {
+    public void alertaUsuarioRepetido(){
+        
+        
                 AnchorPane pane;
             try {
-                pane = FXMLLoader.load(getClass().getResource("AlertaCamposVaciosRegistro.fxml"), resources);
+                pane = FXMLLoader.load(getClass().getResource("AlertaUsuarioRepetido.fxml"), resources);
                 Scene sceneAlerta = new Scene(pane);
                 sceneAlerta.setFill(Color.TRANSPARENT);
-                stage.initStyle(StageStyle.TRANSPARENT);
+                
                 stage.setScene(sceneAlerta);
                 stage.show();
                 System.out.println("usuario repetidooooooo");
@@ -137,7 +137,7 @@ public class RegistrarseController implements Initializable {
             catch (RuntimeException ex) {
                 Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
             }
-        }
+        
     }
 
     

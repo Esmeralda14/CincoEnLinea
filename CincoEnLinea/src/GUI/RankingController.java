@@ -9,6 +9,7 @@ import Dominio.JugadorDAO;
 import Persistencia.Jugadores;
 import Persistencia.consultas.JugadorCONS;
 import com.jfoenix.controls.JFXButton;
+import java.awt.Insets;
 import java.net.URL;
 import java.util.List;
 import java.util.Locale;
@@ -21,6 +22,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.StackPane;
 import javafx.util.Callback;
 
 
@@ -51,7 +53,6 @@ public class RankingController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        this.resources = rb;
         
         
     }  
@@ -66,9 +67,9 @@ public class RankingController implements Initializable {
      public void llenarTabla() {
         JugadorCONS cons = new JugadorCONS();
         jugadores = FXCollections.observableList(cons.recuperarUsuariosRankiados());
-        puntajes = FXCollections.observableList(cons.recuperarPuntajeJugadores());
+        //puntajes = FXCollections.observableList(cons.recuperarPuntajeJugadores());
          System.out.println("usuarios ranking");
-         System.out.println(jugadores);
+        
        
          System.out.println("llenado de columnas");    
         columnaUsuario.setCellValueFactory(
@@ -76,7 +77,7 @@ public class RankingController implements Initializable {
         columnaPuntaje.setCellValueFactory(
         new PropertyValueFactory<>("puntuacionTotal"));
         tablaRanking.setItems(jugadores);
-        tablaRanking.setItems(puntajes);
+        //tablaRanking.setItems(puntajes);
 
         
     }

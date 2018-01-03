@@ -23,7 +23,7 @@ import javax.persistence.Persistence;
  * @author marianacro
  */
 public class JugadorCONS {
-    EntityManagerFactory emfactory = Persistence.createEntityManagerFactory("CincoEnLineaPU");
+    EntityManagerFactory emfactory = Persistence.createEntityManagerFactory("CincoEnLineaPU2");
     EntityManager entitymanager = emfactory.createEntityManager();
     
     public String validarInisioSesion(JugadorDAO jugador){
@@ -78,13 +78,14 @@ public class JugadorCONS {
     
     public List<Jugadores> recuperarUsuariosRankiados(){
         List<Jugadores> jugadores;
-        jugadores = entitymanager.createNamedQuery("usuarios.puntaje").getResultList();
+        jugadores = entitymanager.createNamedQuery("Jugadores.findByPuntuacionTotal").getResultList();
+         System.out.println(jugadores.get(0).toString());
         return jugadores;
     }
     
-    public List<Jugadores> recuperarPuntajeJugadores(){
-        List<Jugadores> puntajes;
-        puntajes = entitymanager.createNamedQuery("puntaje.jugadores").getResultList();
-        return puntajes;
-    }
+//    public List<Jugadores> recuperarPuntajeJugadores(){
+//        List<Jugadores> puntajes;
+//        puntajes = entitymanager.createNamedQuery("puntaje.jugadores").getResultList();
+//        return puntajes;
+//    }
 }

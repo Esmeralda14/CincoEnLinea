@@ -46,18 +46,7 @@ public class AlertaGanadorController implements Initializable {
         botonAceptar.setText(resources.getString("aceptar"));
     }
     
-    @FXML
-    public void cambiarIdiomaUS(){
-        resources = ResourceBundle.getBundle("resources.idioma_en_US");
-        configurarIdioma();
-    }
-    
-    @FXML
-    public void cambiarIdiomaMX(){
-        resources = ResourceBundle.getBundle("resources.idioma_es_MX");
-        configurarIdioma();
-        
-    }
+ 
     
     
     @Override
@@ -66,9 +55,7 @@ public class AlertaGanadorController implements Initializable {
     }    
     
     @FXML
-    public void clicAceptar(){
-
-    
+    public void clicAceptar(){    
     PartidaDAO partida = new PartidaDAO();
         try {
             AnchorPane pane = FXMLLoader.load(getClass().getResource("MenuPrincipal.fxml"), resources);
