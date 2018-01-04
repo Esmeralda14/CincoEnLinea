@@ -22,7 +22,7 @@ import javax.persistence.Persistence;
  * @author marianacro
  */
 public class JugadorCONS {
-    EntityManagerFactory emfactory = Persistence.createEntityManagerFactory("CincoEnLineaPU");
+    EntityManagerFactory emfactory = Persistence.createEntityManagerFactory("CincoEnLineaPU2");
     EntityManager entitymanager = emfactory.createEntityManager();
     
     public String validarInisioSesion(JugadorDAO jugador){

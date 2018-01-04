@@ -11,4 +11,15 @@
       <property name="javax.persistence.schema-generation.database.action" value="create"/>
     </properties>
   </persistence-unit>
+  <persistence-unit name="CincoEnLineaPU2" transaction-type="RESOURCE_LOCAL">
+    <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+    <class>Persistencia.Jugadores</class>
+    <properties>
+      <property name="javax.persistence.jdbc.url" value="jdbc:mysql://marianacro.local:3306/cincoenlinea?zeroDateTimeBehavior=convertToNull"/>
+      <property name="javax.persistence.jdbc.user" value="usuario5enLinea"/>
+      <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
+      <property name="javax.persistence.jdbc.password" value="P6HBnq3QCmxNNXO"/>
+      <property name="javax.persistence.schema-generation.database.action" value="create"/>
+    </properties>
+  </persistence-unit>
 </persistence>
