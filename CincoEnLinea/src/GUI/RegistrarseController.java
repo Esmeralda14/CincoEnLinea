@@ -1,6 +1,5 @@
 package GUI;
 
-import Controladores.exceptions.PreexistingEntityException;
 import Dominio.AuxiliarDAO;
 import Persistencia.Jugadores;
 import Persistencia.consultas.JugadorCONS;
@@ -23,7 +22,6 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import java.util.Locale;
 import javafx.scene.paint.Color;
-import javafx.stage.StageStyle;
 
 /**
  * FXML Controller class

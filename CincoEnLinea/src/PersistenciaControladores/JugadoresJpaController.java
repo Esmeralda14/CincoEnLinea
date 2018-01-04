@@ -3,18 +3,17 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Controladores;
+package PersistenciaControladores;
 
-import Controladores.exceptions.NonexistentEntityException;
-import Controladores.exceptions.PreexistingEntityException;
 import Persistencia.Jugadores;
+import PersistenciaControladores.exceptions.NonexistentEntityException;
+import PersistenciaControladores.exceptions.PreexistingEntityException;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Query;
 import javax.persistence.EntityNotFoundException;
-import javax.persistence.Persistence;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 
@@ -24,8 +23,8 @@ import javax.persistence.criteria.Root;
  */
 public class JugadoresJpaController implements Serializable {
 
-    public JugadoresJpaController() {
-        this.emf = Persistence.createEntityManagerFactory("CincoEnLineaPU");
+    public JugadoresJpaController(EntityManagerFactory emf) {
+        this.emf = emf;
     }
     private EntityManagerFactory emf = null;
 

@@ -5,12 +5,11 @@
  */
 package Persistencia.consultas;
 
-import Controladores.JugadoresJpaController;
-import Controladores.exceptions.PreexistingEntityException;
+
 import Dominio.JugadorDAO;
 import Persistencia.Jugadores;
-import java.util.ArrayList;
-import static java.util.Collections.list;
+import PersistenciaControladores.JugadoresJpaController;
+import PersistenciaControladores.exceptions.PreexistingEntityException;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -28,7 +27,7 @@ public class JugadorCONS {
     
     public String validarInisioSesion(JugadorDAO jugador){
       String message = "Unknow";
-      JugadoresJpaController controller = new JugadoresJpaController();
+      JugadoresJpaController controller = new JugadoresJpaController(emfactory);
       Jugadores jugadores = new Jugadores();        
       try {
           jugadores = controller.findJugadores(jugador.getUsuario());
@@ -46,7 +45,7 @@ public class JugadorCONS {
     }
     
     public boolean validarUsuarioRepetido(String usuario) {
-        JugadoresJpaController controller = new JugadoresJpaController();
+        JugadoresJpaController controller = new JugadoresJpaController(emfactory);
         Jugadores jugadores = new Jugadores();
         try {
             jugadores = controller.findJugadores(usuario);
@@ -64,7 +63,7 @@ public class JugadorCONS {
     
     
     public boolean registrarJugador(Jugadores jugador) {
-    JugadoresJpaController controller = new JugadoresJpaController();
+    JugadoresJpaController controller = new JugadoresJpaController(emfactory);
         try {
             controller.create(jugador);
         } catch(PreexistingEntityException e){
