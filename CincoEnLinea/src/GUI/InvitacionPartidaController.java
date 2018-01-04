@@ -97,6 +97,7 @@ public class InvitacionPartidaController implements Initializable {
             stage.setScene(scenePartida);
             stage.show();
             tableroController.setSocket(socket);
+            tableroController.setTurno(2);
         } catch (IOException ex) {
             Logger.getLogger(MenuPrincipalController.class.getName()).log(Level.SEVERE, null, ex);
         }

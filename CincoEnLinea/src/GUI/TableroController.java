@@ -8,16 +8,19 @@ package GUI;
 import Dominio.AuxiliarDAO;
 import Dominio.PartidaDAO;
 import io.socket.client.Socket;
+import io.socket.emitter.Emitter;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Locale;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
@@ -98,6 +101,7 @@ public class TableroController implements Initializable {
 
             boton.setDisable(true);
             auxiliarTab.separarPosicion(boton.getId(), turno);
+            socket.emit("Realizar tiro", boton.getId());
             if (aux.validarColumna(turno) || aux.validarFila(turno) || aux.validarDiagonalIzquierda(turno) || aux.validarDiagonalDerecha(turno)) {
                 try {
                     AnchorPane pane = FXMLLoader.load(getClass().getResource("AlertaGanador.fxml"), resources);
@@ -110,13 +114,12 @@ public class TableroController implements Initializable {
                 }
 
             }
-            this.turno = 2;
 
         }else{
             boton.setStyle("-fx-background-image: url('/resources/fichaVerde.png')");
-            turno=2;
             boton.setDisable(true);
             auxiliarTab.separarPosicion(boton.getId(), turno);
+            socket.emit("Realizar tiro", boton.getId());
             if (aux.validarColumna(turno) || aux.validarFila(turno) || aux.validarDiagonalIzquierda(turno) || aux.validarDiagonalDerecha(turno)) {
                 try {
                     AnchorPane pane = FXMLLoader.load(getClass().getResource("AlertaGanador.fxml"), resources);
@@ -128,9 +131,31 @@ public class TableroController implements Initializable {
 
                 }
             }
-                  this.turno = 1;
         }
         
+    }
+    
+    public void mostrarTiroRival(){
+        AuxiliarTablero auxiliarTab = new AuxiliarTablero();
+        socket.on("MostrarTiroRival", new Emitter.Listener(){
+            @Override
+            public void call(Object... os) {
+                    Platform.runLater(() -> {
+                        int[] coordenadas = auxiliarTab.obtenerPosicion((String) os[0]);
+                        ImageView ficha;
+                        if(turno == 1){
+                            ficha = new ImageView("/resources/fichaVerde.png");
+                        }else{
+                            ficha = new ImageView("/resources/fichaAzul.png");
+                        }
+                        ficha.setFitHeight(40);
+                        ficha.setFitWidth(40);
+                        GridPane.setConstraints(ficha, coordenadas[1], coordenadas[0]);
+                        gridPaneTablero.getChildren().add(ficha);     
+                });
+            }
+            
+        });
     }
 
     public Socket getSocket() {
@@ -139,7 +164,13 @@ public class TableroController implements Initializable {
 
     public void setSocket(Socket socket) {
         this.socket = socket;
+        mostrarTiroRival();
     }
+
+    public void setTurno(int turno) {
+        this.turno = turno;
+    }
+    
     
     
     

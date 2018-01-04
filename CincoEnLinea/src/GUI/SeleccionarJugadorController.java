@@ -141,6 +141,7 @@ public class SeleccionarJugadorController implements Initializable {
                             stage.setScene(scenePartida);
                             stage.show();
                             tableroController.setSocket(socket);
+                            tableroController.setTurno(1);
                         } catch (IOException ex) {
                             Logger.getLogger(SeleccionarJugadorController.class.getName()).log(Level.SEVERE, null, ex);
                         }

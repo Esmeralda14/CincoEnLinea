@@ -24,6 +24,12 @@ public class AuxiliarTablero {
         partida.guardarTiro(convertirPosicion(posX), convertirPosicion(posY), turno);
     }
     
+    public int[] obtenerPosicion(String nombreBoton){
+        char[] coordenadas = nombreBoton.toCharArray();
+        int[] coordenadasObtenidas = {convertirPosicion(String.valueOf(coordenadas[0])), convertirPosicion(String.valueOf(coordenadas[1]))};
+        return coordenadasObtenidas; 
+    }
+    
     public int convertirPosicion(String posicion){
         int posicionObtenida = 0;
         switch(posicion){
