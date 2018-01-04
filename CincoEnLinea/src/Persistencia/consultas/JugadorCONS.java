@@ -41,6 +41,7 @@ public class JugadorCONS {
       } catch (NullPointerException e) {
          message = "3";
       }
+        System.out.println(message);
       return message;
     }
     
