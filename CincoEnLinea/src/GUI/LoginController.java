@@ -62,18 +62,13 @@ public class LoginController implements Initializable {
     @FXML
     private Button espanol;
 
-    
-
     private Stage stage = new Stage();
-    
 
-    
     String idioma = Locale.getDefault().toString();
     String idiomaResource = "resources.idioma_" + idioma;
     ResourceBundle resources = ResourceBundle.getBundle(idiomaResource);
     private Socket socket;
     JugadorDAO jugador = null;
-    
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -86,20 +81,21 @@ public class LoginController implements Initializable {
     @FXML
     private void abrirRegistrar() {
         try {
-            AnchorPane pane = FXMLLoader.load(getClass().getResource("Registrarse.fxml"), resources);
+            AnchorPane pane = FXMLLoader.load(getClass().
+                    getResource("Registrarse.fxml"), resources);
             Scene sceneRegistro = new Scene(pane);
             stage.setScene(sceneRegistro);
             stage.show();
         } catch (IOException ex) {
-            Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(LoginController.class.getName()).
+                    log(Level.SEVERE, null, ex);
         }
         stage = (Stage) registrar.getScene().getWindow();
         stage.close();
     }
 
-    
     /**
-     * Metodo para iniciar sesión 
+     * Metodo para iniciar sesión
      */
     @FXML
     public void iniciarSesion() {
@@ -111,17 +107,21 @@ public class LoginController implements Initializable {
         switch (resultado) {
             case "1":
                 try {
-                    FXMLLoader loader= new FXMLLoader(getClass().getResource("MenuPrincipal.fxml"), resources);
-                    Parent parent = (Parent)loader.load();
-                    MenuPrincipalController menuController = loader.getController();
+                    FXMLLoader loader = new FXMLLoader(getClass().
+                            getResource("MenuPrincipal.fxml"), resources);
+                    Parent parent = (Parent) loader.load();
+                    MenuPrincipalController menuController
+                            = loader.getController();
                     Scene scenePartida = new Scene(parent);
                     stage.setScene(scenePartida);
                     stage.show();
+                    stage.setResizable(false);
                     agregarJugadorListaServidor(jugador.getUsuario());
                     menuController.setSocket(socket);
                     menuController.setUsuario(fieldUsuario.getText());
                 } catch (IOException ex) {
-                    Logger.getLogger(MenuPrincipalController.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(MenuPrincipalController.class.getName()).
+                            log(Level.SEVERE, null, ex);
                 }
                 stage = (Stage) inicioSesion.getScene().getWindow();
                 stage.close();
@@ -141,27 +141,37 @@ public class LoginController implements Initializable {
         if (resultado.equals("2")) {
             AnchorPane pane;
             try {
-                pane = FXMLLoader.load(getClass().getResource("AlertaContraseñaIncorrecta.fxml"), resources);
+                pane = FXMLLoader.
+                        load(getClass().
+                                getResource("AlertaContraseñaIncorrecta.fxml"),
+                                resources);
                 Scene sceneAlerta = new Scene(pane);
                 sceneAlerta.setFill(Color.TRANSPARENT);
                 stage.setScene(sceneAlerta);
                 stage.show();
+                stage.setResizable(false);
+
             } catch (RuntimeException ex) {
-                Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(LoginController.class.getName()).
+                        log(Level.SEVERE, null, ex);
             } catch (IOException ex) {
-                Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(LoginController.class.getName()).
+                        log(Level.SEVERE, null, ex);
             }
         }
         if (resultado.equals("3")) {
             AnchorPane pane;
             try {
-                pane = FXMLLoader.load(getClass().getResource("AlertaUsuarioIncorrecto.fxml"), resources);
+                pane = FXMLLoader.load(getClass().
+                        getResource("AlertaUsuarioIncorrecto.fxml"), resources);
                 Scene sceneAlerta = new Scene(pane);
                 sceneAlerta.setFill(Color.TRANSPARENT);
                 stage.setScene(sceneAlerta);
                 stage.show();
+                stage.setResizable(false);
             } catch (IOException ex) {
-                Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(LoginController.class.getName()).
+                        log(Level.SEVERE, null, ex);
             }
         }
     }
@@ -177,13 +187,12 @@ public class LoginController implements Initializable {
 
     }
 
-
-    public  JugadorDAO obtenerValores() {
+    public JugadorDAO obtenerValores() {
 
         if (fieldUsuario.getText().equals("")
                 || fieldContraseña.getText().equals("")) {
             alertaCamposVacios();
-            
+
         } else {
             try {
                 String user = fieldUsuario.getText();
@@ -191,31 +200,34 @@ public class LoginController implements Initializable {
                 AuxiliarDAO aux = new AuxiliarDAO();
                 jugador = new JugadorDAO(user, aux.makeHash(clave));
             } catch (NoSuchAlgorithmException ex) {
-                Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(LoginController.class.getName()).
+                        log(Level.SEVERE, null, ex);
             }
-           
-            
+
         }
         return jugador;
     }
-    
+
     public void alertaCamposVacios() {
         try {
             AnchorPane pane;
-            pane = FXMLLoader.load(getClass().getResource("AlertaCamposVacios.fxml"), resources);
+            pane = FXMLLoader.load(getClass().
+                    getResource("AlertaCamposVacios.fxml"), resources);
             Scene sceneAlerta = new Scene(pane);
             sceneAlerta.setFill(Color.TRANSPARENT);
             stage.setScene(sceneAlerta);
             stage.show();
+           
         } catch (IOException ex) {
-            Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(LoginController.class.getName()).
+                    log(Level.SEVERE, null, ex);
         }
     }
-    
-    public void agregarJugadorListaServidor(String jugador){
+
+    public void agregarJugadorListaServidor(String jugador) {
         try {
             socket = IO.socket("http://localhost:7000");
-            socket.on(Socket.EVENT_CONNECT, new Emitter.Listener(){
+            socket.on(Socket.EVENT_CONNECT, new Emitter.Listener() {
                 @Override
                 public void call(Object... os) {
                     System.out.println("conectado con el servidor");
@@ -224,9 +236,9 @@ public class LoginController implements Initializable {
             socket.connect();
             socket.emit("Jugadores conectados", jugador);
         } catch (URISyntaxException ex) {
-            Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(LoginController.class.getName()).
+                    log(Level.SEVERE, null, ex);
         }
     }
-    
 
 }

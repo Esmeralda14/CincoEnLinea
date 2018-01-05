@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="180.0" prefWidth="317.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.AlertaCamposVaciosController">
+<AnchorPane id="AnchorPane" fx:id="paneVentana" prefHeight="180.0" prefWidth="317.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.AlertaCamposVaciosController">
    <children>
       <ImageView fitHeight="221.0" fitWidth="317.0" pickOnBounds="true" preserveRatio="true">
          <image>

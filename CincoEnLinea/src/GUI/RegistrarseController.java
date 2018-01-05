@@ -29,159 +29,154 @@ import javafx.scene.paint.Color;
  * @author marianacro
  */
 public class RegistrarseController implements Initializable {
-
+    
     @FXML
     private Label labelRegistrarse;
-
+    
     @FXML
     private Button espanol;
-
+    
     @FXML
     private Button ingles;
-
+    
     @FXML
     private Label usuario;
-
+    
     @FXML
     private TextField fieldUsuario;
-
+    
     @FXML
     private TextField fieldContraseña;
-
+    
     @FXML
     private Label labelContrasena;
-
+    
     @FXML
     private Button Bregistrarse;
-
+    
     @FXML
     private Button regresar;
-
-        
+    
     String idioma = Locale.getDefault().toString();
     String idiomaResource = "resources.idioma_" + idioma;
     ResourceBundle resources = ResourceBundle.getBundle(idiomaResource);
     JugadorCONS jugadorCONS = new JugadorCONS();
     
     private Stage stage = new Stage();
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         this.resources = rb;
-
+        
     }
-
+    
     public void configurarIdioma() {
         labelRegistrarse.setText(resources.getString("labelRegistrarse"));
         usuario.setText(resources.getString("labelUsuario"));
         labelContrasena.setText(resources.getString("labelContrasena"));
         Bregistrarse.setText(resources.getString("Bregistrarse"));
         regresar.setText(resources.getString("regresar"));
-
+        
     }
+
     @FXML
     public void registrarUsuario(ActionEvent registrar) {
         JugadorCONS jugador = new JugadorCONS();
-        if (fieldUsuario.getText().equals("") || fieldContraseña.getText().equals("")) {
+        if (fieldUsuario.getText().equals("") || 
+                fieldContraseña.getText().equals("")
+                || fieldUsuario.getText().equals(" ") || 
+                fieldContraseña.getText().equals(" ")) {
             alertaCamposVacios();
         } else {
-            boolean resultado = jugadorCONS.validarUsuarioRepetido(fieldUsuario.getText());
+            boolean resultado = jugadorCONS.validarUsuarioRepetido
+        (fieldUsuario.getText());
             if (resultado) {
                 alertaUsuarioRepetido();
-            }else{
-            jugador.registrarJugador(obtenerValores());
-            alertaRegistrada();
-            abrirInicioSesion();
+            } else {
+                jugador.registrarJugador(obtenerValores());
+                //alertaRegistrado();
+                abrirInicioSesion();
             }
-
+            
         }
         
-        
     }
-
+    
     public Jugadores obtenerValores() {
         
         Jugadores entidadJugador = null;
         AuxiliarDAO aux = new AuxiliarDAO();
         
-            String user = fieldUsuario.getText();
-            String clave = fieldContraseña.getText();
-            try {
-                entidadJugador = new Jugadores(user,aux.makeHash(clave));
-            } catch (NoSuchAlgorithmException ex) {
-                Logger.getLogger(RegistrarseController.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            
+        String user = fieldUsuario.getText();
+        String clave = fieldContraseña.getText();
+        try {
+            entidadJugador = new Jugadores(user, aux.makeHash(clave));
+        } catch (NoSuchAlgorithmException ex) {
+            Logger.getLogger(RegistrarseController.class.getName()).
+                    log(Level.SEVERE, null, ex);
+        }
         
         return entidadJugador;
     }
     
-    public void alertaUsuarioRepetido(){
+    public void alertaUsuarioRepetido() {
         
-        
-                AnchorPane pane;
-            try {
-                pane = FXMLLoader.load(getClass().getResource("AlertaUsuarioRepetido.fxml"), resources);
-                Scene sceneAlerta = new Scene(pane);
-                sceneAlerta.setFill(Color.TRANSPARENT);
-                
-                stage.setScene(sceneAlerta);
-                stage.show();
-                System.out.println("usuario repetidooooooo");
-            }
-            catch (IOException ex) {
-                Logger.getLogger(RegistrarseController.class.getName()).log(Level.SEVERE, null, ex);
-            }catch(NullPointerException ex){
-            }
-            catch (RuntimeException ex) {
-                Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
-            }
+        AnchorPane pane;
+        try {
+            pane = FXMLLoader.load(getClass().getResource
+        ("AlertaUsuarioRepetido.fxml"), resources);
+            Scene sceneAlerta = new Scene(pane);
+            sceneAlerta.setFill(Color.TRANSPARENT);
+            
+            stage.setScene(sceneAlerta);
+            stage.show();
+            stage.setResizable(false);
+            System.out.println("usuario repetidooooooo");
+        } catch (IOException ex) {
+            Logger.getLogger(RegistrarseController.class.getName()).
+                    log(Level.SEVERE, null, ex);
+        } catch (NullPointerException ex) {
+        } catch (RuntimeException ex) {
+            Logger.getLogger(LoginController.class.getName()).
+                    log(Level.SEVERE, null, ex);
+        }
         
     }
-
     
-
     public void alertaCamposVacios() {
-    AnchorPane pane;
-            try {
-                pane = FXMLLoader.load(getClass().getResource("AlertaCamposVaciosRegistro.fxml"), resources);
-                Scene sceneAlerta = new Scene(pane);
-                sceneAlerta.setFill(Color.TRANSPARENT);
-                //stage.initStyle(StageStyle.TRANSPARENT);
-                stage.setScene(sceneAlerta);
-                stage.show();
-            } catch(NullPointerException ex){
-            }
-            catch (RuntimeException ex) {
-                Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (IOException ex) {
-                Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
-            } 
-    }
-
-    /**
-     * Método que muestra una alerta que informa que el registro de gastos se
-     * realizó exitosamente.
-     */
-    public void alertaRegistrada() {
-        Alert alertaUsuario = new Alert(Alert.AlertType.INFORMATION);
-        alertaUsuario.setTitle("¡Registro exitoso!");
-        alertaUsuario.setHeaderText("Alerta");
-        alertaUsuario.setContentText("Usuario registrado exitosamente");
-        alertaUsuario.showAndWait();
+        AnchorPane pane;
+        try {
+            pane = FXMLLoader.load(getClass().getResource
+        ("AlertaCamposVaciosRegistro.fxml"), resources);
+            Scene sceneAlerta = new Scene(pane);
+            sceneAlerta.setFill(Color.TRANSPARENT);
+            stage.setScene(sceneAlerta);
+            stage.show();
+            stage.setResizable(false);
+        } catch (NullPointerException ex) {
+        } catch (RuntimeException ex) {
+            Logger.getLogger(LoginController.class.getName())
+                    .log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(LoginController.class.getName()).
+                    log(Level.SEVERE, null, ex);
+        }        
     }
     
     @FXML
     public void abrirInicioSesion() {
         try {
-            AnchorPane pane = FXMLLoader.load(getClass().getResource("Login.fxml"), resources);
+            AnchorPane pane = FXMLLoader.load(getClass().getResource
+        ("Login.fxml"), resources);
             Scene scenePartida = new Scene(pane);
             stage.setScene(scenePartida);
             stage.show();
+            stage.setResizable(false);
         } catch (IOException ex) {
-            Logger.getLogger(MenuPrincipalController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(MenuPrincipalController.class.getName()).
+                    log(Level.SEVERE, null, ex);
         }
         stage = (Stage) regresar.getScene().getWindow();
         stage.close();
     }
 }
-

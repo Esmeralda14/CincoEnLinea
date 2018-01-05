@@ -83,18 +83,6 @@ public class MenuPrincipalController implements Initializable {
     }
 
     @FXML
-    public void cambiarIdiomaUS() {
-        resources = ResourceBundle.getBundle("resources.idioma_en_US");
-        configurarIdioma();
-    }
-
-    @FXML
-    public void cambiarIdiomaMX() {
-        resources = ResourceBundle.getBundle("resources.idioma_es_MX");
-        configurarIdioma();
-    }
-    
-    @FXML
     public void mostrarReglas() {
         try {
             AnchorPane pane = FXMLLoader.load(getClass().getResource("Reglas.fxml"), resources);
@@ -138,6 +126,7 @@ public class MenuPrincipalController implements Initializable {
             Scene scenePartida = new Scene(parent);
             stage.setScene(scenePartida);
             stage.show();
+            stage.setResizable(false);
             selectJugadorController.setSocket(socket);
         } catch (IOException ex) {
             Logger.getLogger(MenuPrincipalController.class.getName()).log(Level.SEVERE, null, ex);
@@ -153,6 +142,7 @@ public class MenuPrincipalController implements Initializable {
             Scene scenePartida = new Scene(pane);
             stage.setScene(scenePartida);
             stage.show();
+            stage.setResizable(false);
         } catch (IOException ex) {
             Logger.getLogger(MenuPrincipalController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -173,6 +163,7 @@ public class MenuPrincipalController implements Initializable {
                         Scene scenePartida = new Scene(parent);
                         stage.setScene(scenePartida);
                         stage.show();
+                        stage.setResizable(false);
                         invitacionController.setSocket(socket);
                         invitacionController.setRoom((String)os[0]);
                         invitacionController.setUsuarioRival((String)os[1]);

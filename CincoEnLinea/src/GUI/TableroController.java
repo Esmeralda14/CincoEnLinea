@@ -109,6 +109,7 @@ public class TableroController implements Initializable {
                     Scene scenePartida = new Scene(pane);
                     stage.setScene(scenePartida);
                     stage.show();
+                    stage.setResizable(false);
                     JugadorCONS jugadorcons = new JugadorCONS();
                     jugadorcons.actualizarPuntuacion(usuario);
                     socket.emit("Avisar a perdedor");
@@ -131,6 +132,7 @@ public class TableroController implements Initializable {
                     Scene scenePartida = new Scene(pane);
                     stage.setScene(scenePartida);
                     stage.show();
+                    stage.setResizable(false);
                     JugadorCONS jugadorcons = new JugadorCONS();
                     jugadorcons.actualizarPuntuacion(usuario);
                     socket.emit("Avisar a perdedor");
@@ -178,6 +180,7 @@ public class TableroController implements Initializable {
                         Scene scenePartida = new Scene(pane);
                         stage.setScene(scenePartida);
                         stage.show();
+                        stage.setResizable(false);
                     } catch (IOException ex) {
                         Logger.getLogger(TableroController.class.getName()).log(Level.SEVERE, null, ex);
                     }

@@ -72,22 +72,7 @@ public class SeleccionarJugadorController implements Initializable {
         botonActualizarLista.setText(resources.getString("actualizarLista"));
     }
 
-    @FXML
-    public void cambiarIdiomaUS() {
-        resources = ResourceBundle.getBundle("resources.idioma_en_US");
-        configurarIdioma();
-    }
 
-    @FXML
-    public void cambiarIdiomaMX() {
-        resources = ResourceBundle.getBundle("resources.idioma_es_MX");
-        configurarIdioma();
-    }
-    
-    @FXML
-    public void actualizarListaUsuarios(){
-        
-    }
     
     @FXML
     public void abrirMenuPrincipal(){
@@ -96,6 +81,7 @@ public class SeleccionarJugadorController implements Initializable {
             Scene scenePartida = new Scene(pane);
             stage.setScene(scenePartida);
             stage.show();
+            stage.setResizable(false);
         } catch (IOException ex) {
             Logger.getLogger(MenuPrincipalController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -140,6 +126,7 @@ public class SeleccionarJugadorController implements Initializable {
                             
                             stage.setScene(scenePartida);
                             stage.show();
+                            stage.setResizable(false);
                             tableroController.setSocket(socket);
                             tableroController.setTurno(1);
                             tableroController.setEsMiTurno(true);
