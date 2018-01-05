@@ -75,11 +75,19 @@ public class SeleccionarJugadorController implements Initializable {
     @FXML
     public void abrirMenuPrincipal(){
         try {
-            AnchorPane pane = FXMLLoader.load(getClass().getResource("MenuPrincipal.fxml"), resources);
-            Scene scenePartida = new Scene(pane);
-            stage.setScene(scenePartida);
-            stage.show();
-            stage.setResizable(false);
+            FXMLLoader loader = new FXMLLoader(getClass().
+                    getResource("MenuPrincipal.fxml"), resources);
+                    Parent parent = (Parent) loader.load();
+                    MenuPrincipalController menuController
+                            = loader.getController();
+                    Scene scenePartida = new Scene(parent);
+                    stage.setScene(scenePartida);
+                    stage.show();
+                    stage.setResizable(false);
+                    menuController.setStageMenuPrincipal(stage);
+                    menuController.setSocket(socket);
+                    menuController.setUsuario(usuario);
+                    stage.setResizable(false);
         } catch (IOException ex) {
             Logger.getLogger(MenuPrincipalController.class.getName()).log(Level.SEVERE, null, ex);
         }

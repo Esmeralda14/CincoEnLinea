@@ -20,6 +20,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -108,15 +109,23 @@ public class TableroController implements Initializable {
             mostrarJugadorEnTurno(usuarioRival);
             if (aux.validarColumna(turno) || aux.validarFila(turno) || aux.validarDiagonalIzquierda(turno) || aux.validarDiagonalDerecha(turno)) {
                 try {
-                    AnchorPane pane = FXMLLoader.load(getClass().getResource("AlertaGanador.fxml"), resources);
-                    Scene scenePartida = new Scene(pane);
+                    FXMLLoader loader = new FXMLLoader(getClass().
+                    getResource("AlertaGanador.fxml"), resources);
+                    Parent parent = (Parent) loader.load();
+                    AlertaGanadorController ganadorController
+                            = loader.getController();
+                    Scene scenePartida = new Scene(parent);
                     stage.setScene(scenePartida);
                     stage.show();
+                    ganadorController.setGanador(stage);
                     stage.setResizable(false);
+                    ganadorController.setSocket(socket);
+                    ganadorController.setUsuario(usuario);
                     JugadorCONS jugadorcons = new JugadorCONS();
                     jugadorcons.actualizarPuntuacion(usuario);
                     socket.emit("Avisar a perdedor");
                     socket.emit("Separar canales");
+                    aux = null;
                     stageTablero.close();
                 } catch (IOException ex) {
                     Logger.getLogger(MenuPrincipalController.class.getName()).log(Level.SEVERE, null, ex);
@@ -134,15 +143,23 @@ public class TableroController implements Initializable {
             mostrarJugadorEnTurno(usuarioRival);
             if (aux.validarColumna(turno) || aux.validarFila(turno) || aux.validarDiagonalIzquierda(turno) || aux.validarDiagonalDerecha(turno)) {
                 try {
-                    AnchorPane pane = FXMLLoader.load(getClass().getResource("AlertaGanador.fxml"), resources);
-                    Scene scenePartida = new Scene(pane);
+                    FXMLLoader loader = new FXMLLoader(getClass().
+                    getResource("AlertaGanador.fxml"), resources);
+                    Parent parent = (Parent) loader.load();
+                    AlertaGanadorController ganadorController
+                            = loader.getController();
+                    Scene scenePartida = new Scene(parent);
                     stage.setScene(scenePartida);
                     stage.show();
+                    ganadorController.setGanador(stage);
                     stage.setResizable(false);
+                    ganadorController.setSocket(socket);
+                    ganadorController.setUsuario(usuario);
                     JugadorCONS jugadorcons = new JugadorCONS();
                     jugadorcons.actualizarPuntuacion(usuario);
                     socket.emit("Avisar a perdedor");
                     socket.emit("Separar canales");
+                    aux = null;
                     stageTablero.close();
                 } catch (IOException ex) {
                     Logger.getLogger(MenuPrincipalController.class.getName()).log(Level.SEVERE, null, ex);
@@ -185,12 +202,20 @@ public class TableroController implements Initializable {
             public void call(Object... os) {
                 Platform.runLater(() -> {
                     try {
-                        AnchorPane pane = FXMLLoader.load(getClass().getResource("AlertaPerdedor.fxml"), resources);
-                        Scene scenePartida = new Scene(pane);
-                        stage.setScene(scenePartida);
-                        stage.show();
-                        stage.setResizable(false);
+                        FXMLLoader loader = new FXMLLoader(getClass().
+                    getResource("AlertaPerdedor.fxml"), resources);
+                    Parent parent = (Parent) loader.load();
+                    AlertaPerdedorController perdedorController
+                            = loader.getController();
+                    Scene scenePartida = new Scene(parent);
+                    stage.setScene(scenePartida);
+                    stage.show();
+                    perdedorController.setStagePerdedor(stage);
+                    stage.setResizable(false);
+                    perdedorController.setSocket(socket);
+                    perdedorController.setUsuario(usuario);
                         socket.emit("Separar canales");
+                        aux = null;
                         stageTablero.close();
                     } catch (IOException ex) {
                         Logger.getLogger(TableroController.class.getName()).log(Level.SEVERE, null, ex);

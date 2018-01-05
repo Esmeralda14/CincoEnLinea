@@ -14,7 +14,7 @@
             <Image url="@../resources/pantallaPerdedor.png" />
          </image>
       </ImageView>
-      <JFXButton fx:id="botonAceptar" cacheShape="false" centerShape="false" focusTraversable="false" layoutX="14.0" layoutY="215.0" prefHeight="39.0" prefWidth="354.0" scaleShape="false" text="%aceptar" />
+      <JFXButton fx:id="botonAceptar" cacheShape="false" centerShape="false" focusTraversable="false" layoutX="14.0" layoutY="215.0" onAction="#clicAceptar" prefHeight="39.0" prefWidth="354.0" scaleShape="false" text="%aceptar" />
       <Label fx:id="labelFelicidades" layoutX="91.0" layoutY="119.0" text="%felicidades" textFill="WHITE">
          <font>
             <Font size="26.0" />

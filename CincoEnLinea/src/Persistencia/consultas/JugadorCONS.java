@@ -23,7 +23,7 @@ import static org.eclipse.persistence.sessions.SessionProfiler.Transaction;
  * @author marianacro
  */
 public class JugadorCONS {
-    EntityManagerFactory emfactory = Persistence.createEntityManagerFactory("CincoEnLineaPU");
+    EntityManagerFactory emfactory = Persistence.createEntityManagerFactory("CincoEnLineaPU3");
     EntityManager entitymanager = emfactory.createEntityManager();
     
     public String validarInisioSesion(JugadorDAO jugador){

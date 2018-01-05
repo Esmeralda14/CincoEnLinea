@@ -148,7 +148,6 @@ public class MenuPrincipalController implements Initializable {
             stage.setScene(scenePartida);
             stage.show();
             stage.setResizable(false);
-            socket.emit("Finalizar sesion", usuario);
         } catch (IOException ex) {
             Logger.getLogger(MenuPrincipalController.class.getName()).log(Level.SEVERE, null, ex);
         }

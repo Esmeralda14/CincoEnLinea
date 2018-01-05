@@ -113,6 +113,12 @@ public class InvitacionPartidaController implements Initializable {
         stage.close();
     }
     
+    @FXML
+    public void clicDeclinar(){
+        stage = (Stage) botonDeclinar.getScene().getWindow();
+        stage.close();
+    }
+    
 
     public Socket getSocket() {
         return socket;

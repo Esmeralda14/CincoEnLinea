@@ -12,7 +12,7 @@
       <Label fx:id="nombreUsuario" layoutX="113.0" layoutY="55.0" prefHeight="17.0" prefWidth="159.0" />
       <Label fx:id="label2Invitacion" layoutX="285.0" layoutY="55.0" text="%teestainvitandoajugar" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="17.0" layoutY="-1.0" stroke="BLACK" strokeType="INSIDE" width="447.0" />
-      <JFXButton fx:id="botonDeclinar" layoutX="123.0" layoutY="106.0" text="%declinar" />
+      <JFXButton fx:id="botonDeclinar" layoutX="123.0" layoutY="106.0" onAction="#clicDeclinar" text="%declinar" />
       <JFXButton fx:id="botonJugar" layoutX="242.0" layoutY="106.0" onAction="#clicJugar" text="%jugar" />
       <Label fx:id="labelInvitacion" layoutX="171.0" layoutY="33.0" text="%invitacion">
          <font>
