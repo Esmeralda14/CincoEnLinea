@@ -55,7 +55,7 @@ socket.on("Separar canales", function(){
     //Se corta la comunicación con el otro jugador
     socket.leave(socket.room);
     //Se le asigna a mi room mi mismo id
-    socket.room = sockt.id;
+    socket.room = socket.id;
   }
 });
 
