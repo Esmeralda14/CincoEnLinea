@@ -106,4 +106,10 @@ public class PartidaDAO {
 
         }
     }
+
+    public int[][] getTablero() {
+        return tablero;
+    }
+    
+    
 }

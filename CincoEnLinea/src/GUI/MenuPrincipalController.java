@@ -58,6 +58,9 @@ public class MenuPrincipalController implements Initializable {
     @FXML
     private Button cerrarSesion;
     
+    @FXML
+    private Label sesionUsuario;
+    
 
         
     String idioma = Locale.getDefault().toString();
@@ -66,11 +69,11 @@ public class MenuPrincipalController implements Initializable {
     private Stage stage = new Stage();
     private Socket socket;
     private String usuario;
+    private Stage stageMenuPrincipal;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         this.resources = rb;
-//        
     }
 
     public void configurarIdioma() {
@@ -128,6 +131,8 @@ public class MenuPrincipalController implements Initializable {
             stage.show();
             stage.setResizable(false);
             selectJugadorController.setSocket(socket);
+            selectJugadorController.setUsuario(usuario);
+            selectJugadorController.setSeleccionarJugador(stage);
         } catch (IOException ex) {
             Logger.getLogger(MenuPrincipalController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -143,6 +148,7 @@ public class MenuPrincipalController implements Initializable {
             stage.setScene(scenePartida);
             stage.show();
             stage.setResizable(false);
+            socket.emit("Finalizar sesion", usuario);
         } catch (IOException ex) {
             Logger.getLogger(MenuPrincipalController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -168,6 +174,7 @@ public class MenuPrincipalController implements Initializable {
                         invitacionController.setRoom((String)os[0]);
                         invitacionController.setUsuarioRival((String)os[1]);
                         invitacionController.setUsuario(usuario);
+                        invitacionController.setStageMenuPrincipal(stageMenuPrincipal);
                     } catch (IOException ex) {
                         Logger.getLogger(MenuPrincipalController.class.getName()).log(Level.SEVERE, null, ex);
                     }
@@ -189,7 +196,14 @@ public class MenuPrincipalController implements Initializable {
 
     public void setUsuario(String usuario) {
         this.usuario = usuario;
+        sesionUsuario.setText(usuario);
+
     }
+
+    public void setStageMenuPrincipal(Stage stageMenuPrincipal) {
+        this.stageMenuPrincipal = stageMenuPrincipal;
+    }
+    
     
 
 }

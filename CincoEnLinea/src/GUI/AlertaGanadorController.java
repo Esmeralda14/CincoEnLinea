@@ -53,10 +53,10 @@ public class AlertaGanadorController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         
     }    
-    
+
     @FXML
-    public void clicAceptar(){    
-    PartidaDAO partida = new PartidaDAO();
+    public void clicAceptar() {
+        PartidaDAO partida = new PartidaDAO();
         try {
             AnchorPane pane = FXMLLoader.load(getClass().getResource("MenuPrincipal.fxml"), resources);
             Scene scenePartida = new Scene(pane);
@@ -64,12 +64,13 @@ public class AlertaGanadorController implements Initializable {
             stage.show();
         } catch (IOException ex) {
             Logger.getLogger(MenuPrincipalController.class.getName()).log(Level.SEVERE, null, ex);
-        
-                partida.limpiarTablero();
+
+            partida.limpiarTablero();
         }
         stage = (Stage) botonAceptar.getScene().getWindow();
         stage.close();
 
-    } 
+    }
     
+
 }

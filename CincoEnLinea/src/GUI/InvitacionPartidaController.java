@@ -56,6 +56,7 @@ public class InvitacionPartidaController implements Initializable {
     String usuarioRival;
     String usuario;
     String room;
+    private Stage stageMenuPrincipal;
 
     /**
      * Initializes the controller class.
@@ -100,6 +101,11 @@ public class InvitacionPartidaController implements Initializable {
             tableroController.setSocket(socket);
             tableroController.setTurno(2);
             tableroController.setEsMiTurno(false);
+            tableroController.setUsuario(usuario);
+            tableroController.setUsuarioRival(usuarioRival);
+            tableroController.mostrarJugadorEnTurno(usuarioRival);
+            stageMenuPrincipal.close();
+            tableroController.setStageTablero(stage);
         } catch (IOException ex) {
             Logger.getLogger(MenuPrincipalController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -135,6 +141,12 @@ public class InvitacionPartidaController implements Initializable {
     public void setUsuario(String usuario) {
         this.usuario = usuario;
     }
+
+    public void setStageMenuPrincipal(Stage stageMenuPrincipal) {
+        this.stageMenuPrincipal = stageMenuPrincipal;
+    }
+    
+    
     
     
 }

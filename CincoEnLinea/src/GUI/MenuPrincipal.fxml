@@ -63,6 +63,7 @@
                         <ColorAdjust brightness="-0.25" contrast="0.59" />
                      </effect>
                   </Button>
+                  <Label fx:id="sesionUsuario" layoutX="151.0" layoutY="300.0" />
                </children>
             </AnchorPane>
           <AnchorPane fx:id="paneSecundario" minHeight="0.0" minWidth="0.0" prefHeight="338.0" prefWidth="506.0">

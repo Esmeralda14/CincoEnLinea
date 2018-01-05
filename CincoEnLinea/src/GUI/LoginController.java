@@ -86,6 +86,7 @@ public class LoginController implements Initializable {
             Scene sceneRegistro = new Scene(pane);
             stage.setScene(sceneRegistro);
             stage.show();
+            stage.setResizable(false);
         } catch (IOException ex) {
             Logger.getLogger(LoginController.class.getName()).
                     log(Level.SEVERE, null, ex);
@@ -116,6 +117,7 @@ public class LoginController implements Initializable {
                     stage.setScene(scenePartida);
                     stage.show();
                     stage.setResizable(false);
+                    menuController.setStageMenuPrincipal(stage);
                     agregarJugadorListaServidor(jugador.getUsuario());
                     menuController.setSocket(socket);
                     menuController.setUsuario(fieldUsuario.getText());

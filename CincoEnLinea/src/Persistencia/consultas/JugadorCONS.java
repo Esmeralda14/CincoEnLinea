@@ -85,15 +85,21 @@ public class JugadorCONS {
     }
     
     public void actualizarPuntuacion(String id) {
-        JugadoresJpaController controller = new JugadoresJpaController(emfactory);
-        Jugadores jugador = new Jugadores();
-        jugador = controller.findJugadores(id);
-        jugador.setPuntuacionTotal(jugador.getPuntuacionTotal() + 10);
+        try {
+            JugadoresJpaController controller = new JugadoresJpaController(emfactory);
+            Jugadores jugador = new Jugadores();
+            jugador = controller.findJugadores(id);
+            if(jugador.getPuntuacionTotal() != null){
+                jugador.setPuntuacionTotal(jugador.getPuntuacionTotal() + 10);
+            }else{
+                jugador.setPuntuacionTotal(10);
+                
+            }
+            controller.edit(jugador);
+        } catch (Exception ex) {
+            Logger.getLogger(JugadorCONS.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
-//    public List<Jugadores> recuperarPuntajeJugadores(){
-//        List<Jugadores> puntajes;
-//        puntajes = entitymanager.createNamedQuery("puntaje.jugadores").getResultList();
-//        return puntajes;
-//    }
+
 }

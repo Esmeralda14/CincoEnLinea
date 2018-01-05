@@ -31,6 +31,7 @@ public class CincoEnLinea extends Application {
         Scene scene = new Scene(page);
         stage.setScene(scene);
         stage.show();
+        stage.setResizable(false);
        }catch (IOException ex){
            Logger.getLogger(CincoEnLinea.class.getName()).log(Level.SEVERE, null, ex);
        }

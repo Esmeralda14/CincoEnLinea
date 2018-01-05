@@ -43,9 +43,6 @@ public class SeleccionarJugadorController implements Initializable {
 
     @FXML
     private JFXButton botonMenuPrincipal;
-
-    @FXML
-    private JFXButton botonActualizarLista;
     
     @FXML
     private TextField textUsuario;
@@ -58,6 +55,8 @@ public class SeleccionarJugadorController implements Initializable {
     MenuPrincipalController menu = new MenuPrincipalController();
     private Socket socket;
     private Stage stage = new Stage();
+    private String usuario;
+    private Stage seleccionarJugador;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -69,7 +68,6 @@ public class SeleccionarJugadorController implements Initializable {
         botonInciarPartida.setText(resources.getString("¡IniciarPartida!"));
         botonMenuPrincipal.setText(resources.getString("MenuPrincipal"));
         jugadoresConectados.setText(resources.getString("jugadoresConectados"));
-        botonActualizarLista.setText(resources.getString("actualizarLista"));
     }
 
 
@@ -127,12 +125,19 @@ public class SeleccionarJugadorController implements Initializable {
                             stage.setScene(scenePartida);
                             stage.show();
                             stage.setResizable(false);
+                            
                             tableroController.setSocket(socket);
                             tableroController.setTurno(1);
                             tableroController.setEsMiTurno(true);
+                            tableroController.setUsuario(usuario);
+                            tableroController.setUsuarioRival(obtenerValores());
+                            tableroController.mostrarJugadorEnTurno(usuario);
+                            tableroController.setStageTablero(stage);
                         } catch (IOException ex) {
                             Logger.getLogger(SeleccionarJugadorController.class.getName()).log(Level.SEVERE, null, ex);
                         }
+                        seleccionarJugador.close();
+                        
                 });
                 
             }
@@ -154,5 +159,17 @@ public class SeleccionarJugadorController implements Initializable {
     public void setSocket(Socket socket) {
         this.socket = socket;
     }
+
+    public void setUsuario(String usuario) {
+        this.usuario = usuario;
+    }
+
+    public void setSeleccionarJugador(Stage seleccionarJugador) {
+        this.seleccionarJugador = seleccionarJugador;
+    }
+
+    
+    
+    
         
 }

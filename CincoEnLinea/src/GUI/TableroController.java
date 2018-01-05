@@ -52,6 +52,8 @@ public class TableroController implements Initializable {
     private Socket socket;
     private String usuario;
     private String usuarioRival;
+    private Stage stageTablero;
+    
      
     /**
      * Initializes the controller class.
@@ -103,6 +105,7 @@ public class TableroController implements Initializable {
             auxiliarTab.separarPosicion(boton.getId(), turno);
             socket.emit("Realizar tiro", boton.getId());
             esMiTurno = false;
+            mostrarJugadorEnTurno(usuarioRival);
             if (aux.validarColumna(turno) || aux.validarFila(turno) || aux.validarDiagonalIzquierda(turno) || aux.validarDiagonalDerecha(turno)) {
                 try {
                     AnchorPane pane = FXMLLoader.load(getClass().getResource("AlertaGanador.fxml"), resources);
@@ -113,6 +116,8 @@ public class TableroController implements Initializable {
                     JugadorCONS jugadorcons = new JugadorCONS();
                     jugadorcons.actualizarPuntuacion(usuario);
                     socket.emit("Avisar a perdedor");
+                    socket.emit("Separar canales");
+                    stageTablero.close();
                 } catch (IOException ex) {
                     Logger.getLogger(MenuPrincipalController.class.getName()).log(Level.SEVERE, null, ex);
 
@@ -126,6 +131,7 @@ public class TableroController implements Initializable {
             auxiliarTab.separarPosicion(boton.getId(), turno);
             socket.emit("Realizar tiro", boton.getId());
             esMiTurno = false;
+            mostrarJugadorEnTurno(usuarioRival);
             if (aux.validarColumna(turno) || aux.validarFila(turno) || aux.validarDiagonalIzquierda(turno) || aux.validarDiagonalDerecha(turno)) {
                 try {
                     AnchorPane pane = FXMLLoader.load(getClass().getResource("AlertaGanador.fxml"), resources);
@@ -136,6 +142,8 @@ public class TableroController implements Initializable {
                     JugadorCONS jugadorcons = new JugadorCONS();
                     jugadorcons.actualizarPuntuacion(usuario);
                     socket.emit("Avisar a perdedor");
+                    socket.emit("Separar canales");
+                    stageTablero.close();
                 } catch (IOException ex) {
                     Logger.getLogger(MenuPrincipalController.class.getName()).log(Level.SEVERE, null, ex);
 
@@ -164,6 +172,7 @@ public class TableroController implements Initializable {
                         GridPane.setConstraints(ficha, coordenadas[1], coordenadas[0]);
                         gridPaneTablero.getChildren().add(ficha);  
                         esMiTurno = true;
+                        mostrarJugadorEnTurno(usuario);
                 });
             }
             
@@ -181,12 +190,19 @@ public class TableroController implements Initializable {
                         stage.setScene(scenePartida);
                         stage.show();
                         stage.setResizable(false);
+                        socket.emit("Separar canales");
+                        stageTablero.close();
                     } catch (IOException ex) {
                         Logger.getLogger(TableroController.class.getName()).log(Level.SEVERE, null, ex);
                     }
                 });
             }
         });
+    }
+    
+    public void mostrarJugadorEnTurno(String usuario){
+        textJugador.setText(usuario);
+        
     }
 
     public Socket getSocket() {
@@ -214,6 +230,12 @@ public class TableroController implements Initializable {
     public void setUsuarioRival(String usuarioRival) {
         this.usuarioRival = usuarioRival;
     }
+
+    public void setStageTablero(Stage stageTablero) {
+        this.stageTablero = stageTablero;
+    }
+    
+    
     
     
     
