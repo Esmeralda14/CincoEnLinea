@@ -119,6 +119,7 @@ public class LoginController implements Initializable {
                     stage.show();
                     agregarJugadorListaServidor(jugador.getUsuario());
                     menuController.setSocket(socket);
+                    menuController.setUsuario(fieldUsuario.getText());
                 } catch (IOException ex) {
                     Logger.getLogger(MenuPrincipalController.class.getName()).log(Level.SEVERE, null, ex);
                 }

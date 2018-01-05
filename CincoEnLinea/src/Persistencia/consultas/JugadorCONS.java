@@ -16,6 +16,7 @@ import java.util.logging.Logger;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import static org.eclipse.persistence.sessions.SessionProfiler.Transaction;
 
 /**
  *
@@ -81,6 +82,13 @@ public class JugadorCONS {
         jugadores = entitymanager.createNamedQuery("Jugadores.findByPuntuacionTotal").getResultList();
          System.out.println(jugadores.get(0).toString());
         return jugadores;
+    }
+    
+    public void actualizarPuntuacion(String id) {
+        JugadoresJpaController controller = new JugadoresJpaController(emfactory);
+        Jugadores jugador = new Jugadores();
+        jugador = controller.findJugadores(id);
+        jugador.setPuntuacionTotal(jugador.getPuntuacionTotal() + 10);
     }
     
 //    public List<Jugadores> recuperarPuntajeJugadores(){

@@ -41,19 +41,17 @@ public class JugadorCONSIT {
     public void tearDown() {
     }
 
-    /**
-     * Prueba unitaria para el metodo registrarJugador
-     */
-//    @Test
-//    public void testRegistrarJugador() throws Exception {
-//        System.out.println("registrarJugador");
-//        Jugadores jugador = new Jugadores("alan1212","12345");
-//        JugadorCONS instance = new JugadorCONS();
-//        boolean expResult = true;
-//        boolean result = instance.registrarJugador(jugador);
-//        System.out.println(result);
-//        assertEquals(expResult, result);
-//    }
+  
+    @Test
+    public void testRegistrarJugador() throws Exception {
+        System.out.println("registrarJugador");
+        Jugadores jugador = new Jugadores("mariana","12345");
+        JugadorCONS instance = new JugadorCONS();
+        boolean expResult = true;
+        boolean result = instance.registrarJugador(jugador);
+        System.out.println(result);
+        assertEquals(expResult, result);
+    }
     
     
    

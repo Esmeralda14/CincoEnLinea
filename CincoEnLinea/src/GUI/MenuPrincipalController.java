@@ -57,6 +57,7 @@ public class MenuPrincipalController implements Initializable {
 
     @FXML
     private Button cerrarSesion;
+    
 
         
     String idioma = Locale.getDefault().toString();
@@ -64,6 +65,7 @@ public class MenuPrincipalController implements Initializable {
     ResourceBundle resources = ResourceBundle.getBundle(idiomaResource);
     private Stage stage = new Stage();
     private Socket socket;
+    private String usuario;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -174,6 +176,7 @@ public class MenuPrincipalController implements Initializable {
                         invitacionController.setSocket(socket);
                         invitacionController.setRoom((String)os[0]);
                         invitacionController.setUsuarioRival((String)os[1]);
+                        invitacionController.setUsuario(usuario);
                     } catch (IOException ex) {
                         Logger.getLogger(MenuPrincipalController.class.getName()).log(Level.SEVERE, null, ex);
                     }
@@ -192,5 +195,10 @@ public class MenuPrincipalController implements Initializable {
         this.socket = socket;
         mostrarInvitacion();
     }
+
+    public void setUsuario(String usuario) {
+        this.usuario = usuario;
+    }
+    
 
 }

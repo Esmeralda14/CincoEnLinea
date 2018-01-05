@@ -23,10 +23,13 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Table(name = "Jugadores")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Jugadores.findAll", query = "SELECT j FROM Jugadores j")
-    , @NamedQuery(name = "Jugadores.findByUsuario", query = "SELECT j FROM Jugadores j WHERE j.usuario = :usuario")
-    , @NamedQuery(name = "Jugadores.findByClave", query = "SELECT j FROM Jugadores j WHERE j.clave = :clave")
-    , @NamedQuery(name = "Jugadores.findByPuntuacionTotal", query = "SELECT j FROM Jugadores j WHERE j.puntuacionTotal = :puntuacionTotal")})
+@NamedQuery(name = "Jugadores.findAll", query = "SELECT j FROM Jugadores j"),
+    @NamedQuery(name = "Jugadores.findByUsuario", query = "SELECT j FROM Jugadores j WHERE j.usuario = :usuario"),
+    @NamedQuery(name = "Jugadores.findByClave", query = "SELECT j FROM Jugadores j WHERE j.clave = :clave"),
+    @NamedQuery(name = "puntaje.jugadores", query = "SELECT j.puntuacionTotal FROM Jugadores j ORDER BY j.puntuacionTotal DESC"),
+    @NamedQuery(name = "usuarios.puntaje", query = "SELECT j.usuario from Jugadores j ORDER BY j.puntuacionTotal DESC"),
+    @NamedQuery(name = "sumar.puntajeObtenido", query = "UPDATE Jugadores j SET j.puntuacionTotal = j.puntuacionTotal + 10 WHERE j.usuario = :usuario"),
+    @NamedQuery(name = "Jugadores.findByPuntuacionTotal", query = "select j from Jugadores j where j.puntuacionTotal IS NOT NULL order by j.puntuacionTotal desc")})
 public class Jugadores implements Serializable {
 
     private static final long serialVersionUID = 1L;

@@ -5,8 +5,8 @@
  */
 package GUI;
 
-import Dominio.AuxiliarDAO;
 import Dominio.PartidaDAO;
+import Persistencia.consultas.JugadorCONS;
 import io.socket.client.Socket;
 import io.socket.emitter.Emitter;
 import java.io.IOException;
@@ -20,14 +20,10 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
@@ -54,6 +50,8 @@ public class TableroController implements Initializable {
     private Stage stage = new Stage();
     PartidaDAO aux = new PartidaDAO();
     private Socket socket;
+    private String usuario;
+    private String usuarioRival;
      
     /**
      * Initializes the controller class.
@@ -63,6 +61,7 @@ public class TableroController implements Initializable {
     String idiomaResource = "resources.idioma_" + idioma;
     ResourceBundle resources = ResourceBundle.getBundle(idiomaResource);;
     int turno = 1;
+    boolean esMiTurno;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -96,18 +95,23 @@ public class TableroController implements Initializable {
         
         AuxiliarTablero auxiliarTab = new AuxiliarTablero();
         Button boton = (Button) arg0.getSource();
+        if(esMiTurno){
         if (turno == 1) {
             boton.setStyle("-fx-background-image: url('/resources/fichaAzul.png')");
 
             boton.setDisable(true);
             auxiliarTab.separarPosicion(boton.getId(), turno);
             socket.emit("Realizar tiro", boton.getId());
+            esMiTurno = false;
             if (aux.validarColumna(turno) || aux.validarFila(turno) || aux.validarDiagonalIzquierda(turno) || aux.validarDiagonalDerecha(turno)) {
                 try {
                     AnchorPane pane = FXMLLoader.load(getClass().getResource("AlertaGanador.fxml"), resources);
                     Scene scenePartida = new Scene(pane);
                     stage.setScene(scenePartida);
                     stage.show();
+                    JugadorCONS jugadorcons = new JugadorCONS();
+                    jugadorcons.actualizarPuntuacion(usuario);
+                    socket.emit("Avisar a perdedor");
                 } catch (IOException ex) {
                     Logger.getLogger(MenuPrincipalController.class.getName()).log(Level.SEVERE, null, ex);
 
@@ -120,17 +124,22 @@ public class TableroController implements Initializable {
             boton.setDisable(true);
             auxiliarTab.separarPosicion(boton.getId(), turno);
             socket.emit("Realizar tiro", boton.getId());
+            esMiTurno = false;
             if (aux.validarColumna(turno) || aux.validarFila(turno) || aux.validarDiagonalIzquierda(turno) || aux.validarDiagonalDerecha(turno)) {
                 try {
                     AnchorPane pane = FXMLLoader.load(getClass().getResource("AlertaGanador.fxml"), resources);
                     Scene scenePartida = new Scene(pane);
                     stage.setScene(scenePartida);
                     stage.show();
+                    JugadorCONS jugadorcons = new JugadorCONS();
+                    jugadorcons.actualizarPuntuacion(usuario);
+                    socket.emit("Avisar a perdedor");
                 } catch (IOException ex) {
                     Logger.getLogger(MenuPrincipalController.class.getName()).log(Level.SEVERE, null, ex);
 
                 }
             }
+        }
         }
         
     }
@@ -151,10 +160,29 @@ public class TableroController implements Initializable {
                         ficha.setFitHeight(40);
                         ficha.setFitWidth(40);
                         GridPane.setConstraints(ficha, coordenadas[1], coordenadas[0]);
-                        gridPaneTablero.getChildren().add(ficha);     
+                        gridPaneTablero.getChildren().add(ficha);  
+                        esMiTurno = true;
                 });
             }
             
+        });
+    }
+
+    public void mostrarVentanaPerdedor() {
+        socket.on("Mostrar mensaje perdedor", new Emitter.Listener() {
+            @Override
+            public void call(Object... os) {
+                Platform.runLater(() -> {
+                    try {
+                        AnchorPane pane = FXMLLoader.load(getClass().getResource("AlertaPerdedor.fxml"), resources);
+                        Scene scenePartida = new Scene(pane);
+                        stage.setScene(scenePartida);
+                        stage.show();
+                    } catch (IOException ex) {
+                        Logger.getLogger(TableroController.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                });
+            }
         });
     }
 
@@ -165,10 +193,23 @@ public class TableroController implements Initializable {
     public void setSocket(Socket socket) {
         this.socket = socket;
         mostrarTiroRival();
+        mostrarVentanaPerdedor();
     }
 
     public void setTurno(int turno) {
         this.turno = turno;
+    }
+
+    public void setEsMiTurno(boolean esMiTurno) {
+        this.esMiTurno = esMiTurno;
+    }
+    
+    public void setUsuario(String usuario) {
+        this.usuario = usuario;
+    }
+    
+    public void setUsuarioRival(String usuarioRival) {
+        this.usuarioRival = usuarioRival;
     }
     
     

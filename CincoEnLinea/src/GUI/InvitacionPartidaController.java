@@ -54,6 +54,7 @@ public class InvitacionPartidaController implements Initializable {
     private Socket socket;
     private Stage stage = new Stage();
     String usuarioRival;
+    String usuario;
     String room;
 
     /**
@@ -98,6 +99,7 @@ public class InvitacionPartidaController implements Initializable {
             stage.show();
             tableroController.setSocket(socket);
             tableroController.setTurno(2);
+            tableroController.setEsMiTurno(false);
         } catch (IOException ex) {
             Logger.getLogger(MenuPrincipalController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -129,6 +131,9 @@ public class InvitacionPartidaController implements Initializable {
 
     public void setRoom(String room) {
         this.room = room;
+    }
+    public void setUsuario(String usuario) {
+        this.usuario = usuario;
     }
     
     
