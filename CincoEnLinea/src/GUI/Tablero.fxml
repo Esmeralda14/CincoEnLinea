@@ -13,9 +13,9 @@
 
 <AnchorPane id="AnchorPane" fx:id="AA" prefHeight="442.0" prefWidth="657.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.TableroController">
    <children>
-      <Label fx:id="labelJugador" layoutX="443.0" layoutY="86.0" prefHeight="40.0" prefWidth="136.0" text="%Jugador">
+      <Label fx:id="jugadorEnTurno" layoutX="420.0" layoutY="94.0" prefHeight="40.0" prefWidth="224.0" text="%jugadorEnTurno">
          <font>
-            <Font name="Candara" size="30.0" />
+            <Font name="Candara Bold" size="24.0" />
          </font>
       </Label>
       <TextField fx:id="textJugador" editable="false" layoutX="420.0" layoutY="148.0" prefHeight="40.0" prefWidth="202.0" style="-fx-background-color: #A9F5E1;">

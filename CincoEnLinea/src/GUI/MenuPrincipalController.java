@@ -1,6 +1,21 @@
+/**
+ * Nombre del proyecto:
+ *    5 en linea.
+ *
+ * Nombres de los desarrolladores:
+ *    Mariana Cadena Romero
+ *    Esmeralda Jimenez Ramos
+ *
+ * Fecha en la que se inició el programa:
+ *    28-noviembre-2017
+ *
+ * Descripción: Juego que lleva por nombre '5 en linea' el cual esta disponible
+ * para todo publico, tiene la capacidad de soportar multijugador de dos
+ * participantes en tiempo real y de realizar registro de nuevos usuarios,
+ * así como consultar la puntuacion de todos los jugadores.
+ */
 package GUI;
 
-import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDrawer;
 import io.socket.client.Socket;
 import io.socket.emitter.Emitter;
@@ -22,9 +37,10 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 /**
- * FXML Controller class
+ * Controller de la ventana del menu principal
  *
- * @author marianacro
+ * @author Esmeralda Jimenez Ramos
+ * @author Mariana Cadena Romero
  */
 public class MenuPrincipalController implements Initializable {
 
@@ -32,16 +48,7 @@ public class MenuPrincipalController implements Initializable {
     private Label menuPrincipal;
 
     @FXML
-    private JFXButton espanol;
-
-    @FXML
-    private JFXButton ingles;
-
-    @FXML
     private Button iniciarPartida;
-
-    @FXML
-    private Button hamburgerReglas;
 
     @FXML
     private Button reglas;
@@ -57,12 +64,10 @@ public class MenuPrincipalController implements Initializable {
 
     @FXML
     private Button cerrarSesion;
-    
+
     @FXML
     private Label sesionUsuario;
-    
 
-        
     String idioma = Locale.getDefault().toString();
     String idiomaResource = "resources.idioma_" + idioma;
     ResourceBundle resources = ResourceBundle.getBundle(idiomaResource);
@@ -76,15 +81,22 @@ public class MenuPrincipalController implements Initializable {
         this.resources = rb;
     }
 
+    /**
+     * Metodo que obtiene del archivo de idiomas la traducion de los textos que
+     * se muestran en pantalla de acuerdo al idoma de la maquina
+     */
     public void configurarIdioma() {
         menuPrincipal.setText(resources.getString("menuPrincipal"));
         iniciarPartida.setText(resources.getString("iniciarPartida"));
-        hamburgerReglas.setText(resources.getString("reglas"));
+        reglas.setText(resources.getString("reglas"));
         raking.setText(resources.getString("ranking"));
         informacion.setText(resources.getString("informacion"));
         cerrarSesion.setText(resources.getString("CerrarSesion"));
     }
 
+    /**
+     * Metodo que muestra las reglas en la pantalla principal
+     */
     @FXML
     public void mostrarReglas() {
         try {
@@ -95,11 +107,15 @@ public class MenuPrincipalController implements Initializable {
         }
         draweMenu.open();
     }
-    
+
+    /**
+     * Metodo que muestra la tabla de ranking en la pantalla principal
+     */
     @FXML
     public void mostrarRanking() {
         try {
-            AnchorPane pane = FXMLLoader.load(getClass().getResource("Ranking.fxml"), resources);
+            AnchorPane pane = FXMLLoader.load(getClass().getResource(
+                    "Ranking.fxml"), resources);
             draweMenu.setSidePane(pane);
         } catch (IOException ex) {
             Logger.getLogger(MenuPrincipalController.class.getName()).log(Level.SEVERE, null, ex);
@@ -108,6 +124,10 @@ public class MenuPrincipalController implements Initializable {
         draweMenu.open();
     }
 
+    /**
+     * Metodo que muestra la informacion de la aplicacion en la pantalla
+     * principal
+     */
     @FXML
     public void mostrarInformacion() {
         try {
@@ -120,6 +140,10 @@ public class MenuPrincipalController implements Initializable {
         draweMenu.open();
     }
 
+    /**
+     * Metodo que abre la pantalla de busqueda de jugadores para inicar una
+     * partida
+     */
     @FXML
     public void iniciarPartida() {
         try {
@@ -140,8 +164,11 @@ public class MenuPrincipalController implements Initializable {
         stage.close();
     }
 
+    /**
+     * Metodo que cierra la sesión del usuario actual y abre la ventana de login
+     */
     @FXML
-    public void cerrarSesion(){
+    public void cerrarSesion() {
         try {
             AnchorPane pane = FXMLLoader.load(getClass().getResource("Login.fxml"), resources);
             Scene scenePartida = new Scene(pane);
@@ -154,15 +181,17 @@ public class MenuPrincipalController implements Initializable {
         stage = (Stage) cerrarSesion.getScene().getWindow();
         stage.close();
     }
-    
-    
+
+    /**
+     * Metodo que muestra una invitacion recibida para comenzar una partida
+     */
     public void mostrarInvitacion() {
         socket.on("MostrarInvitacion", new Emitter.Listener() {
             @Override
             public void call(Object... os) {
                 Platform.runLater(() -> {
                     try {
-                        FXMLLoader loader  = new FXMLLoader(getClass().getResource("InvitacionPartida.fxml"), resources);
+                        FXMLLoader loader = new FXMLLoader(getClass().getResource("InvitacionPartida.fxml"), resources);
                         Parent parent = (Parent) loader.load();
                         InvitacionPartidaController invitacionController = loader.getController();
                         Scene scenePartida = new Scene(parent);
@@ -170,8 +199,8 @@ public class MenuPrincipalController implements Initializable {
                         stage.show();
                         stage.setResizable(false);
                         invitacionController.setSocket(socket);
-                        invitacionController.setRoom((String)os[0]);
-                        invitacionController.setUsuarioRival((String)os[1]);
+                        invitacionController.setRoom((String) os[0]);
+                        invitacionController.setUsuarioRival((String) os[1]);
                         invitacionController.setUsuario(usuario);
                         invitacionController.setStageMenuPrincipal(stageMenuPrincipal);
                     } catch (IOException ex) {
@@ -193,6 +222,11 @@ public class MenuPrincipalController implements Initializable {
         mostrarInvitacion();
     }
 
+    /**
+     * Metodo que muestra el nombre del usuario de la sesión actual
+     *
+     * @param usuario
+     */
     public void setUsuario(String usuario) {
         this.usuario = usuario;
         sesionUsuario.setText(usuario);
@@ -202,7 +236,5 @@ public class MenuPrincipalController implements Initializable {
     public void setStageMenuPrincipal(Stage stageMenuPrincipal) {
         this.stageMenuPrincipal = stageMenuPrincipal;
     }
-    
-    
 
 }

@@ -1,6 +1,18 @@
 /**
- * @author Mariana Cadena Romero
- * @author Esmeralda Jimenez Ramos
+ * Nombre del proyecto:
+ *    5 en linea.
+ *
+ * Nombres de los desarrolladores:
+ *    Mariana Cadena Romero
+ *    Esmeralda Jimenez Ramos
+ *
+ * Fecha en la que se inició el programa:
+ *    28-noviembre-2017
+ *
+ * Descripción: Juego que lleva por nombre '5 en linea' el cual esta disponible
+ * para todo publico, tiene la capacidad de soportar multijugador de dos
+ * participantes en tiempo real y de realizar registro de nuevos usuarios,
+ * así como consultar la puntuacion de todos los jugadores.
  */
 package GUI;
 
@@ -21,8 +33,11 @@ import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
 /**
- * Clase controller de la interfaz gráfica de invitación que se envía al jugador
- * invitado a iniciar una partida, la cual puede aceptar o declinar.
+ * Ventana de invitación que se envía al jugador invitado a iniciar una partida,
+ * la cual puede aceptar o declinar.
+ *
+ * @author Esmeralda Jimenez Ramos
+ * @author Mariana Cadena Romero
  */
 public class InvitacionPartidaController implements Initializable {
 
@@ -43,11 +58,7 @@ public class InvitacionPartidaController implements Initializable {
 
     @FXML
     private Label labelInvitacion;
-    
-    
-    
-    
-        
+
     String idioma = Locale.getDefault().toString();
     String idiomaResource = "resources.idioma_" + idioma;
     ResourceBundle resources = ResourceBundle.getBundle(idiomaResource);
@@ -58,26 +69,15 @@ public class InvitacionPartidaController implements Initializable {
     String room;
     private Stage stageMenuPrincipal;
 
-    /**
-     * Initializes the controller class.
-     */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+
     }    
     
-    @FXML
-    public void cambiarIdiomaEs(){
-        resources = ResourceBundle.getBundle("resources.idioma_es_MX");
-        configurarIdioma();
-    }
-    
-    @FXML
-    public void cambiarIdiomaIngles(){
-        resources = ResourceBundle.getBundle("resources.idioma_en_US");
-        configurarIdioma();
-    }
-    
+    /**
+     * Metodo que obtiene del archivo de idiomas la traducion de los textos que 
+     * se muestran en pantalla de acuerdo al idoma de la maquina
+     */
     public void configurarIdioma(){
         label1Usuario.setText(resources.getString("Elusuario"));
         label2Invitacion.setText(resources.getString("teestainvitandoajugar"));
@@ -86,7 +86,10 @@ public class InvitacionPartidaController implements Initializable {
         labelInvitacion.setText(resources.getString("invitacion"));
         }
     
-    
+    /**
+     * Metodo que crea la conexion con el servidor para inciar la partida, 
+     * asigna turno y abre el tablero
+     */
     @FXML
     public void clicJugar() {
         try {
@@ -113,6 +116,9 @@ public class InvitacionPartidaController implements Initializable {
         stage.close();
     }
     
+    /**
+     * Metodo que cierra la ventana de invitacion
+     */
     @FXML
     public void clicDeclinar(){
         stage = (Stage) botonDeclinar.getScene().getWindow();
@@ -131,7 +137,12 @@ public class InvitacionPartidaController implements Initializable {
     public String getUsuarioRival() {
         return usuarioRival;
     }
-
+    
+    /**
+     * Metodo que muestra en pantalla el nombre del usuario que envio la 
+     * invitacion
+     * @param usuarioRival 
+     */
     public void setUsuarioRival(String usuarioRival) {
         this.usuarioRival = usuarioRival;
         nombreUsuario.setText(usuarioRival);

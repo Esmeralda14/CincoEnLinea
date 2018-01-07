@@ -2,18 +2,11 @@
 
 <?import com.jfoenix.controls.JFXButton?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="185.0" prefWidth="316.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.AlertaContraseñaIncorrectaController">
+<AnchorPane id="AnchorPane" prefHeight="185.0" prefWidth="316.0" style="-fx-background-color: #BEFFF5; -fx-border-color: #FF007D; -fx-border-width: 4; -fx-border-style: dotted;" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.AlertaContraseñaIncorrectaController">
    <children>
-      <ImageView fitHeight="189.0" fitWidth="317.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../resources/fondoAlerta.png" />
-         </image>
-      </ImageView>
       <JFXButton fx:id="botonAceptar" cacheShape="false" centerShape="false" focusTraversable="false" layoutX="7.0" layoutY="142.0" onAction="#clicAceptar" prefHeight="37.0" prefWidth="304.0" scaleShape="false" text="%aceptar">
          <font>
             <Font name="System Bold" size="15.0" />

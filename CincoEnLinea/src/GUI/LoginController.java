@@ -1,6 +1,18 @@
 /**
- * @author Mariana Cadena Romero
- * @author Esmeralda Jimenez Ramos
+ * Nombre del proyecto:
+ *    5 en linea.
+ *
+ * Nombres de los desarrolladores:
+ *    Mariana Cadena Romero
+ *    Esmeralda Jimenez Ramos
+ *
+ * Fecha en la que se inició el programa:
+ *    28-noviembre-2017
+ *
+ * Descripción: Juego que lleva por nombre '5 en linea' el cual esta disponible
+ * para todo publico, tiene la capacidad de soportar multijugador de dos
+ * participantes en tiempo real y de realizar registro de nuevos usuarios,
+ * así como consultar la puntuacion de todos los jugadores.
  */
 package GUI;
 
@@ -31,7 +43,10 @@ import javafx.scene.Parent;
 import javafx.scene.paint.Color;
 
 /**
- * Clase controller de la interfaz gráfica del inisio de sesión.
+ * Controller de la interfaz gráfica del inicio de sesión.
+ *
+ * @author Esmeralda Jimenez Ramos
+ * @author Mariana Cadena Romero
  */
 public class LoginController implements Initializable {
 
@@ -96,49 +111,60 @@ public class LoginController implements Initializable {
     }
 
     /**
-     * Metodo para iniciar sesión
+     * Metodo para iniciar sesión, valida campos vacios, contraseña o usuario
+     * incorrecto y abre la ventana del menu principal
      */
     @FXML
     public void iniciarSesion() {
 
         String resultado;
         JugadorCONS jugadorCONS = new JugadorCONS();
-        jugador = obtenerValores();
-        resultado = jugadorCONS.validarInisioSesion(jugador);
-        switch (resultado) {
-            case "1":
-                try {
-                    FXMLLoader loader = new FXMLLoader(getClass().
-                            getResource("MenuPrincipal.fxml"), resources);
-                    Parent parent = (Parent) loader.load();
-                    MenuPrincipalController menuController
-                            = loader.getController();
-                    Scene scenePartida = new Scene(parent);
-                    stage.setScene(scenePartida);
-                    stage.show();
-                    stage.setResizable(false);
-                    menuController.setStageMenuPrincipal(stage);
-                    agregarJugadorListaServidor(jugador.getUsuario());
-                    menuController.setSocket(socket);
-                    menuController.setUsuario(fieldUsuario.getText());
-                } catch (IOException ex) {
-                    Logger.getLogger(MenuPrincipalController.class.getName()).
-                            log(Level.SEVERE, null, ex);
-                }
-                stage = (Stage) inicioSesion.getScene().getWindow();
-                stage.close();
-                break;
-            case "2":
-                mensajeAlerta("2");
-                break;
-            case "3":
-                mensajeAlerta("3");
-                break;
+        if (fieldUsuario.getText().equals("")
+                || fieldContraseña.getText().equals("")) {
+            alertaCamposVacios();
 
+        } else {
+            jugador = obtenerValores();
+            resultado = jugadorCONS.validarInisioSesion(jugador);
+            switch (resultado) {
+                case "1":
+                    try {
+                        FXMLLoader loader = new FXMLLoader(getClass().
+                                getResource("MenuPrincipal.fxml"), resources);
+                        Parent parent = (Parent) loader.load();
+                        MenuPrincipalController menuController
+                                = loader.getController();
+                        Scene scenePartida = new Scene(parent);
+                        stage.setScene(scenePartida);
+                        stage.show();
+                        stage.setResizable(false);
+                        menuController.setStageMenuPrincipal(stage);
+                        agregarJugadorListaServidor(jugador.getUsuario());
+                        menuController.setSocket(socket);
+                        menuController.setUsuario(fieldUsuario.getText());
+                    } catch (IOException ex) {
+                        Logger.getLogger(MenuPrincipalController.class.getName()).
+                                log(Level.SEVERE, null, ex);
+                    }
+                    stage = (Stage) inicioSesion.getScene().getWindow();
+                    stage.close();
+                    break;
+                case "2":
+                    mensajeAlerta("2");
+                    break;
+                case "3":
+                    mensajeAlerta("3");
+                    break;
+
+            }
         }
-
     }
 
+    /**
+     * Metodo que muestra una alerta de contraseña o usuario incorrecto
+     *
+     * @param resultado Caracter de tipo entero
+     */
     private void mensajeAlerta(String resultado) {
         if (resultado.equals("2")) {
             AnchorPane pane;
@@ -178,6 +204,10 @@ public class LoginController implements Initializable {
         }
     }
 
+    /**
+     * Metodo que obtiene del archivo de idiomas la traducion de los textos que
+     * se muestran en pantalla de acuerdo al idoma de la maquina
+     */
     public void configurarIdioma() {
         inicioSesion.setText(resources.getString("inicioSesion"));
         labelUsuario.setText(resources.getString("labelUsuario"));
@@ -189,27 +219,29 @@ public class LoginController implements Initializable {
 
     }
 
+    /**
+     * Metodo que obtiene los datos de la interfaz grafica
+     *
+     * @return Objeto de tipo JugadorDAO
+     */
     public JugadorDAO obtenerValores() {
 
-        if (fieldUsuario.getText().equals("")
-                || fieldContraseña.getText().equals("")) {
-            alertaCamposVacios();
-
-        } else {
-            try {
-                String user = fieldUsuario.getText();
-                String clave = fieldContraseña.getText();
-                AuxiliarDAO aux = new AuxiliarDAO();
-                jugador = new JugadorDAO(user, aux.makeHash(clave));
-            } catch (NoSuchAlgorithmException ex) {
-                Logger.getLogger(LoginController.class.getName()).
-                        log(Level.SEVERE, null, ex);
-            }
-
+        try {
+            String user = fieldUsuario.getText();
+            String clave = fieldContraseña.getText();
+            AuxiliarDAO aux = new AuxiliarDAO();
+            jugador = new JugadorDAO(user, aux.makeHash(clave));
+        } catch (NoSuchAlgorithmException ex) {
+            Logger.getLogger(LoginController.class.getName()).
+                    log(Level.SEVERE, null, ex);
         }
+
         return jugador;
     }
 
+    /**
+     * Metodo que muestra una alerta de campos vacios
+     */
     public void alertaCamposVacios() {
         try {
             AnchorPane pane;
@@ -219,13 +251,19 @@ public class LoginController implements Initializable {
             sceneAlerta.setFill(Color.TRANSPARENT);
             stage.setScene(sceneAlerta);
             stage.show();
-           
+
         } catch (IOException ex) {
             Logger.getLogger(LoginController.class.getName()).
                     log(Level.SEVERE, null, ex);
         }
     }
 
+    /**
+     * Metodo que agrega al jugador a la lista de jugadores conectados al
+     * momento de inciar sesión
+     *
+     * @param jugador Usuario del jugador
+     */
     public void agregarJugadorListaServidor(String jugador) {
         try {
             socket = IO.socket("http://localhost:7000");

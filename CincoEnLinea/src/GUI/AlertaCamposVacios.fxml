@@ -7,9 +7,9 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" fx:id="paneVentana" prefHeight="180.0" prefWidth="317.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.AlertaCamposVaciosController">
+<AnchorPane id="AnchorPane" fx:id="paneVentana" prefHeight="184.0" prefWidth="315.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.AlertaCamposVaciosController">
    <children>
-      <ImageView fitHeight="221.0" fitWidth="317.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="184.0" fitWidth="315.0" layoutX="1.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../resources/fondoAlerta.png" />
          </image>
@@ -23,11 +23,11 @@
          <font>
             <Font name="System Bold" size="17.0" />
          </font></Label>
-      <Label fx:id="labelCamposVacios" layoutX="79.0" layoutY="93.0" text="%hayCamposVacios" textFill="#0f009a">
+      <Label fx:id="labelCamposVacios" layoutX="98.0" layoutY="93.0" text="%hayCamposVacios" textFill="#0f009a">
          <font>
             <Font name="System Bold" size="15.0" />
          </font></Label>
-      <JFXButton fx:id="botonAceptar" cacheShape="false" centerShape="false" focusTraversable="false" layoutX="14.0" layoutY="144.0" onAction="#clicAceptar" prefHeight="35.0" prefWidth="286.0" scaleShape="false" text="%aceptar">
+      <JFXButton fx:id="botonAceptar" cacheShape="false" centerShape="false" focusTraversable="false" layoutX="15.0" layoutY="136.0" onAction="#clicAceptar" prefHeight="35.0" prefWidth="286.0" scaleShape="false" text="%aceptar">
          <font>
             <Font name="System Bold" size="15.0" />
          </font></JFXButton>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="184.0" prefWidth="315.0" style="-fx-background-color: #BEFFF5; -fx-border-color: #FF007D; -fx-border-width: 4; -fx-border-style: dotted;" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.AlertaRegistroExitosoController">
+   <children>
+      <Label fx:id="LabelRegistroExitoso" layoutX="29.0" layoutY="14.0" prefHeight="32.0" prefWidth="257.0" text="%LabelRegistroExitoso" textFill="RED">
+         <font>
+            <Font name="System Bold" size="22.0" />
+         </font>
+      </Label>
+      <Label fx:id="elRegistroFueExitoso" layoutX="14.0" layoutY="62.0" prefHeight="26.0" prefWidth="286.0" text="%elRegistroFueExitoso" textFill="#0f009a">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Label>
+      <Label fx:id="favorIniciarSesion" layoutX="58.0" layoutY="88.0" prefHeight="26.0" prefWidth="199.0" text="%favorIniciarSesion" textFill="#0f009a">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Label>
+      <JFXButton fx:id="botonAceptar" cacheShape="false" centerShape="false" focusTraversable="false" layoutX="14.0" layoutY="135.0" onAction="#clicAceptar" prefHeight="35.0" prefWidth="286.0" scaleShape="false" text="%aceptar">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </JFXButton>
+   </children>
+</AnchorPane>

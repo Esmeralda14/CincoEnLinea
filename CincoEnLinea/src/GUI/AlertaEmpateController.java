@@ -26,22 +26,22 @@ import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
 /**
- * Pantalla que alera de campos vacios en el login
+ * Ventana que alerta sobre un empate en la partida
  *
  * @author Esmeralda Jimenez Ramos
  * @author Mariana Cadena Romero
  */
-public class AlertaCamposVaciosController implements Initializable {
+public class AlertaEmpateController implements Initializable {
 
     @FXML
-    private Label labelErrorInicioSesion;
-    @FXML
-    private Label labelNoSePuedeIniciar;
-    @FXML
-    private Label labelCamposVacios;
+    private Label empate;
     @FXML
     private JFXButton botonAceptar;
 
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+        // TODO
+    }
     String idioma = Locale.getDefault().toString();
     String idiomaResource = "resources.idioma_" + idioma;
     ResourceBundle resources = ResourceBundle.getBundle(idiomaResource);
@@ -52,9 +52,7 @@ public class AlertaCamposVaciosController implements Initializable {
      */
     public void configurarIdioma() {
         botonAceptar.setText(resources.getString("aceptar"));
-        labelErrorInicioSesion.setText(resources.getString("LabelErrorInicioSesion"));
-        labelNoSePuedeIniciar.setText(resources.getString("noSePuedeIniciarSesion"));
-        labelCamposVacios.setText(resources.getString("hayCamposVacios"));
+        empate.setText(resources.getString("empate"));
 
     }
 
@@ -67,10 +65,4 @@ public class AlertaCamposVaciosController implements Initializable {
         stage = (Stage) botonAceptar.getScene().getWindow();
         stage.close();
     }
-
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-       
-    }
-
 }

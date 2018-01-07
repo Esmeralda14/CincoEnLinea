@@ -19,11 +19,11 @@
             <Font name="Myanmar Sangam MN Bold" size="27.0" />
          </font>
       </Label>
-      <SplitPane dividerPositions="0.29797979797979796" layoutX="-2.0" layoutY="57.0" prefHeight="340.0" prefWidth="799.0">
+      <SplitPane cacheShape="false" centerShape="false" dividerPositions="0.298" focusTraversable="false" layoutX="-2.0" layoutY="57.0" prefHeight="340.0" prefWidth="799.0" scaleShape="false">
         <items>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                <children>
-                  <Button fx:id="hamburgerReglas" layoutX="50.0" layoutY="110.0" mnemonicParsing="false" onAction="#mostrarReglas" prefHeight="38.0" prefWidth="135.0" text="%reglas">
+                  <Button fx:id="reglas" layoutX="50.0" layoutY="110.0" mnemonicParsing="false" onAction="#mostrarReglas" prefHeight="38.0" prefWidth="135.0" text="%reglas">
                      <font>
                         <Font name="Malayalam Sangam MN" size="17.0" />
                      </font>
@@ -55,7 +55,7 @@
                         <ColorAdjust brightness="-0.25" contrast="0.59" />
                      </effect>
                   </Button>
-                  <Button fx:id="cerrarSesion" layoutX="14.0" layoutY="295.0" mnemonicParsing="false" onAction="#cerrarSesion" prefHeight="26.0" prefWidth="117.0" text="%CerrarSesion" textFill="#0d00ff">
+                  <Button fx:id="cerrarSesion" layoutX="103.0" layoutY="298.0" mnemonicParsing="false" onAction="#cerrarSesion" prefHeight="26.0" prefWidth="117.0" text="%CerrarSesion" textFill="#0d00ff">
                      <font>
                         <Font size="11.0" />
                      </font>
@@ -63,7 +63,11 @@
                         <ColorAdjust brightness="-0.25" contrast="0.59" />
                      </effect>
                   </Button>
-                  <Label fx:id="sesionUsuario" layoutX="151.0" layoutY="300.0" />
+                  <Label fx:id="sesionUsuario" layoutX="13.0" layoutY="2.0" prefHeight="25.0" prefWidth="75.0">
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font>
+                  </Label>
                </children>
             </AnchorPane>
           <AnchorPane fx:id="paneSecundario" minHeight="0.0" minWidth="0.0" prefHeight="338.0" prefWidth="506.0">

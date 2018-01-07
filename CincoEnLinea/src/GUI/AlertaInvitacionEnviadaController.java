@@ -26,21 +26,24 @@ import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
 /**
- * Pantalla que alera de campos vacios en el login
+ * Alerta que aparece si la invitacion a jugar fue enviada
+ * correctamente
  *
  * @author Esmeralda Jimenez Ramos
  * @author Mariana Cadena Romero
  */
-public class AlertaCamposVaciosController implements Initializable {
+public class AlertaInvitacionEnviadaController implements Initializable {
 
     @FXML
-    private Label labelErrorInicioSesion;
+    private Label invitacionEnviada;
     @FXML
-    private Label labelNoSePuedeIniciar;
-    @FXML
-    private Label labelCamposVacios;
+    private Label exitosamente;
     @FXML
     private JFXButton botonAceptar;
+
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+    }
 
     String idioma = Locale.getDefault().toString();
     String idiomaResource = "resources.idioma_" + idioma;
@@ -52,10 +55,8 @@ public class AlertaCamposVaciosController implements Initializable {
      */
     public void configurarIdioma() {
         botonAceptar.setText(resources.getString("aceptar"));
-        labelErrorInicioSesion.setText(resources.getString("LabelErrorInicioSesion"));
-        labelNoSePuedeIniciar.setText(resources.getString("noSePuedeIniciarSesion"));
-        labelCamposVacios.setText(resources.getString("hayCamposVacios"));
-
+        invitacionEnviada.setText(resources.getString("invitacionEnviada"));
+        exitosamente.setText(resources.getString("exitosamente"));
     }
 
     /**
@@ -67,10 +68,4 @@ public class AlertaCamposVaciosController implements Initializable {
         stage = (Stage) botonAceptar.getScene().getWindow();
         stage.close();
     }
-
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-       
-    }
-
 }

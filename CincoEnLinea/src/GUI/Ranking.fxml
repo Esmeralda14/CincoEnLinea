@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="341.0" prefWidth="535.0" style="-fx-background-color: #DDFFD3;" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.RankingController">
+<AnchorPane id="AnchorPane" prefHeight="341.0" prefWidth="557.0" style="-fx-background-color: #DDFFD3;" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.RankingController">
    <children>
       <TableView fx:id="tablaRanking" layoutX="7.0" layoutY="23.0" prefHeight="268.0" prefWidth="544.0">
          <columns>
@@ -14,7 +14,7 @@
             <TableColumn fx:id="columnaPuntaje" prefWidth="213.0" text="%puntaje" />
          </columns>
       </TableView>
-      <JFXButton fx:id="botonActualizarRanking" buttonType="RAISED" layoutY="291.0" onAction="#llenarTabla" prefHeight="36.0" prefWidth="557.0" style="-fx-scale-shape: 7777;" text="Actualizar ranking" textFill="#d60d0d">
+      <JFXButton fx:id="botonActualizarRanking" buttonType="RAISED" layoutX="32.0" layoutY="291.0" onAction="#llenarTabla" prefHeight="36.0" prefWidth="493.0" text="Actualizar ranking" textFill="#d60d0d">
          <font>
             <Font name="System Bold" size="14.0" />
          </font></JFXButton>

@@ -1,13 +1,27 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * Nombre del proyecto: 
+ *    5 en linea.
+ * 
+ * Nombres de los desarrolladores: 
+ *    Mariana Cadena Romero 
+ *    Esmeralda Jimenez Ramos                                                          
+ *                                                                                                    
+ * Fecha en la que se inició el programa:                                                                                                                      
+ *    28-noviembre-2017
+ * 
+ * Descripción: Juego que lleva por nombre '5 en linea' el cual esta disponible
+ * para todo publico, tiene la capacidad de soportar multijugador de dos
+ * participantes en tiempo real y de realizar registro de nuevos usuarios,
+ * así como consultar la puntuacion de todos los jugadores.
  */
+
 package Dominio;
 
 /**
- *
- * @author Esmeralda
+ * Clase que guarda la informacion de cada jugador que se registra e
+ * inicia sesión
+ * @author Esmeralda Jimenez Ramos
+ * @author Mariana Cadena Romero
  */
 public class JugadorDAO {
     String usuario;

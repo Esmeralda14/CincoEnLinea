@@ -26,21 +26,22 @@ import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
 /**
- * Pantalla que alera de campos vacios en el login
+ * Ventana que alerta sobre un usuario no encontrado al
+ * momento de querer mandar una invitacion para jugar
  *
  * @author Esmeralda Jimenez Ramos
  * @author Mariana Cadena Romero
  */
-public class AlertaCamposVaciosController implements Initializable {
+public class AlertaUsuarioNoEncontradoController implements Initializable {
 
     @FXML
-    private Label labelErrorInicioSesion;
-    @FXML
-    private Label labelNoSePuedeIniciar;
-    @FXML
-    private Label labelCamposVacios;
+    private Label usuarioNoEncontrado;
     @FXML
     private JFXButton botonAceptar;
+
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+    }
 
     String idioma = Locale.getDefault().toString();
     String idiomaResource = "resources.idioma_" + idioma;
@@ -52,9 +53,7 @@ public class AlertaCamposVaciosController implements Initializable {
      */
     public void configurarIdioma() {
         botonAceptar.setText(resources.getString("aceptar"));
-        labelErrorInicioSesion.setText(resources.getString("LabelErrorInicioSesion"));
-        labelNoSePuedeIniciar.setText(resources.getString("noSePuedeIniciarSesion"));
-        labelCamposVacios.setText(resources.getString("hayCamposVacios"));
+        usuarioNoEncontrado.setText(resources.getString("usuarioNoEncontrado"));
 
     }
 
@@ -66,11 +65,6 @@ public class AlertaCamposVaciosController implements Initializable {
         Stage stage = new Stage();
         stage = (Stage) botonAceptar.getScene().getWindow();
         stage.close();
-    }
-
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-       
     }
 
 }

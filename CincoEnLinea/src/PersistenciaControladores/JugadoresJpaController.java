@@ -1,7 +1,18 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * Nombre del proyecto:
+ *    5 en linea.
+ *
+ * Nombres de los desarrolladores:
+ *    Mariana Cadena Romero
+ *    Esmeralda Jimenez Ramos
+ *
+ * Fecha en la que se inició el programa:
+ *    28-noviembre-2017
+ *
+ * Descripción: Juego que lleva por nombre '5 en linea' el cual esta disponible
+ * para todo publico, tiene la capacidad de soportar multijugador de dos
+ * participantes en tiempo real y de realizar registro de nuevos usuarios,
+ * así como consultar la puntuacion de todos los jugadores.
  */
 package PersistenciaControladores;
 
@@ -18,8 +29,11 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 
 /**
+ * Clase que se encarga de la comunicacion entre la base de datos y las
+ * funciones del programa
  *
- * @author marianacro
+ * @author Esmeralda Jimenez Ramos
+ * @author Mariana Cadena Romero
  */
 public class JugadoresJpaController implements Serializable {
 
@@ -140,5 +154,5 @@ public class JugadoresJpaController implements Serializable {
             em.close();
         }
     }
-    
+
 }

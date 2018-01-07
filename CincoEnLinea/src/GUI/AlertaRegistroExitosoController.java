@@ -26,19 +26,19 @@ import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
 /**
- * Pantalla que alera de campos vacios en el login
+ * Ventana que alerta sobre un registro nuevo exitoso
  *
  * @author Esmeralda Jimenez Ramos
  * @author Mariana Cadena Romero
  */
-public class AlertaCamposVaciosController implements Initializable {
+public class AlertaRegistroExitosoController implements Initializable {
 
     @FXML
-    private Label labelErrorInicioSesion;
+    private Label LabelRegistroExitoso;
     @FXML
-    private Label labelNoSePuedeIniciar;
+    private Label elRegistroFueExitoso;
     @FXML
-    private Label labelCamposVacios;
+    private Label favorIniciarSesion;
     @FXML
     private JFXButton botonAceptar;
 
@@ -52,10 +52,9 @@ public class AlertaCamposVaciosController implements Initializable {
      */
     public void configurarIdioma() {
         botonAceptar.setText(resources.getString("aceptar"));
-        labelErrorInicioSesion.setText(resources.getString("LabelErrorInicioSesion"));
-        labelNoSePuedeIniciar.setText(resources.getString("noSePuedeIniciarSesion"));
-        labelCamposVacios.setText(resources.getString("hayCamposVacios"));
-
+        LabelRegistroExitoso.setText(resources.getString("LabelRegistroExitoso"));
+        elRegistroFueExitoso.setText(resources.getString("elRegistroFueExitoso"));
+        favorIniciarSesion.setText(resources.getString("favorIniciarSesion"));
     }
 
     /**
@@ -70,7 +69,7 @@ public class AlertaCamposVaciosController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-       
+
     }
 
 }

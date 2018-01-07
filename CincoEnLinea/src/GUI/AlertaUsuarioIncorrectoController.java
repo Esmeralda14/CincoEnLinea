@@ -9,19 +9,20 @@ import com.jfoenix.controls.JFXButton;
 import java.net.URL;
 import java.util.Locale;
 import java.util.ResourceBundle;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
 /**
- * FXML Controller class
+ * Ventana que alerta sobre un usuario ingresado
+ * incorrectamente al momento de iniciar sesión
  *
- * @author Esmeralda
+ * @author Esmeralda Jimenez Ramos
+ * @author Mariana Cadena Romero
  */
 public class AlertaUsuarioIncorrectoController implements Initializable {
-    
+
     @FXML
     private JFXButton botonAceptar;
 
@@ -33,24 +34,27 @@ public class AlertaUsuarioIncorrectoController implements Initializable {
 
     @FXML
     private Label labelEsIncorrecto;
-    
-        
+
     String idioma = Locale.getDefault().toString();
     String idiomaResource = "resources.idioma_" + idioma;
     ResourceBundle resources = ResourceBundle.getBundle(idiomaResource);
-    
-    
-    public void configurarIdioma(){
+
+    /**
+     * Metodo que obtiene del archivo de idiomas la traducion de los textos que
+     * se muestran en pantalla de acuerdo al idoma de la maquina
+     */
+    public void configurarIdioma() {
         botonAceptar.setText(resources.getString("aceptar"));
         labelErrorIS.setText(resources.getString("LabelErrorInicioSesion"));
         labelUsuarioProporcionado.setText(resources.getString("LabelUsuarioProporcionado"));
         labelEsIncorrecto.setText(resources.getString("LabelEsIncorrecto"));
-        
     }
-    
-    
+
+    /**
+     * Metodo que cierra la ventana de alerta
+     */
     @FXML
-    public void clicAceptar(){
+    public void clicAceptar() {
         Stage stage = new Stage();
         stage = (Stage) botonAceptar.getScene().getWindow();
         stage.close();
@@ -58,9 +62,7 @@ public class AlertaUsuarioIncorrectoController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+
     }
 
-    
-    
 }

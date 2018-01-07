@@ -1,7 +1,18 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * Nombre del proyecto:
+ *    5 en linea.
+ *
+ * Nombres de los desarrolladores:
+ *    Mariana Cadena Romero
+ *    Esmeralda Jimenez Ramos
+ *
+ * Fecha en la que se inició el programa:
+ *    28-noviembre-2017
+ *
+ * Descripción: Juego que lleva por nombre '5 en linea' el cual esta disponible
+ * para todo publico, tiene la capacidad de soportar multijugador de dos
+ * participantes en tiempo real y de realizar registro de nuevos usuarios,
+ * así como consultar la puntuacion de todos los jugadores.
  */
 package Persistencia;
 
@@ -16,20 +27,29 @@ import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
+ * Clase encargada de realizar las consultas a la base de datos
  *
- * @author marianacro
+ * @author Esmeralda Jimenez Ramos
+ * @author Mariana Cadena Romero
  */
 @Entity
 @Table(name = "Jugadores")
 @XmlRootElement
 @NamedQueries({
-@NamedQuery(name = "Jugadores.findAll", query = "SELECT j FROM Jugadores j"),
-    @NamedQuery(name = "Jugadores.findByUsuario", query = "SELECT j FROM Jugadores j WHERE j.usuario = :usuario"),
-    @NamedQuery(name = "Jugadores.findByClave", query = "SELECT j FROM Jugadores j WHERE j.clave = :clave"),
-    @NamedQuery(name = "puntaje.jugadores", query = "SELECT j.puntuacionTotal FROM Jugadores j ORDER BY j.puntuacionTotal DESC"),
-    @NamedQuery(name = "usuarios.puntaje", query = "SELECT j.usuario from Jugadores j ORDER BY j.puntuacionTotal DESC"),
-    @NamedQuery(name = "sumar.puntajeObtenido", query = "UPDATE Jugadores j SET j.puntuacionTotal = j.puntuacionTotal + 10 WHERE j.usuario = :usuario"),
+    @NamedQuery(name = "Jugadores.findAll", query = "SELECT j FROM Jugadores j")
+    ,
+    @NamedQuery(name = "Jugadores.findByUsuario", query = "SELECT j FROM Jugadores j WHERE j.usuario = :usuario")
+    ,
+    @NamedQuery(name = "Jugadores.findByClave", query = "SELECT j FROM Jugadores j WHERE j.clave = :clave")
+    ,
+    @NamedQuery(name = "puntaje.jugadores", query = "SELECT j.puntuacionTotal FROM Jugadores j ORDER BY j.puntuacionTotal DESC")
+    ,
+    @NamedQuery(name = "usuarios.puntaje", query = "SELECT j.usuario from Jugadores j ORDER BY j.puntuacionTotal DESC")
+    ,
+    @NamedQuery(name = "sumar.puntajeObtenido", query = "UPDATE Jugadores j SET j.puntuacionTotal = j.puntuacionTotal + 10 WHERE j.usuario = :usuario")
+    ,
     @NamedQuery(name = "Jugadores.findByPuntuacionTotal", query = "select j from Jugadores j where j.puntuacionTotal IS NOT NULL order by j.puntuacionTotal desc")})
+
 public class Jugadores implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -103,5 +123,5 @@ public class Jugadores implements Serializable {
     public String toString() {
         return "Persistencia.Jugadores[ usuario=" + usuario + " ]";
     }
-    
+
 }
