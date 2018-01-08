@@ -14,29 +14,19 @@
       </Label>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#fbff0a" height="2.0" layoutY="4.0" stroke="#428fb9" strokeType="INSIDE" width="611.0" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#fbff0a" height="2.0" layoutY="57.0" stroke="#428fb9" strokeType="INSIDE" width="611.0" />
-      <Label fx:id="regla2" layoutX="14.0" layoutY="75.0" text="%regla2">
+      <Label fx:id="regla2" layoutX="14.0" layoutY="80.0" text="%regla2">
          <font>
-            <Font name="Malayalam Sangam MN" size="17.0" />
+            <Font name="Malayalam Sangam MN" size="23.0" />
          </font>
       </Label>
-      <Label fx:id="regla3" layoutX="14.0" layoutY="101.0" text="%regla3">
+      <Label fx:id="regla3" layoutX="14.0" layoutY="129.0" text="%regla3">
          <font>
-            <Font name="Malayalam Sangam MN" size="15.0" />
+            <Font name="Malayalam Sangam MN" size="20.0" />
          </font>
       </Label>
-      <Label fx:id="regla4" layoutX="14.0" layoutY="127.0" text="%regla4">
+      <Label fx:id="regla4" layoutX="14.0" layoutY="160.0" text="%regla4">
          <font>
-            <Font name="Malayalam Sangam MN" size="15.0" />
-         </font>
-      </Label>
-      <Label fx:id="regla5" layoutX="14.0" layoutY="172.0" text="%regla5">
-         <font>
-            <Font name="Malayalam Sangam MN" size="15.0" />
-         </font>
-      </Label>
-      <Label fx:id="regla6" layoutX="14.0" layoutY="195.0" text="%regla6">
-         <font>
-            <Font name="Malayalam Sangam MN" size="15.0" />
+            <Font name="Malayalam Sangam MN" size="20.0" />
          </font>
       </Label>
    </children>

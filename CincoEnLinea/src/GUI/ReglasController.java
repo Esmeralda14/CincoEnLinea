@@ -71,8 +71,6 @@ public class ReglasController implements Initializable {
         regla2.setText(resources.getString("regla2"));
         regla3.setText(resources.getString("regla3"));
         regla4.setText(resources.getString("regla4"));
-        regla5.setText(resources.getString("regla5"));
-        regla6.setText(resources.getString("regla6"));
 
     }
 
