@@ -174,14 +174,7 @@ public class TableroController implements Initializable {
                                 log(Level.SEVERE, null, ex);
 
                     }
-                } else {
-                    if (aux.validarColumna(turno) == false
-                            && aux.validarFila(turno) == false
-                            && aux.validarDiagonalIzquierda(turno) == false
-                            && aux.validarDiagonalDerecha(turno) && aux.validarEmpate()) {
-                        mostrarEmpate();
-                    }
-                }
+                } 
             }
         }
     }
@@ -243,25 +236,6 @@ public class TableroController implements Initializable {
                 });
             }
         });
-    }
-
-    /**
-     * Ventana que muestra la vetana de empate
-     */
-    public void mostrarEmpate() {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().
-                    getResource("AlertaEmpate.fxml"), resources);
-            Parent parent = (Parent) loader.load();
-            AlertaEmpateController empateController
-                    = loader.getController();
-            Scene scenePartida = new Scene(parent);
-            stage.setScene(scenePartida);
-            stage.show();
-            stage.setResizable(false);
-        } catch (IOException ex) {
-            Logger.getLogger(TableroController.class.getName()).log(Level.SEVERE, null, ex);
-        }
     }
 
     /**
