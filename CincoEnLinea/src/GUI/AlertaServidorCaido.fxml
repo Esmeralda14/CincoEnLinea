@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="184.0" prefWidth="427.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.111" fx:controller="GUI.AlertaServidorCaidoController">
+   <children>
+      <ImageView fitHeight="177.0" fitWidth="195.0" layoutX="127.0" layoutY="-4.0" opacity="0.45" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../resources/warning_icon-icons.com_63542.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="138.0" layoutY="49.0" text="%advertencia">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Label>
+      <Label fx:id="seInterrumpioLaConexionConElServidor" layoutX="41.0" layoutY="84.0" text="%seInterrumpioLaConexionConElServidor">
+         <font>
+            <Font size="19.0" />
+         </font>
+      </Label>
+      <JFXButton fx:id="aceptar" buttonType="RAISED" layoutX="138.0" layoutY="135.0" onAction="#cliclAceptar" prefHeight="35.0" prefWidth="153.0" style="-fx-background-color: #fbfbfb;" text="%aceptar" />
+   </children>
+</AnchorPane>

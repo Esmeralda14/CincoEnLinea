@@ -272,6 +272,12 @@ public class LoginController implements Initializable {
                     System.out.println("conectado con el servidor");
                 }
             });
+            socket.on(Socket.EVENT_DISCONNECT, new Emitter.Listener() {
+                @Override
+                public void call(Object... os) {
+                   
+                }
+            });
             socket.connect();
             socket.emit("Jugadores conectados", jugador);
         } catch (URISyntaxException ex) {

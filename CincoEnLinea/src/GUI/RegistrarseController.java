@@ -35,6 +35,9 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import java.util.Locale;
+import java.util.function.UnaryOperator;
+import java.util.regex.Pattern;
+import javafx.scene.control.TextFormatter;
 import javafx.scene.paint.Color;
 
 /**
@@ -231,7 +234,17 @@ public class RegistrarseController implements Initializable {
                         + "-fx-focus-color: green;");
                 bRegistrarse.setDisable(true);
                 usuarioMenorA45.setVisible(false);
+                verificarEspacios(fieldUsuario);
+                verificarEspacios(fieldContraseña);
             }
         }
+    }
+
+    public void verificarEspacios(TextField campo) {
+        Pattern patternFileName = Pattern.compile("^[a-zA-Z0-9]*$");
+        TextFormatter formato = new TextFormatter((UnaryOperator<TextFormatter.Change>) change -> {
+            return patternFileName.matcher(change.getControlNewText()).matches() ? change : null;
+        });
+        campo.setTextFormatter(formato);
     }
 }
