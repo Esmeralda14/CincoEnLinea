@@ -15,9 +15,9 @@
             <Image url="@../resources/imagenGanador.png" />
          </image>
       </ImageView>
-      <Label fx:id="labelGanaste" layoutX="88.0" layoutY="168.0" text="%ganaste" textFill="WHITE">
+      <Label fx:id="labelGanaste" layoutX="76.0" layoutY="173.0" prefHeight="28.0" prefWidth="184.0" text="\%ganaste" textFill="WHITE">
          <font>
-            <Font size="26.0" />
+            <Font size="19.0" />
          </font>
       </Label>
       <JFXButton fx:id="BotonAceptar" cacheShape="false" centerShape="false" focusTraversable="false" layoutX="4.0" layoutY="210.0" onAction="#clicAceptar" prefHeight="44.0" prefWidth="331.0" scaleShape="false" text="%aceptar">
