@@ -64,7 +64,7 @@ public class AlertaInvitacionEnviadaController implements Initializable {
      */
     @FXML
     public void clicAceptar() {
-        Stage stage = new Stage();
+        Stage stage;
         stage = (Stage) botonAceptar.getScene().getWindow();
         stage.close();
     }

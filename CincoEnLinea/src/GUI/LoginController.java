@@ -33,7 +33,6 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import Dominio.JugadorDAO;
 import Persistencia.consultas.JugadorCONS;
-import Dominio.AuxiliarDAO;
 import io.socket.client.IO;
 import io.socket.client.Socket;
 import io.socket.emitter.Emitter;
@@ -229,8 +228,7 @@ public class LoginController implements Initializable {
         try {
             String user = fieldUsuario.getText();
             String clave = fieldContraseña.getText();
-            AuxiliarDAO aux = new AuxiliarDAO();
-            jugador = new JugadorDAO(user, aux.makeHash(clave));
+            jugador = new JugadorDAO(user, jugador.makeHash(clave));
         } catch (NoSuchAlgorithmException ex) {
             Logger.getLogger(LoginController.class.getName()).
                     log(Level.SEVERE, null, ex);

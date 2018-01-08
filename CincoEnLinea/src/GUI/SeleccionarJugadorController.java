@@ -56,7 +56,7 @@ public class SeleccionarJugadorController implements Initializable {
     private TextField textUsuario;
 
     @FXML
-    private Label IngresaElUsuarioConElQueDeseasIniciarPartida;
+    private Label ingresaElUsuarioConElQueDeseasIniciarPartida;
 
     @FXML
     private Label lUsuario;
@@ -84,7 +84,8 @@ public class SeleccionarJugadorController implements Initializable {
         botonInciarPartida.setText(resources.getString("¡IniciarPartida!"));
         botonMenuPrincipal.setText(resources.getString("MenuPrincipal"));
         jugadoresConectados.setText(resources.getString("jugadoresConectados"));
-        IngresaElUsuarioConElQueDeseasIniciarPartida.setText(resources.getString("IngresaElUsuarioConElQueDeseasIniciarPartida"));
+        ingresaElUsuarioConElQueDeseasIniciarPartida.setText(resources.getString
+        ("IngresaElUsuarioConElQueDeseasIniciarPartida"));
         lUsuario.setText(resources.getString("lUsuario"));
     }
 

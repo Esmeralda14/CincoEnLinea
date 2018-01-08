@@ -59,8 +59,8 @@ public class TableroController implements Initializable {
     @FXML
     private GridPane gridPaneTablero;
 
-    private Stage stage = new Stage();
-    PartidaDAO aux = new PartidaDAO();
+    private Stage stage;
+    PartidaDAO partida = new PartidaDAO();
     private Socket socket;
     private String usuario;
     private String usuarioRival;
@@ -110,9 +110,9 @@ public class TableroController implements Initializable {
                 socket.emit("Realizar tiro", boton.getId());
                 esMiTurno = false;
                 mostrarJugadorEnTurno(usuarioRival);
-                if (aux.validarColumna(turno) || aux.validarFila(turno)
-                        || aux.validarDiagonalIzquierda(turno)
-                        || aux.validarDiagonalDerecha(turno)) {
+                if (partida.validarColumna(turno) || partida.validarFila(turno)
+                        || partida.validarDiagonalIzquierda(turno)
+                        || partida.validarDiagonalDerecha(turno)) {
                     try {
                         FXMLLoader loader = new FXMLLoader(getClass().
                                 getResource("AlertaGanador.fxml"), resources);
@@ -130,7 +130,7 @@ public class TableroController implements Initializable {
                         jugadorcons.actualizarPuntuacion(usuario);
                         socket.emit("Avisar a perdedor");
                         socket.emit("Separar canales");
-                        aux = null;
+                        partida.limpiarTablero();
                         stageTablero.close();
                     } catch (IOException ex) {
                         Logger.getLogger(MenuPrincipalController.class.getName()).log(Level.SEVERE, null, ex);
@@ -147,9 +147,9 @@ public class TableroController implements Initializable {
                 socket.emit("Realizar tiro", boton.getId());
                 esMiTurno = false;
                 mostrarJugadorEnTurno(usuarioRival);
-                if (aux.validarColumna(turno) || aux.validarFila(turno)
-                        || aux.validarDiagonalIzquierda(turno)
-                        || aux.validarDiagonalDerecha(turno)) {
+                if (partida.validarColumna(turno) || partida.validarFila(turno)
+                        || partida.validarDiagonalIzquierda(turno)
+                        || partida.validarDiagonalDerecha(turno)) {
                     try {
                         FXMLLoader loader = new FXMLLoader(getClass().
                                 getResource("AlertaGanador.fxml"), resources);
@@ -167,7 +167,7 @@ public class TableroController implements Initializable {
                         jugadorcons.actualizarPuntuacion(usuario);
                         socket.emit("Avisar a perdedor");
                         socket.emit("Separar canales");
-                        aux = null;
+                        partida.limpiarTablero();
                         stageTablero.close();
                     } catch (IOException ex) {
                         Logger.getLogger(MenuPrincipalController.class.getName()).
@@ -228,7 +228,7 @@ public class TableroController implements Initializable {
                         perdedorController.setSocket(socket);
                         perdedorController.setUsuario(usuario);
                         socket.emit("Separar canales");
-                        aux = null;
+                        partida.limpiarTablero();
                         stageTablero.close();
                     } catch (IOException ex) {
                         Logger.getLogger(TableroController.class.getName()).log(Level.SEVERE, null, ex);

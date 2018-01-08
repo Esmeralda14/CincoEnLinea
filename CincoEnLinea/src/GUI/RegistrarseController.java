@@ -16,7 +16,7 @@
  */
 package GUI;
 
-import Dominio.AuxiliarDAO;
+import Dominio.JugadorDAO;
 import Persistencia.Jugadores;
 import Persistencia.consultas.JugadorCONS;
 import java.io.IOException;
@@ -61,20 +61,22 @@ public class RegistrarseController implements Initializable {
     private Label labelContrasena;
 
     @FXML
-    private Button Bregistrarse;
+    private Button bRegistrarse;
 
     @FXML
     private Button regresar;
 
     @FXML
     private Label laContraDebeDeSerDeOcho;
+    
+    @FXML
+    private Label usuarioMenorA45;
 
     String idioma = Locale.getDefault().toString();
     String idiomaResource = "resources.idioma_" + idioma;
     ResourceBundle resources = ResourceBundle.getBundle(idiomaResource);
     JugadorCONS jugadorCONS = new JugadorCONS();
-
-    private Stage stage = new Stage();
+    private Stage stage;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -89,9 +91,10 @@ public class RegistrarseController implements Initializable {
         labelRegistrarse.setText(resources.getString("labelRegistrarse"));
         usuario.setText(resources.getString("labelUsuario"));
         labelContrasena.setText(resources.getString("labelContrasena"));
-        Bregistrarse.setText(resources.getString("Bregistrarse"));
+        bRegistrarse.setText(resources.getString("Bregistrarse"));
         regresar.setText(resources.getString("regresar"));
         laContraDebeDeSerDeOcho.setText(resources.getString("laContraDebeDeSerDeOcho"));
+        usuarioMenorA45.setText(resources.getString("usuarioMenorA45"));
     }
 
     /**
@@ -101,12 +104,6 @@ public class RegistrarseController implements Initializable {
     @FXML
     public void registrarUsuario() {
         JugadorCONS jugador = new JugadorCONS();
-        if (fieldUsuario.getText().equals("")
-                || fieldContraseña.getText().equals("")
-                || fieldUsuario.getText().equals(" ")
-                || fieldContraseña.getText().equals(" ")) {
-            alertaCamposVacios();
-        } else {
             boolean resultado = jugadorCONS.validarUsuarioRepetido(fieldUsuario.getText());
             if (resultado) {
                 alertaUsuarioRepetido();
@@ -115,7 +112,6 @@ public class RegistrarseController implements Initializable {
                 alertaRegistrado();
                 abrirInicioSesion();
             }
-        }
     }
 
     /**
@@ -125,11 +121,11 @@ public class RegistrarseController implements Initializable {
      */
     public Jugadores obtenerValores() {
         Jugadores entidadJugador = null;
-        AuxiliarDAO aux = new AuxiliarDAO();
+        JugadorDAO jugador = new JugadorDAO();
         String user = fieldUsuario.getText();
         String clave = fieldContraseña.getText();
         try {
-            entidadJugador = new Jugadores(user, aux.makeHash(clave));
+            entidadJugador = new Jugadores(user, jugador.makeHash(clave));
         } catch (NoSuchAlgorithmException ex) {
             Logger.getLogger(RegistrarseController.class.getName()).
                     log(Level.SEVERE, null, ex);
@@ -158,29 +154,6 @@ public class RegistrarseController implements Initializable {
                     log(Level.SEVERE, null, ex);
         }
 
-    }
-
-    /**
-     * Metodo que muestra una alerta en caso de querer registrar con campos
-     * vacios
-     */
-    public void alertaCamposVacios() {
-        AnchorPane pane;
-        try {
-            pane = FXMLLoader.load(getClass().getResource("AlertaCamposVaciosRegistro.fxml"), resources);
-            Scene sceneAlerta = new Scene(pane);
-            sceneAlerta.setFill(Color.TRANSPARENT);
-            stage.setScene(sceneAlerta);
-            stage.show();
-            stage.setResizable(false);
-        } catch (NullPointerException ex) {
-        } catch (RuntimeException ex) {
-            Logger.getLogger(LoginController.class.getName())
-                    .log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
-            Logger.getLogger(LoginController.class.getName()).
-                    log(Level.SEVERE, null, ex);
-        }
     }
 
     /**
@@ -231,14 +204,33 @@ public class RegistrarseController implements Initializable {
             fieldContraseña.setStyle("-fx-text-box-border: green;"
                     + "-fx-focus-color: green; ");
             laContraDebeDeSerDeOcho.setVisible(false);
-            Bregistrarse.setDisable(false);
+            bRegistrarse.setDisable(false);
 
         } else {
             if (contra.length() < 7) {
                 fieldContraseña.setStyle("-fx-text-box-border: red;"
                         + "-fx-focus-color: red;");
-                Bregistrarse.setDisable(true);
+                bRegistrarse.setDisable(true);
                 laContraDebeDeSerDeOcho.setVisible(true);
+            }
+        }
+    }
+    
+    @FXML
+        private void verificarTamanoUsuario() {
+        String usuarioVerificar = fieldUsuario.getText();
+        if (usuarioVerificar.length() >= 44) {
+            fieldUsuario.setStyle("-fx-text-box-border: red;"
+                    + "-fx-focus-color: red; ");
+            usuarioMenorA45.setVisible(false);
+            bRegistrarse.setDisable(true);
+
+        } else {
+            if (usuarioVerificar.length() < 44) {
+                fieldUsuario.setStyle("-fx-text-box-border: green;"
+                        + "-fx-focus-color: green;");
+                bRegistrarse.setDisable(true);
+                usuarioMenorA45.setVisible(false);
             }
         }
     }

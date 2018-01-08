@@ -47,8 +47,6 @@ public class RankingController implements Initializable {
 
     ObservableList<Jugadores> jugadores = null;
 
-    JugadorCONS cons = new JugadorCONS();
-
     String idioma = Locale.getDefault().toString();
     String idiomaResource = "resources.idioma_" + idioma;
     ResourceBundle resources = ResourceBundle.getBundle(idiomaResource);
