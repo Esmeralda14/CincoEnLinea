@@ -69,7 +69,7 @@ public class AlertaUsuarioRepetidoController implements Initializable {
      */
     @FXML
     public void clicAceptar(){
-        Stage stage;
+        Stage stage= new Stage();
         stage = (Stage) botonAceptar.getScene().getWindow();
         stage.close();
     }

@@ -59,7 +59,7 @@ public class TableroController implements Initializable {
     @FXML
     private GridPane gridPaneTablero;
 
-    private Stage stage;
+    private Stage stage = new Stage();
     PartidaDAO partida = new PartidaDAO();
     private Socket socket;
     private String usuario;

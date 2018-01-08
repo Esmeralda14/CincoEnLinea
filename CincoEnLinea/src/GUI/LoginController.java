@@ -228,7 +228,8 @@ public class LoginController implements Initializable {
         try {
             String user = fieldUsuario.getText();
             String clave = fieldContraseña.getText();
-            jugador = new JugadorDAO(user, jugador.makeHash(clave));
+            JugadorDAO auxJugador = new JugadorDAO();
+            jugador = new JugadorDAO(user, auxJugador.makeHash(clave));
         } catch (NoSuchAlgorithmException ex) {
             Logger.getLogger(LoginController.class.getName()).
                     log(Level.SEVERE, null, ex);
@@ -264,7 +265,7 @@ public class LoginController implements Initializable {
      */
     public void agregarJugadorListaServidor(String jugador) {
         try {
-            socket = IO.socket("http://localhost:7000");
+            socket = IO.socket("http://192.168.43.162:7000");
             socket.on(Socket.EVENT_CONNECT, new Emitter.Listener() {
                 @Override
                 public void call(Object... os) {

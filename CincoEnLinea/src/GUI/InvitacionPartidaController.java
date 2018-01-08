@@ -63,7 +63,7 @@ public class InvitacionPartidaController implements Initializable {
     String idiomaResource = "resources.idioma_" + idioma;
     ResourceBundle resources = ResourceBundle.getBundle(idiomaResource);
     private Socket socket;
-    private Stage stage;
+    private Stage stage = new Stage();
     String usuarioRival;
     String usuario;
     String room;

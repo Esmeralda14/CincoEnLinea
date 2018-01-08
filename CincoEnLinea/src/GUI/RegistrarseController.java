@@ -76,7 +76,7 @@ public class RegistrarseController implements Initializable {
     String idiomaResource = "resources.idioma_" + idioma;
     ResourceBundle resources = ResourceBundle.getBundle(idiomaResource);
     JugadorCONS jugadorCONS = new JugadorCONS();
-    private Stage stage;
+    private Stage stage = new Stage();
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
