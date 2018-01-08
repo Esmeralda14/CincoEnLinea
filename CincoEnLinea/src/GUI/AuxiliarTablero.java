@@ -35,7 +35,6 @@ public class AuxiliarTablero {
         int cont = 0;
         posX = nombreBoton.substring(cont, cont + 1);
         posY = nombreBoton.substring(cont + 1, cont + 2);
-        System.out.println(posX + "-" + posY);
         partida.guardarTiro(convertirPosicion(posX), convertirPosicion(posY), turno);
     }
 

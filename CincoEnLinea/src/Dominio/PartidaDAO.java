@@ -155,26 +155,6 @@ public class PartidaDAO {
     }
     
     /**
-     * Metodo que recorre el tablero en busca del empate
-     * @return Retorna verdadero si el tablero esta lleno y no hay ganador 
-     */
-    public boolean validarEmpate() {
-        int contador = 0;
-        for (int fila = 0; fila <= 7; fila++) {
-            for (int columna = 0; columna <= 7; columna++) {
-                if (tablero[fila][columna] != 0) {
-                    contador++;
-                    if (contador > 16) {
-                        return true;
-                    }
-                }
-            }
-
-        }
-        return false;
-    }
-
-    /**
      * Metodo que limpia el tablero despues de terminar una partida llenandolo 
      * de ceros
      */
