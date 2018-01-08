@@ -64,8 +64,6 @@ public class AlertaServidorCaidoController implements Initializable {
      */
     @FXML
     public void clicAceptar() {
-        Stage stage= new Stage();
-        stage = (Stage) aceptar.getScene().getWindow();
-        stage.close();
+    System.exit(0);
     }
 }

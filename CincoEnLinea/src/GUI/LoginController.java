@@ -38,6 +38,7 @@ import io.socket.client.Socket;
 import io.socket.emitter.Emitter;
 import java.net.URISyntaxException;
 import java.util.Locale;
+import javafx.application.Platform;
 import javafx.scene.Parent;
 import javafx.scene.paint.Color;
 
@@ -275,8 +276,20 @@ public class LoginController implements Initializable {
             socket.on(Socket.EVENT_DISCONNECT, new Emitter.Listener() {
                 @Override
                 public void call(Object... os) {
-                   
-                }
+                    Platform.runLater(() ->{
+                    try {
+                        AnchorPane pane = FXMLLoader.load(getClass().
+                                getResource("AlertaServidorCaido.fxml"), resources);
+                        Scene sceneServidor = new Scene(pane);
+                        stage.setScene(sceneServidor);
+                        stage.show();
+                        stage.setResizable(false);
+                    } catch (IOException ex) {
+                        Logger.getLogger(LoginController.class.getName()).
+                                log(Level.SEVERE, null, ex);
+                    }
+                });
+                 }
             });
             socket.connect();
             socket.emit("Jugadores conectados", jugador);

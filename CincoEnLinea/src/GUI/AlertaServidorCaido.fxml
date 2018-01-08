@@ -25,6 +25,6 @@
             <Font size="19.0" />
          </font>
       </Label>
-      <JFXButton fx:id="aceptar" buttonType="RAISED" layoutX="138.0" layoutY="135.0" onAction="#cliclAceptar" prefHeight="35.0" prefWidth="153.0" style="-fx-background-color: #fbfbfb;" text="%aceptar" />
+      <JFXButton fx:id="aceptar" buttonType="RAISED" layoutX="138.0" layoutY="135.0" onAction="#clicAceptar" prefHeight="35.0" prefWidth="153.0" style="-fx-background-color: #fbfbfb;" text="%aceptar" />
    </children>
 </AnchorPane>

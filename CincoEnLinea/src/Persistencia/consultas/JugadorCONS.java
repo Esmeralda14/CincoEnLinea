@@ -37,7 +37,7 @@ import javax.persistence.Persistence;
  */
 public class JugadorCONS {
 
-    EntityManagerFactory emfactory = Persistence.createEntityManagerFactory("CincoEnLineaPU4");
+    EntityManagerFactory emfactory = Persistence.createEntityManagerFactory("CincoEnLineaPU5");
     EntityManager entitymanager = emfactory.createEntityManager();
 
     /**
