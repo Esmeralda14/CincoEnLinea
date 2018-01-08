@@ -1,3 +1,20 @@
+/**
+ * Nombre del proyecto:
+ *    5 en linea.
+ *
+ * Nombres de los desarrolladores:
+ *    Mariana Cadena Romero
+ *    Esmeralda Jimenez Ramos
+ *
+ * Fecha en la que se inició el programa:
+ *    28-noviembre-2017
+ *
+ * Descripción: Juego que lleva por nombre '5 en linea' el cual esta disponible
+ * para todo publico, tiene la capacidad de soportar multijugador de dos
+ * participantes en tiempo real y de realizar registro de nuevos usuarios,
+ * así como consultar la puntuacion de todos los jugadores.
+ */
+
 var io = require("socket.io")(7000);
 var listaUsuarios = [];
 var numJugadores=0;
@@ -80,8 +97,7 @@ socket.on("Jugadores conectados", function(usuario) {
     socket.room = socket.id;
     listaUsuarios.push(socket);
 
-    //console.log(listaUsuarios[numJugadores - 1]);
-    //socket.emit(listaUsuarios[numJugadores - 1]);
+
 
 
 });
