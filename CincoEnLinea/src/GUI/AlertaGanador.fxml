@@ -15,7 +15,7 @@
             <Image url="@../resources/imagenGanador.png" />
          </image>
       </ImageView>
-      <Label fx:id="labelGanaste" layoutX="76.0" layoutY="173.0" prefHeight="28.0" prefWidth="184.0" text="\%ganaste" textFill="WHITE">
+      <Label fx:id="labelGanaste" layoutX="76.0" layoutY="173.0" prefHeight="28.0" prefWidth="184.0" text="%ganaste" textAlignment="CENTER" textFill="WHITE">
          <font>
             <Font size="19.0" />
          </font>
